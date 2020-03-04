@@ -1,0 +1,102 @@
+.sidebar {
+	background-color: lightgrey;
+	height: 100%;
+	padding-right: 10px;
+	/* overflow: scroll; */
+}
+
+.channelContainer {
+	display: flex;
+	justify-content: space-between;
+	width: auto;
+	height: 100%;
+	flex-direction: row;
+}
+
+.chatContainer {
+	height: 100%;
+	background-color: darkred;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+.searchBar {
+	min-height: 60px;
+	width: 100%;
+	background-color: blue;
+}
+.mainChat {
+	width: 100%;
+	min-height: 365px;
+	background-color: darkcyan;
+	flex-grow: 1;
+	/* overflow: scroll; */
+}
+.chatBar {
+	width: 100%;
+	min-height: 100px;
+	background-color: green;
+}
+
+.singleMessage {
+	background-color: white;
+	display: flex;
+	justify-content: start;
+	/* height: auto; */
+	position: absolute;
+	padding-left: 10px;
+	padding-right: 20px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	/* overflow-wrap: normal; */
+}
+
+.messageContainer {
+	width: auto;
+	/* display: inline-block; */
+	margin-left: 10px;
+}
+
+.timestamp {
+	font-size: 12px;
+	font-family: Lato, sans-serif;
+	color: grey;
+	font-weight: 400;
+
+}
+
+.username {
+	font-size: 15px;
+	font-family: Lato, sans-serif;
+	font-weight: 600;
+	/* text-decoration; */
+}
+
+/* .avatarContainer {
+	/* height: 36px; */
+	/* width: 36px; */
+	/* height: 36px; */
+	/* display: inline-block; */
+	/* background-color: brown; */
+/* } */
+
+.avatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 4px;
+}
+
+.messageContent {
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+	color: gray;
+	text-align: left;
+	color: rgb(29, 28, 29);
+	line-height: 1.2;
+	margin-top: 5px;
+}
+
+/*End Channel CSS*/
