@@ -2,6 +2,7 @@
 	background-color: lightgrey;
 	height: 100%;
 	padding-right: 10px;
+	/* min-width: 200px; */
 	/* overflow: scroll; */
 }
 
@@ -41,9 +42,8 @@
 .singleMessage {
 	background-color: white;
 	display: flex;
-	justify-content: start;
-	/* height: auto; */
-	position: absolute;
+	/* justify-content: start; */
+	position: relative;
 	padding-left: 10px;
 	padding-right: 20px;
 	padding-top: 8px;
@@ -55,7 +55,6 @@
 
 .messageContainer {
 	width: auto;
-	/* display: inline-block; */
 	margin-left: 10px;
 }
 
