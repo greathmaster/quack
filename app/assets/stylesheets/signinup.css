@@ -133,7 +133,7 @@ video {
 
 
 .customDuck {
-	transform: scaleX(-1) important!;
+	/* transform: scaleX(-1) !important; */
 }
 
 ul.errorsUl {
