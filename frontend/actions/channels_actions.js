@@ -22,9 +22,11 @@ export const fetchAllChannels = currentUser => dispatch => {
 };
 
 export const fetchAllChannelMessages = channelId => dispatch => {
+	// debugger
 	return ChannelAPIUtil.fetchAllChannelMessages(channelId).then(function(
 		channel
 	) {
+		// debugger
 		dispatch(receiveOtherUsers(channel.users));
 		dispatch(receiveAllMessages(channel.messages));
 	});

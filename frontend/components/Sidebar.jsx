@@ -50,6 +50,7 @@ export default connect(
 					<SidebarList
 						name={"Channels"}
 						items={this.props.channels}
+						establishWebSocketSubscription={this.props.establishWebSocketSubscription}
 					/>
 					{/* <SidebarList
 						name={"Channels"}

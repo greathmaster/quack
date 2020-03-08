@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { signup, login, logout } from "./util/session_api_util";
 import {
 	signup,
 	login,
@@ -10,11 +9,15 @@ import {
 import configureStore from "./store/store";
 import Root from "./components/root";
 import { receiveSingleMessage } from "./actions/messagesActions";
+import actionCable from 'actioncable'
+
+const CableApp = {}
+
+CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
 
 document.addEventListener("DOMContentLoaded", () => {
 	let store;
 	if (window.currentUser) {
-		
 		const preloadedState = {
 			entities: {
 				users: {
@@ -26,28 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		store = configureStore(preloadedState);
 		delete window.currentUser;
 	} else {
-		const preLoadedState = {
-			entities: {
-				users: {
-					11: {
-						id: 11,
-						username: "daffy",
-					},
-					25: {
-						id: 25,
-						username: "donald",
-					},
-				},
-				messages: {
-					65: {
-						id: 65,
-						content: "Quacks don't echo!",
-						channelId: 4,
-						ownerId: 11,
-					},
-				},
-			},
-		};
 		store = configureStore();
 	}
 
@@ -62,5 +43,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	window.receiveSingleMessage = receiveSingleMessage;
 
 	const root = document.getElementById("root");
-	ReactDOM.render(<Root store={store} />, root);
+	ReactDOM.render(<Root store={store} cableApp={CableApp} />, root);
 });

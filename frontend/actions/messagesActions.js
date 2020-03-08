@@ -23,6 +23,6 @@ export const receiveSingleMessage = (message) => {
 export const createNewMessage = message => dispatch => {
 	return MessageAPIUtil.createNewMessage(message).then(function() {
 		// dispatch(receiveSingleMessage(newMessage))
-		dispatch(fetchAllChannelMessages(message.channel_id))
+		// dispatch(fetchAllChannelMessages(message.channel_id))
 	});
 };

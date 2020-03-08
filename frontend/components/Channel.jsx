@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar";
 import Chatbar from "../components/Chatbar";
 import SingleMessage from "../components/SingleMessage";
-import { connect } from "react-redux";
 import { fetchAllChannelMessages } from "../actions/channels_actions";
 
 function mapStateToProps(state, ownProps) {
@@ -28,8 +28,33 @@ export default connect(
 	class Channel extends Component {
 		constructor(props) {
 			super(props);
+			this.establishWebSocketSubscription = this.establishWebSocketSubscription.bind(
+				this
+			);
+			this.updateAppStateChannel = this.updateAppStateChannel.bind(this);
 		}
-		componentDidMount() {}
+
+		updateAppStateChannel(newChannel) {
+			this.props.fetchAllChannelMessages(newChannel.room);
+		}
+
+		componentDidMount() {
+			this.establishWebSocketSubscription(this.props.match.params.id);
+		}
+
+		establishWebSocketSubscription(channelId) {
+			this.props.cableApp.channel = this.props.cableApp.cable.subscriptions.create(
+				{
+					channel: "ChannelsChannel",
+					room: channelId,
+				},
+				{
+					received: updatedChannel => {
+						this.updateAppStateChannel(updatedChannel);
+					},
+				}
+			);
+		}
 
 		render() {
 			let messages = null;
@@ -52,7 +77,11 @@ export default connect(
 			return (
 				<div className="channelContainer">
 					<div className="sidebar">
-						<Sidebar />
+						<Sidebar
+							establishWebSocketSubscription={
+								this.establishWebSocketSubscription
+							}
+						/>
 					</div>
 					<div className="chatContainer">
 						<div className="searchBar"></div>

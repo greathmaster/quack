@@ -8,21 +8,9 @@ import Header from "./Header";
 import Home from "./Home";
 import Channel from "./Channel";
 
-// const App = () => (
-// 	<>
-// 		{/* <Header exact path="/" /> */}
-// 		<Route exact path="/" component={Home} />
-// 		<AuthRoute exact path="/login" component={LoginFormContainer} redirect="/channel"/>
-// 		<AuthRoute exact path="/signup" component={SignupFormContainer} redirect="/channel" />
-
-// 		<ProtectedRoute exact path="/channel/" component={Channel} redirect="/login" />
-// 	</>
-// );
-
 class App extends React.Component {
-
 	constructor(props) {
-		super(props)
+		super(props);
 	}
 
 	render() {
@@ -42,9 +30,18 @@ class App extends React.Component {
 					component={SignupFormContainer}
 					redirect="/channel"
 				/>
-
 				{/* <ProtectedRoute exact path="/channel/:id" component={Channel} redirect="/login" /> */}
-				<Route path="/channel/:id" component={Channel} />
+				<Route
+					path="/channel/:id"
+					render={props => (
+						<Channel
+							{...props}
+							cableApp={this.props.cableApp}
+						/>
+					)}
+				/>
+				{/* <Route exact path="/props-through-render" render={(props) => <PropsPage {...props} title={`Props through render`} />} /> */}
+			
 			</>
 		);
 	}

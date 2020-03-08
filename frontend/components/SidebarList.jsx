@@ -29,8 +29,8 @@ export default connect(
 
 		handleClick(id) {
 			event.preventDefault();
-			//get all channel messages
-			this.props.fetchAllChannelMessages(id)
+			this.props.establishWebSocketSubscription(id) //establish a stream with the new channel
+			this.props.fetchAllChannelMessages(id) //get all channel messages
 		}
 
 		render() {
