@@ -1,0 +1,15 @@
+.sideBarInfoContainer {
+	font-family: Lato, sans-serif;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+.sideBarInfoChannelName {
+	font-size: 16px;
+}
+
+.sideBarInfoUsername {
+	font-size: 14px;
+}

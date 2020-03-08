@@ -9,6 +9,11 @@ class Api::UsersController < ApplicationController
 		render json: @user.errors.full_messages, status: 200
 	  end
 	end
+
+	def show
+		@user = current_user;
+		render "api/users/show"
+	end
   
 	private
   

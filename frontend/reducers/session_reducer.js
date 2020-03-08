@@ -2,10 +2,11 @@ import {
 	RECEIVE_CURRENT_USER,
 	LOGOUT_CURRENT_USER,
 } from "../actions/session_actions";
+import { receiveAllChannels } from "../actions/channels_actions";
 
 const _nullUser = Object.freeze({
-	id: null
-  });
+	id: null,
+});
 
 const sessionReducer = (previousState = _nullUser, action) => {
 	Object.freeze(previousState);

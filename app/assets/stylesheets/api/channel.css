@@ -1,9 +1,11 @@
 .sidebar {
-	background-color: lightgrey;
+	background-color: rgba(189, 180, 168, 0.87);
 	height: 100%;
 	padding-right: 10px;
 	/* min-width: 200px; */
 	/* overflow: scroll; */
+	flex: none;
+	/* color: white; */
 }
 
 .channelContainer {
@@ -16,7 +18,7 @@
 
 .chatContainer {
 	height: 100%;
-	background-color: darkred;
+	/* background-color: darkred; */
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
@@ -29,14 +31,24 @@
 .mainChat {
 	width: 100%;
 	min-height: 365px;
-	background-color: darkcyan;
+	/* background-color: darkcyan; */
 	flex-grow: 1;
-	/* overflow: scroll; */
+	overflow: scroll;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column-reverse;
+	/* justify-content: flex-end; */ /*TODO: Fix the scrolling issue. Adding this CSS param hides the scrool bar*/
 }
 .chatBar {
-	width: 100%;
-	min-height: 100px;
-	background-color: green;
+	/* width: 100%; */
+	min-height: 120px;
+	/* background-color: green; */
+	background-color: white;
+	z-index: 10;
+	margin-left: 10px;
+	margin-right: 10px;
+	/* display: flex; */
+	
 }
 
 .singleMessage {
@@ -59,10 +71,11 @@
 }
 
 .timestamp {
-	font-size: 12px;
-	font-family: Lato, sans-serif;
+	font-size: 13px;
+	font-family: "Lato", sans-serif;
 	color: grey;
 	font-weight: 400;
+	margin-left: 5px;
 
 }
 
@@ -97,5 +110,7 @@
 	line-height: 1.2;
 	margin-top: 5px;
 }
+
+
 
 /*End Channel CSS*/
