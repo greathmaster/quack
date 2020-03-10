@@ -26,7 +26,7 @@ time, mark, audio, video {
 
 html, body {
 	height:100%;
-	/* overflow:hidden; */
+	overflow:hidden;
 }
 
 /* HTML5 display-role reset for older browsers */

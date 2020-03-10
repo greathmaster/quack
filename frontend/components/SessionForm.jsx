@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon, InlineIcon } from "@iconify/react";
 import duckIcon from "@iconify/icons-mdi/duck";
+import Header from "../components/Header";
 
 export default class SessionForm extends React.Component {
 	constructor(props) {
@@ -56,50 +57,60 @@ export default class SessionForm extends React.Component {
 
 	render() {
 		return (
-			<div className="loginFormContainer">
-				<div className="loginForm">
-					{this.renderErrors()}
-					<h1 className="loginFormHeader">
-						{this.props.formType === "signup"
-							? "Register for Quack"
-							: "Sign in to App Academy"}
-					</h1>
-					<p className="properties message">app-academy.slack.com</p>
+			<>
+				<Header />
+				<div className="loginFormContainer">
+					<div className="loginForm">
+						{this.renderErrors()}
+						<h1 className="loginFormHeader">
+							{this.props.formType === "signup"
+								? "Register for Quack"
+								: "Sign in to App Academy"}
+						</h1>
+						<p className="properties message">
+							app-academy.slack.com
+						</p>
 
-					<div className="loginFormMiddleContainer">
-						<div className="loginFormSubContainer">
-							<p className="properties">
-								Enter your{" "}
-								<span className="strong">email address</span>{" "}
-								and <span className="strong">password</span>.
-							</p>
+						<div className="loginFormMiddleContainer">
+							<div className="loginFormSubContainer">
+								<p className="properties">
+									Enter your{" "}
+									<span className="strong">
+										email address
+									</span>{" "}
+									and <span className="strong">password</span>
+									.
+								</p>
 
-							<form onSubmit={this.onSubmit}>
-								<input
-									type="text"
-									onChange={this.handleUsername}
-									value={this.state.username}
-									placeholder={"Username"}
-								/>
+								<form onSubmit={this.onSubmit}>
+									<input
+										type="text"
+										onChange={this.handleUsername}
+										value={this.state.username}
+										placeholder={"Username"}
+										className="signinup"
+									/>
 
-								<input
-									type="text"
-									onChange={this.handlePassword}
-									value={this.state.password}
-									placeholder={"Password"}
-								/>
-								<br />
-								<button
-									className="buttonLogin"
-									onSubmit={this.onSubmit}
-								>
-									Sign in
-								</button>
-							</form>
+									<input
+										type="text"
+										onChange={this.handlePassword}
+										value={this.state.password}
+										placeholder={"Password"}
+										className="signinup"
+									/>
+									<br />
+									<button
+										className="buttonLogin"
+										onSubmit={this.onSubmit}
+									>
+										Sign in
+									</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</>
 		);
 	}
 }

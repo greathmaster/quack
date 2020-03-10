@@ -14,32 +14,37 @@ export default class Header extends React.Component {
 				<div>
 					<div className="nav">
 						<div className="leftSide">
-						<div className="logo">
-						<h1 className="header"><span className="alignLogo"><Icon icon={duckIcon} /></span> Quack!</h1>
-						</div>
-						<div className="links">
-							<Link to={``} className="inline">
-								Why Quack!?
-							</Link>
-							<Link to={``} className="inline">
-								Solutions
-							</Link>
-							<Link to={``} className="inline">
-								Resources
-							</Link>
-							<Link to={``} className="inline">
-								Enterprise
-							</Link>
-							<Link to={``} className="inline">
-								Pricing
-							</Link>
-						</div>
+							<div className="logo">
+								<h1 className="header">
+									<span className="alignLogo">
+										<Icon icon={duckIcon} />
+									</span>{" "}
+									Quack!
+								</h1>
+							</div>
+							<div className="links">
+								<Link to={``} className="inline">
+									Why Quack!?
+								</Link>
+								<Link to={``} className="inline">
+									Solutions
+								</Link>
+								<Link to={``} className="inline">
+									Resources
+								</Link>
+								<Link to={``} className="inline">
+									Enterprise
+								</Link>
+								<Link to={``} className="inline">
+									Pricing
+								</Link>
+							</div>
 						</div>
 						<div className="signInOut">
 							<div className="links">
-							<Link to={``} className="inline">
-								Sign in
-							</Link>
+								<Link to={`/login`} className="inline">
+									Sign in
+								</Link>
 							</div>
 							<button className="getStartedButton">
 								Get Started

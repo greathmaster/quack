@@ -2,10 +2,6 @@ import React from "react";
 import Logout from "../components/Logout";
 
 function SidebarInfo(props) {
-	//what are my props?
-	//Channel Name
-	//Current User??
-	//JumpTo Channel search functionality Link?
 
 	return (
 		<div className="sideBarInfoContainer">

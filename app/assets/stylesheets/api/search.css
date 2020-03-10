@@ -1,0 +1,85 @@
+.searchContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* border: 1px solid black; */
+}
+.searchDirectMessageHeader {
+	font-size: 30px;
+	font-family: "Helvetica Neue", sans-serif;
+	font-weight: 800;
+	padding-bottom: 10px;
+}
+
+.searchResults {
+	display: flex;
+	/* justify-content: left; */
+	/* align-items: center; */
+	flex-direction: column;
+	justify-content: center;
+	/* height: 400px; */
+	/* overflow: scroll; */
+
+}
+
+.searchUpper {
+	display: flex;
+	width: 500px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	border: 1px solid black;
+	border-radius: 0.25rem;
+}
+
+/* signinup width:100% 
+	remove dispaly inline-block
+*/
+
+.searchInput {
+	flex: 1;
+	padding: 18px;
+	text-align: left;
+	font-size: 16px;
+	background-color: antiquewhite;
+}
+
+.selectedUsers {
+	width: 100%;
+	overflow-wrap: break-word;
+	display: flex;
+}
+
+.searchSelectedTagRemoveX {
+	margin-left: 4px;
+	vertical-align: super;
+	cursor: pointer
+}
+
+.searchFieldAndButton {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	flex: 1
+}
+
+.searchCreateDMButton {
+	background-color: #007a5a;
+	color: white;
+	width: 50px;
+	border-radius: 3px;
+	border: 1px solid #007a5a;
+	font-size: 15px;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.searchExit {
+	font-size:40px;
+	display: flex;
+	justify-content: flex-end;
+	margin: 20px ;
+	cursor: pointer;
+}

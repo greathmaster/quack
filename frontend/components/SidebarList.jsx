@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllChannelMessages } from "../actions/channels_actions";
+import ls from 'local-storage'
 
 function mDTP(dispatch) {
 	return {
 		fetchAllChannelMessages: channelId => {
-		return dispatch(fetchAllChannelMessages(channelId));
+			return dispatch(fetchAllChannelMessages(channelId));
 		},
 	};
 }
@@ -21,16 +22,17 @@ export default connect(
 			this.handleClick = this.handleClick.bind(this);
 		}
 
-		componentDidMount() {
-			//do we need to fetch them from here?
-			//or should we retrieve them from props?
-			//we may need a container component to map them in
+		componentDidUpdate() {
+			// this.props.items.forEach((item) => {
+			// 	return this.props.establishWebSocketSubscription(item.id)
+			// })
 		}
 
 		handleClick(id) {
 			event.preventDefault();
-			this.props.establishWebSocketSubscription(id) //establish a stream with the new channel
-			this.props.fetchAllChannelMessages(id) //get all channel messages
+			this.props.establishWebSocketSubscription(id);
+			this.props.fetchAllChannelMessages(id); //get all channel messages
+			ls.set('lastChannelID', id)
 		}
 
 		render() {
@@ -39,15 +41,15 @@ export default connect(
 			}
 			const i = this.props.items.map(item => {
 				return (
-					<div>
+					<div className="sidebarListItem">
 						{/* <span className='dot'></span><span className="sidebarListItem">{item.name}</span> */}
-						<span className="dot"></span>
+						{/* <span className="dot"></span> */}
 						<Link
+							className="sidebarListItem"
 							onClick={() => this.handleClick(item.id)}
 							to={`/channel/${item.id}`}
-							className="sidebarListItem"
 						>
-							{item.name}
+							{`# ${item.name}`}
 						</Link>
 					</div>
 				);

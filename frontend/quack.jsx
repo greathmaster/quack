@@ -10,6 +10,9 @@ import configureStore from "./store/store";
 import Root from "./components/root";
 import { receiveSingleMessage } from "./actions/messagesActions";
 import actionCable from 'actioncable'
+import {findUsers} from './util/search_api_util'
+
+
 
 const CableApp = {}
 
@@ -41,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	window.dispatch = store.dispatch;
 
 	window.receiveSingleMessage = receiveSingleMessage;
+
+	window.findUsers = findUsers;
 
 	const root = document.getElementById("root");
 	ReactDOM.render(<Root store={store} cableApp={CableApp} />, root);

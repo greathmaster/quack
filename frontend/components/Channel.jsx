@@ -4,6 +4,9 @@ import Sidebar from "../components/Sidebar";
 import Chatbar from "../components/Chatbar";
 import SingleMessage from "../components/SingleMessage";
 import { fetchAllChannelMessages } from "../actions/channels_actions";
+import SearchBar from "../components/SearchBar";
+import ls from 'local-storage'
+
 
 function mapStateToProps(state, ownProps) {
 	return {
@@ -39,7 +42,21 @@ export default connect(
 		}
 
 		componentDidMount() {
-			this.establishWebSocketSubscription(this.props.match.params.id);
+			//look up the current channel from local storage
+			//and then refetch everything?
+			let lastChannelID = ls.get('lastChannelID')
+ 			if (lastChannelID) {
+				this.props.fetchAllChannelMessages(lastChannelID)
+			}
+
+		
+		}
+
+		componentDidUpdate(prevProps) {
+			// debugger
+			if(prevProps.match.params.id != this.props.match.params.id) {
+				this.props.fetchAllChannelMessages(this.props.match.params.id)
+			}
 		}
 
 		establishWebSocketSubscription(channelId) {
@@ -49,14 +66,43 @@ export default connect(
 					room: channelId,
 				},
 				{
+					connected: () => {
+						console.log(`Connected to ${channelId}`);
+					},
+
+					disconnected: () => {
+						console.log(`Connected to ${channelId}`);
+					},
+
 					received: updatedChannel => {
-						this.updateAppStateChannel(updatedChannel);
+						// this.updateAppStateChannel(updatedChannel);
+						this.props.fetchAllChannelMessages(updatedChannel.room);
+
 					},
 				}
 			);
 		}
 
+		renderSearchBar() {
+			if (Object.values(this.props.channels).length !== 0) {
+				const channelId = this.props.match.params.id;
+
+				let channel = this.props.channels.find(channel => {
+					return channel.id == channelId;
+				});
+				return (
+					<SearchBar
+						channel={channel}
+						numMembers={Object.values(this.props.users).length}
+					/>
+				);
+			}
+
+			return null;
+		}
+
 		render() {
+			// debugger
 			let messages = null;
 			if (this.props.messages) {
 				messages = this.props.messages.map(message => {
@@ -84,7 +130,7 @@ export default connect(
 						/>
 					</div>
 					<div className="chatContainer">
-						<div className="searchBar"></div>
+						{this.renderSearchBar()}
 						<div className="mainChat">
 							{messages ? messages.reverse() : null}
 						</div>

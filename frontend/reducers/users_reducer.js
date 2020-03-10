@@ -10,9 +10,9 @@ const usersReducer = function(prevState = {}, action) {
 			newState = {[action.currentUser.id]: action.currentUser}
 			return newState;
 			case RECEIVE_ALL_USERS:
-				//TODO: Fix this bug! Usernames and timestamps don't show up for non-logged in users
+				//TODO: Fix this bug! timestamps don't show up
 				//Also check for N+1 queries
-			return {...newState, ...action.otherUsers}
+			return action.otherUsers
 
 		case LOGOUT_CURRENT_USER:
 			return {}

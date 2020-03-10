@@ -3,6 +3,7 @@ import SidebarInfo from "../components/SidebarInfo";
 import SidebarList from "../components/SidebarList";
 import { connect } from "react-redux";
 import { fetchAllChannels } from "../actions/channels_actions";
+import CreateNewChannel from "../components/CreateNewChannel"
 
 function mSTP(state, ownProps) {
 	return {
@@ -31,33 +32,34 @@ export default connect(
 			this.props.fetchAllChannels(this.props.currentUser);
 		}
 
+		renderSidebarInfo() {
+			return <SidebarInfo
+						channelName={"App Academy"}
+						username={this.props.currentUser ? this.props.currentUser.username: ""}
+			/>
+		}
+
 		render() {
 			if (Object.keys(this.props.channels).length === 0) {
-				return (
-					<SidebarInfo
-						channelName={"App Academy"}
-						username={"Hersha Venkatesh"}
-					/>
-				);
-				// return null;
+				return this.renderSidebarInfo()
 			}
 			return (
 				<>
-					<SidebarInfo
-						channelName={"App Academy"}
-						username={"Hersha Venkatesh"}
-					/>
+					{this.renderSidebarInfo()}
+
 					<SidebarList
 						name={"Channels"}
-						items={this.props.channels}
-						establishWebSocketSubscription={this.props.establishWebSocketSubscription}
+						items={this.props.channels.filter(channel => {
+							return channel.private === false;
+						})}						establishWebSocketSubscription={this.props.establishWebSocketSubscription}
 					/>
-					{/* <SidebarList
-						name={"Channels"}
+					<CreateNewChannel />
+					<SidebarList
+						name={"Direct Messages"}
 						items={this.props.channels.filter(channel => {
 							return channel.private === true;
 						})}
-					/> */}
+					/>
 				</>
 			);
 		}
