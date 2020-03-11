@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 function mapStateToProps(state, ownProps) {
-	// debugger;
 	return {
 		currentUser: state.entities.users[state.session.id],
 		channelId: ownProps.match.params.id,

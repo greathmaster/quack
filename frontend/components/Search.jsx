@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react";
 import closeCircleOutline from "@iconify/icons-ion/close-circle-outline";
 import ls from "local-storage";
 import { fetchAllChannelMessages } from "../actions/channels_actions";
+import {Redirect} from 'react-router-dom'
 
 function mSTP(state, ownProps) {
 	return {
@@ -31,7 +32,12 @@ export default connect(
 	class Search extends Component {
 		constructor(props) {
 			super(props);
-			this.state = { searchStr: "", results: {}, selected: [] };
+			this.state = {
+				searchStr: "",
+				results: {},
+				selected: [],
+				newChannelID: null,
+			};
 			this.handleInput = this.handleInput.bind(this);
 			this.handleClick = this.handleClick.bind(this);
 			this.handleExit = this.handleExit.bind(this);
@@ -106,34 +112,8 @@ export default connect(
 				private: this.props.private,
 				users: users,
 			};
-
-			this.props.createNewChannel(newChannel, newChannelId => {
-				ls.set("lastChannelID", newChannelId);
-				// cableApp={this.props.cableApp}
-
-				this.props.cableApp.channel = this.props.cableApp.cable.subscriptions.create(
-					{
-						channel: "ChannelsChannel",
-						room: newChannelId,
-					},
-					{
-						connected: () => {
-							console.log(`Connected to ${newChannelId}`);
-						},
-
-						disconnected: () => {
-							console.log(`Connected to ${newChannelId}`);
-						},
-
-						received: updatedChannel => {
-							this.props.fetchAllChannelMessages(
-								updatedChannel.room
-							);
-						},
-					}
-				);
-
-				this.props.history.push(`/channel/${newChannelId}`);
+			this.props.createNewChannel(newChannel, id => {
+				this.setState({ newChannelID: id });
 			});
 		}
 
@@ -163,46 +143,50 @@ export default connect(
 					/>
 				);
 			});
-			return (
-				<>
-					<div className="searchExit">
-						<span onClick={this.handleExit}>
-							<Icon icon={closeCircleOutline} />
-						</span>
-					</div>
-					<div className="searchContainer">
-						<h2 className="searchDirectMessageHeader">
-							Direct Message
-						</h2>
-						<form onSubmit={this.handleSubmit}>
-							<div className="searchUpper">
-								{this.renderSelected()}
-								<div className="searchFieldAndButton">
-									<input
-										type="text"
-										value={this.state.searchStr}
-										onChange={this.handleInput}
-										className="searchInput"
-										placeholder="Enter a username"
-									/>
-									<button className="searchCreateDMButton">
-										Go
-									</button>
+			if (!this.state.newChannelID) {
+				return (
+					<>
+						<div className="searchExit">
+							<span onClick={this.handleExit}>
+								<Icon icon={closeCircleOutline} />
+							</span>
+						</div>
+						<div className="searchContainer">
+							<h2 className="searchDirectMessageHeader">
+								Direct Message
+							</h2>
+							<form onSubmit={this.handleSubmit}>
+								<div className="searchUpper">
+									{this.renderSelected()}
+									<div className="searchFieldAndButton">
+										<input
+											type="text"
+											value={this.state.searchStr}
+											onChange={this.handleInput}
+											className="searchInput"
+											placeholder="Enter a username"
+										/>
+										<button className="searchCreateDMButton">
+											Go
+										</button>
+									</div>
 								</div>
-							</div>
-							<div>
-								<div className="searchResults">
-									{users.length === 0 ? (
-										<SearchItem message="No matches" />
-									) : (
-										users
-									)}
+								<div>
+									<div className="searchResults">
+										{users.length === 0 ? (
+											<SearchItem message="No matches" />
+										) : (
+											users
+										)}
+									</div>
 								</div>
-							</div>
-						</form>
-					</div>
-				</>
-			);
+							</form>
+						</div>
+					</>
+				);
+			} else {
+				return <Redirect to={`/channel/${this.state.newChannelID}`} />;
+			}
 		}
 	}
 );

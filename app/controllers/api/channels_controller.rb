@@ -5,10 +5,8 @@ class Api::ChannelsController < ApplicationController
 	end
 
 	def create
-		# debugger
 		@channel = Channel.create!({"name"=>channel_params[:name], "owner_id"=>channel_params[:owner_id], "private"=>channel_params[:private]})
 		@users = User.find(channel_params[:users])
-		# debugger
 		@users.each do |user|
 			@channel.users << user
 		end

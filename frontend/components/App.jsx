@@ -8,6 +8,7 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import Home from "./Home";
 import Channel from "./Channel";
 import Search from "./Search";
+import Listener from "./Listener"
 // import ls from "local-storage";
 
 class App extends React.Component {
@@ -18,13 +19,14 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
+			<Listener />
 				<Switch>
 					<AuthRoute
 						exact
 						path="/login"
 						component={LoginFormContainer}
 						// redirect={`/channel/${ls.get("lastChannelID")}`}
-						// redirect={`/channel`}
+						redirect={`/channel/23`}
 					/>
 
 					<AuthRoute
@@ -45,9 +47,9 @@ class App extends React.Component {
 							/>
 						)}
 					/>
-					<ProtectedRoute
+					<Route
 						path="/channel/:id"
-						cableApp={this.props.cableApp}
+						// cableApp={this.props.cableApp}
 						// render={props => (
 						// 	<Channel
 						// 		{...props}
@@ -55,7 +57,7 @@ class App extends React.Component {
 						// 	/>
 						// )}
 						component={Channel}
-						redirect="/login"
+						// redirect="/login"
 					/>
 
 					{/* <Route

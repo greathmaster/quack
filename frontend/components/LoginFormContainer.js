@@ -4,7 +4,6 @@ import { login } from "../actions/session_actions";
 
 function mSTP(state, ownProps) {
 
-	// debugger
 	return {
 		errors: state.errors.session,
 		formType: "login",

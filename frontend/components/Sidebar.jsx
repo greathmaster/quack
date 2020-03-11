@@ -29,7 +29,7 @@ export default connect(
 		}
 
 		componentDidMount() {
-			this.props.fetchAllChannels(this.props.currentUser);
+			// this.props.fetchAllChannels(this.props.currentUser);
 		}
 
 		renderSidebarInfo() {
@@ -49,17 +49,17 @@ export default connect(
 
 					<SidebarList
 						name={"Channels"}
-						items={this.props.channels.filter(channel => {
-							return channel.private === false;
-						})}						establishWebSocketSubscription={this.props.establishWebSocketSubscription}
+						items={Object.values(this.props.channels).filter(channel => {
+							return channel.private === false
+						})}
 					/>
 					<CreateNewChannel />
-					<SidebarList
+					{/* <SidebarList
 						name={"Direct Messages"}
 						items={this.props.channels.filter(channel => {
 							return channel.private === true;
 						})}
-					/>
+					/> */}
 				</>
 			);
 		}

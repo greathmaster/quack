@@ -17,4 +17,16 @@ json.users do
 	end
   end
 end
-json.messages @messages
+
+json.messages do
+	@messages.each do |message|
+		json.set! message.id do
+			json.id message.id
+			json.content message.content
+			json.sender_id message.sender_id
+			json.channel_id message.channel_id
+			json.created_at message.created_at
+			json.updated_at message.updated_at
+		end
+	end
+end

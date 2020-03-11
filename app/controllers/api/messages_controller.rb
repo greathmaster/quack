@@ -6,8 +6,13 @@ class Api::MessagesController < ApplicationController
 		if @message.save
 			ChannelsChannel.broadcast_to(@channel, {
 				room: @channel.id,
+				message_id: @message.id,
 				users: @channel.users,
-				messages: @message.content
+				message: @message.content,
+				sender_id: @message.sender_id,
+				created_at: @message.created_at,
+				updated_at: @message.updated_at
+
 			})
 			render json: @message;
 		else

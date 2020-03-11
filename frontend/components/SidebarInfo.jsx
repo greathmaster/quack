@@ -6,7 +6,7 @@ function SidebarInfo(props) {
 	return (
 		<div className="sideBarInfoContainer">
 			<div className="sideBarInfoChannelName" >{props.channelName}</div>
-			<div classname="sideBarInfoUsername">{props.username}</div>
+			<div className="sideBarInfoUsername">{props.username}</div>
 			<Logout />
 		</div>
 	);
