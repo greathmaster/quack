@@ -67,9 +67,11 @@ export default withRouter(
 						},
 
 						received: msgInfo => {
+							// debugger
 							let msg = {
 								id: msgInfo.message_id,
 								content: msgInfo.message,
+								avatar: msgInfo.avatar,
 								channel_id: msgInfo.room,
 								sender_id: msgInfo.sender_id,
 								created_at: msgInfo.created_at,
@@ -99,7 +101,7 @@ export default withRouter(
 
 			render() {
 				if (!this.props.currentUser) return null;
-				return <div>Listener</div>;
+				return <></>;
 			}
 		}
 	)

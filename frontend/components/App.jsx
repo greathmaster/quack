@@ -2,14 +2,14 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginFormContainer from "./LoginFormContainer";
 import SignupFormContainer from "./SignupFormContainer";
-// import { Link } from "react-router-dom";
-import { AuthRoute, ProtectedRoute } from "../util/route_util";
-// import Header from "./Header";
+import { AuthRoute, ProtectedRoute, SpecialRoute } from "../util/route_util";
 import Home from "./Home";
 import Channel from "./Channel";
 import Search from "./Search";
-import Listener from "./Listener"
-// import ls from "local-storage";
+import Listener from "./Listener";
+import CreateNewChannelForm from "../components/createNewChannelForm";
+// import GoBack from "../components/GoBack";
+import Profile from "../components/Profile"
 
 class App extends React.Component {
 	constructor(props) {
@@ -19,59 +19,46 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-			<Listener />
+				<Listener />
 				<Switch>
 					<AuthRoute
 						exact
 						path="/login"
 						component={LoginFormContainer}
-						// redirect={`/channel/${ls.get("lastChannelID")}`}
-						redirect={`/channel/23`}
+						redirect={`/channel/`}
 					/>
 
 					<AuthRoute
 						exact
 						path="/signup"
 						component={SignupFormContainer}
-						// redirect="/channel"
+						redirect="/channel"
 					/>
 
-					<Route
+					<ProtectedRoute exact path="/search" component={Search} />
+
+					<ProtectedRoute
 						exact
-						path="/search"
-						render={props => (
-							<Search
-								{...props}
-								private={false}
-								cableApp={this.props.cableApp}
-							/>
-						)}
-					/>
-					<Route
-						path="/channel/:id"
-						// cableApp={this.props.cableApp}
-						// render={props => (
-						// 	<Channel
-						// 		{...props}
-						// 		cableApp={this.props.cableApp}
-						// 	/>
-						// )}
-						component={Channel}
-						// redirect="/login"
+						path="/createChannel"
+						component={CreateNewChannelForm}
 					/>
 
-					{/* <Route
+					<ProtectedRoute
+						exact
 						path="/channel/:id"
-						// cableApp={this.props.cableApp}
-						render={props => (
-							<Channel
-								{...props}
-								cableApp={this.props.cableApp}
-							/>
-						)}
-						// component={Channel}
+						component={Channel}
 						redirect="/login"
+					/>
+					{/* <ProtectedRoute
+						path="/channel/"
+						redirect={`/channel/${this.props.store.s}`}
 					/> */}
+					<ProtectedRoute
+						exact
+						path="/profile"
+						component={Profile}
+						redirect="/login"
+					/>
 
 					<Route exact path="/" component={Home} />
 				</Switch>

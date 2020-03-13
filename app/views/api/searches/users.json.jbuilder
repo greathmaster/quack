@@ -2,5 +2,7 @@
 	json.set! user.id do 
 		json.id user.id
 		json.username user.username
+		json.avatar user.avatar.attached? ? url_for(user.avatar) : nil
+
 	end
 end

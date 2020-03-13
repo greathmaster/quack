@@ -34,7 +34,7 @@ export default connect(
 
 		renderSidebarInfo() {
 			return <SidebarInfo
-						channelName={"App Academy"}
+						channelName={"Quacking! Time!"}
 						username={this.props.currentUser ? this.props.currentUser.username: ""}
 			/>
 		}
@@ -53,13 +53,18 @@ export default connect(
 							return channel.private === false
 						})}
 					/>
-					<CreateNewChannel />
-					{/* <SidebarList
-						name={"Direct Messages"}
-						items={this.props.channels.filter(channel => {
-							return channel.private === true;
+					<CreateNewChannel type="public" />
+					<br />
+					<br />
+					<CreateNewChannel type="private" />	
+					<SidebarList
+						name={""}
+						items={Object.values(this.props.channels).filter(channel => {
+							// debugger
+							return channel.private === true
 						})}
-					/> */}
+					/>
+
 				</>
 			);
 		}

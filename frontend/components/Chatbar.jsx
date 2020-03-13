@@ -59,6 +59,10 @@ export default withRouter(
 			submitMessage() {
 				let now = new Date();
 
+
+				const audioEl = document.getElementsByClassName("audio-element")[0]
+				audioEl.play();
+
 				let message = {
 					content: this.state.message,
 					sender_id: this.props.currentUser.id,
@@ -71,6 +75,9 @@ export default withRouter(
 			render() {
 				return (
 					<>
+						<audio className="audio-element">
+							<source src="https://www.myinstants.com/media/sounds/quack.mp3"></source>
+						</audio>
 						<form onSubmit={this.handleSubmit}>
 							<div className="formFieldContainer">
 								<textarea

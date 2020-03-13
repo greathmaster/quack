@@ -1,10 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or create!d alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create!(name: 'Luke', movie: movies.first)
+require "open-uri"
+# user = User.find(67)
+# file = open("https://quackit-dev.s3-us-west-1.amazonaws.com/scrooge.png")
+# user.avatar.attach(io: file, filename: 'scrooge.png')
+
+# # This file should contain all the record creation needed to seed the database with its default values.
+# # The data can then be loaded with the rails db:seed command (or create!d alongside the database with db:setup).
+# #
+# # Examples:
+# #
+# #   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+# #   Character.create!(name: 'Luke', movie: movies.first)
 
 User.destroy_all
 Message.destroy_all
@@ -16,21 +21,31 @@ daisy = User.create!(username: "daisy", password: "123123", email: "daisylovesdo
 scrooge = User.create!(username: "scroogemcduck", password: "123123", email: "scroogelovesmoney@disney.com")
 mighty_duck = User.create!(username: "mightyduck", password: "123123", email: "hockeyduck@nhl.com")
 
-channel_1 = Channel.create!(owner_id: daffy.id, name: "Best Flight Paths", private: true)
-channel_2 = Channel.create!(owner_id: daisy.id, name: "BEST DESTINATIONS", private: false)
-channel_3 = Channel.create!(owner_id: daffy.id, name: "Cool", private: false)
+lord_duck = User.create!(username: "lord_duck", password: "123123secret", email: "lord_duck@lake.com")
+global = Channel.create!(owner_id: lord_duck.id, name: "global", private: false)
 
-daffy.update_attribute(:last_channel_id, channel_1.id)
-donald.update_attribute(:last_channel_id, channel_2.id)
-daisy.update_attribute(:last_channel_id, channel_3.id)
-scrooge.update_attribute(:last_channel_id, channel_1.id)
-mighty_duck.update_attribute(:last_channel_id, channel_3.id)
+channel_1 = Channel.create!(owner_id: daffy.id, name: "best-flight-paths", private: false)
+channel_2 = Channel.create!(owner_id: daisy.id, name: "migrations", private: false)
+channel_3 = Channel.create!(owner_id: daffy.id, name: "duck-lyfe", private: false)
+
+daffy.update_attribute(:default_channel_id, global.id)
+donald.update_attribute(:default_channel_id,global.id)
+daisy.update_attribute(:default_channel_id, global.id)
+scrooge.update_attribute(:default_channel_id, global.id)
+mighty_duck.update_attribute(:default_channel_id, global.id)
 
 #daffy belongs to channel 1
 #donald belong to channels 1, 2
 #daisy belongs to channels 1, 2, 3
 #scrooge belongs to channels 1, 2
 #mighty_duck belongs to channels 2, 3
+
+global.users << lord_duck
+global.users << daffy
+global.users << donald
+global.users << daisy
+global.users << scrooge
+global.users << mighty_duck
 
 channel_1.users << daffy
 channel_1.users << daisy

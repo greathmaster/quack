@@ -15,6 +15,16 @@
 
 }
 .createChannelIcon {
+	display:flex;
+	justify-content: space-between;
+	/* flex: 1; */
 	padding-right: 5px;
-	font-size: 20px;
+	/* font-size: 20px; */
+}
+
+.createDirectMessage {
+	font-size: 14px;
+	font-family: "Helvetica Neue", sans-serif;
+	display: flex;
+	justify-content: space-around;
 }

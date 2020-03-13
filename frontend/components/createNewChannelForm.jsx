@@ -8,8 +8,6 @@ import { Icon } from "@iconify/react";
 import closeCircleOutline from "@iconify/icons-ion/close-circle-outline";
 import { fetchAllChannelMessages } from "../actions/channels_actions";
 import { Redirect } from "react-router-dom";
-import userImage from "../../app/assets/images/user.jpg";
-
 
 function mSTP(state, ownProps) {
 	return {
@@ -30,16 +28,18 @@ export default connect(
 	mSTP,
 	mDTP
 )(
-	class Search extends Component {
+	class CreateNewChannelForm extends Component {
 		constructor(props) {
 			super(props);
 			this.state = {
 				searchStr: "",
 				results: {},
 				selected: [],
+				newChannelName: "",
 				newChannelID: null,
 			};
 			this.handleInput = this.handleInput.bind(this);
+			this.handleNewChannelTitle = this.handleNewChannelTitle.bind(this)
 			this.handleClick = this.handleClick.bind(this);
 			this.handleExit = this.handleExit.bind(this);
 			this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,6 +58,10 @@ export default connect(
 			this.setState({ searchStr: e.target.value });
 		}
 
+		handleNewChannelTitle(e) {
+			this.setState({ newChannelName: e.target.value})
+		}
+
 		handleClick(userId) {
 			if (!this.state.selected.includes(userId)) {
 				let newSel = [...this.state.selected];
@@ -67,10 +71,7 @@ export default connect(
 		}
 
 		handleExit() {
-			//this.props.history.push("/channel/");
-			// this.props.history.pop()
 			this.props.history.goBack();
-
 		}
 
 		handleRemoveSearchTag(userId) {
@@ -95,25 +96,15 @@ export default connect(
 
 		handleSubmit(e) {
 			e.preventDefault();
-			let channelName = "";
 
-			let names = [];
-			for (let i = 0; i < this.state.selected.length; i++) {
-				names.push(this.state.results[this.state.selected[i]].username);
-			}
-
-			if (!names.includes(this.props.currentUser.username)) {
-				names.push(this.props.currentUser.username);
-			}
-
-			channelName = names.join(", ");
+			let channelName = this.state.newChannelName;
 
 			let users = [...this.state.selected, this.props.currentUser.id];
 
 			let newChannel = {
 				name: channelName,
 				owner_id: this.props.currentUser.id,
-				private: true,
+				private: false,
 				users: users,
 			};
 			this.props.createNewChannel(newChannel, id => {
@@ -136,16 +127,18 @@ export default connect(
 		}
 		render() {
 			let m = this.matches();
+
 			let users = m.map(user => {
 				return (
 					<SearchItem
 						handleClick={() => this.handleClick(user.id)}
 						key={user.id}
 						username={user.username}
-						avatar={user.avatar? user.avatar : userImage}
+						avatar={true}
 					/>
 				);
 			});
+			// debugger
 			if (!this.state.newChannelID) {
 				return (
 					<>
@@ -156,32 +149,36 @@ export default connect(
 						</div>
 						<div className="searchContainer">
 							<h2 className="searchDirectMessageHeader">
-								Direct Message
+								Create a New Channel
 							</h2>
+							<div className="searchDirections">
+								Enter a new channel name, and select users to add
+							</div>
 							<form onSubmit={this.handleSubmit}>
-								{this.props.private && (
+								<div className="searchTextFieldsContainer">
+									
 									<input
 										type="text"
-										value={this.state.searchStr}
-										onChange={this.handleInput}
-										className="searchInput"
-										placeholder="Enter a username"
+										value={this.state.newChannelName}
+										onChange={this.handleNewChannelTitle}
+										className="channelNameInput"
+										placeholder="New Channel Name"
 									/>
-								)}
 
-								<div className="searchUpper">
-									{this.renderSelected()}
-									<div className="searchFieldAndButton">
-										<input
-											type="text"
-											value={this.state.searchStr}
-											onChange={this.handleInput}
-											className="searchInput"
-											placeholder="Enter a username"
-										/>
-										<button className="searchCreateDMButton">
-											Go
-										</button>
+									<div className="searchUpper">
+										{this.renderSelected()}
+										<div className="searchFieldAndButton">
+											<input
+												type="text"
+												value={this.state.searchStr}
+												onChange={this.handleInput}
+												className="searchInput"
+												placeholder="Enter a username"
+											/>
+											<button className="searchCreateDMButton">
+												Go
+											</button>
+										</div>
 									</div>
 								</div>
 								<div>

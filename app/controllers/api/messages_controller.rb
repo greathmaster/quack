@@ -7,7 +7,10 @@ class Api::MessagesController < ApplicationController
 			ChannelsChannel.broadcast_to(@channel, {
 				room: @channel.id,
 				message_id: @message.id,
-				users: @channel.users,
+				# users: @channel.users,
+				# json.avatar message.user.avatar.attached? ? url_for(message.user.avatar) : nil
+
+				avatar: @message.user.avatar.attached? ? url_for(@message.user.avatar) : nil,
 				message: @message.content,
 				sender_id: @message.sender_id,
 				created_at: @message.created_at,

@@ -44,7 +44,19 @@ export default connect(
 		}
 
 		componentDidUpdate(prevProps) {
-			if (prevProps.match.params.id != this.props.match.params.id) {
+			// if (
+			// 	Object.entries(this.props.channels).length !== 0 &&
+			// 	!this.props.channels[this.props.match.params.id] &&
+			// 	prevProps.match.params.id != this.props.match.params.id
+			// ) {
+
+			// 	this.props.history.goBack();
+			// }
+
+			if (
+				prevProps &&
+				prevProps.match.params.id !== this.props.match.params.id
+			) {
 				this.props.fetchAllChannels(this.props.currentUser.id);
 				this.props.fetchAllChannelMessages(this.props.match.params.id);
 			}
@@ -67,6 +79,8 @@ export default connect(
 		render() {
 			let messages = null;
 			if (this.props.messages) {
+				// debugger;
+
 				let chID = this.props.match.params.id;
 				messages = this.props.messages
 					.filter(message => message.channel_id == chID) //don't change to === different types
@@ -81,6 +95,7 @@ export default connect(
 												.username
 										: null
 								}
+								avatar={message.avatar}
 								timestamp={formatTimestamp(message.created_at)}
 							/>
 						);

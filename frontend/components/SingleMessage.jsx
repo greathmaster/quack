@@ -1,12 +1,14 @@
 import React from "react";
 import userImage from "../../app/assets/images/user.jpg";
 
-
 export default function SingleMessage(props) {
 	return (
 		<div className="singleMessage">
 			<div className="avatarContainer">
-				<img className="avatar" src={userImage} />
+				<img
+					className="avatar"
+					src={props.avatar ? props.avatar : userImage}
+				/>
 			</div>
 			<div className="messageContainer">
 				<div className="senderNameInfo">

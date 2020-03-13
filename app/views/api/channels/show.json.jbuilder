@@ -15,7 +15,7 @@ json.users do
 	 json.id user.id
 	 json.username user.username
 	end
-  end
+end
 end
 
 json.messages do
@@ -24,6 +24,7 @@ json.messages do
 			json.id message.id
 			json.content message.content
 			json.sender_id message.sender_id
+			json.avatar message.user.avatar.attached? ? url_for(message.user.avatar) : nil
 			json.channel_id message.channel_id
 			json.created_at message.created_at
 			json.updated_at message.updated_at

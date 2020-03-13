@@ -66,6 +66,11 @@ h1.header{
 		background 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.getStartedButton a {
+	color: white;
+	text-decoration: none;
+}
+
 .leftSide {
 	display: flex;
 	justify-content: end;

@@ -19,6 +19,8 @@ class User < ApplicationRecord
 	has_many :messages,
 	foreign_key: :sender_id,
 	class_name: "Message"
+
+	has_one_attached :avatar
 	
 	before_validation :ensure_session_token
 
@@ -52,3 +54,9 @@ class User < ApplicationRecord
 
 
 end
+
+
+# daisy = User.find_by_id(68)
+# file = File.open('app/assets/images/user.jpg')
+# daisy.avatar.attach(io: file, filename: 'user.jpg')
+# daisy.avatar.attached?

@@ -13,6 +13,7 @@
 
 json.id @user.id
 json.username @user.username
+# json.avatar @user.avatar
 json.channels do
 	@user.channels.each do |channel|
 		json.set! channel.id do
@@ -24,4 +25,4 @@ json.channels do
 		end
 	end
 end
-json.last_channel_id @user.last_channel_id
+json.default_channel_id @user.default_channel_id

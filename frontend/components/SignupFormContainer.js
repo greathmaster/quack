@@ -11,7 +11,7 @@ function mSTP(state, ownProps) {
 
 function mDTP(dispatch) {
 	return {
-		processForm: (user) => dispatch(signup(user))
+		processForm: (user, redirect) => dispatch(signup(user, redirect))
 	}
 }
 
