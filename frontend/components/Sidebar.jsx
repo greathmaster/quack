@@ -34,7 +34,7 @@ export default connect(
 
 		renderSidebarInfo() {
 			return <SidebarInfo
-						channelName={"Quacking! Time!"}
+						channelName={"Quack!"}
 						username={this.props.currentUser ? this.props.currentUser.username: ""}
 			/>
 		}

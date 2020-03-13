@@ -22,18 +22,18 @@ export default class Home extends Component {
 				</video> */}
 					<div className="leftPage">
 						<div className="benefitStatment">
-							Quack! replaces email inside your company!
+							Quack! replaces email inside your flock!
 						</div>
 						<div className="additionalBenefit">
-							Keep conversations organized in Slack, the smart
+							Keep conversations organized in Quack!, the avian
 							alternative to email.
 						</div>
 						<div className="tryDemoButtons">
 							<button className="getStartedButton">
-								Try Quack
+								<Link to={`/signup`}>Sign up</Link>.
 							</button>
 							<button className="tryDemoButton">
-								See the Demo
+								<Link to={`/login`}>Sign in</Link>.
 							</button>
 						</div>
 						<div className="usingQuack">

@@ -17,9 +17,9 @@ export default class Header extends React.Component {
 							<div className="logo">
 								<h1 className="header">
 									<span className="alignLogo">
-										<Icon icon={duckIcon} />
+										<Link className="headerLink2" to="/"><Icon className="logo"icon={duckIcon} />Quack!</Link>
 									</span>{" "}
-									Quack!
+									
 								</h1>
 							</div>
 							<div className="links">

@@ -1,11 +1,15 @@
-
 /* start header */
-h1.header{
+h1.header {
 	/* padding: 20px; */
 	font-size: 24px;
 	text-align: left;
 	font-weight: 900;
 	font-family: "Poppins", sans-serif;
+}
+
+.headerLink2 {
+	color: rgb(41, 40, 40);
+	text-decoration: none;
 }
 
 .inline {
@@ -15,7 +19,8 @@ h1.header{
 
 .logo {
 	/* width: 75px; */
-
+	margin-right: 5px;
+	/* margin-top: 2px; */
 	/* display:inline-block; */
 }
 .nav {
@@ -41,11 +46,9 @@ h1.header{
 	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial,
 		sans-serif;
 	font-size: 14px;
-	padding-top:10px;
+	padding-top: 10px;
 }
 
-.signInOut {
-}
 .getStartedButton {
 	width: 125px;
 	height: 40px;
@@ -78,9 +81,6 @@ h1.header{
 	/* padding:50px; */
 }
 
-.alignLogo {
-	/* font-size: 38px; */
-	/* margin-top: 20px; */
-}
+
 
 /* finsh header */

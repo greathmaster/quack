@@ -1,15 +1,39 @@
 .sideBarInfoContainer {
-	font-family: Lato, sans-serif;
+	font-family: "Helvetica Neue", sans-serif;
 	margin-top: 8px;
-	margin-bottom: 8px;
+	margin-bottom: 16px;
 	margin-left: 16px;
 	margin-right: 16px;
+	display:flex;
+	justify-content: space-around;
+	flex-direction: column;
 }
 
 .sideBarInfoChannelName {
-	font-size: 16px;
+	font-size: 20px;
 }
 
 .sideBarInfoUsername {
+	/* margin */
 	font-size: 14px;
+	font-weight: bold;
+}
+
+.duckUserIcon {
+	font-size: 20px;
+}
+
+.sideBarInfoUsernameContainer {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.sideBarInfoLogoutButton {
+	background-color: green;
+	border: 1px solid green;
+	color: white;
+	font-weight: bold;
+	border-radius: 10px;
+	cursor: pointer;
 }

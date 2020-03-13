@@ -849,9 +849,13 @@ var Header = /*#__PURE__*/function (_React$Component) {
         className: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "alignLogo"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "headerLink2",
+        to: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+        className: "logo",
         icon: _iconify_icons_mdi_duck__WEBPACK_IMPORTED_MODULE_3___default.a
-      })), " ", "Quack!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), "Quack!")), " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "links"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "",
@@ -945,15 +949,19 @@ var Home = /*#__PURE__*/function (_Component) {
         className: "leftPage"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "benefitStatment"
-      }, "Quack! replaces email inside your company!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Quack! replaces email inside your flock!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "additionalBenefit"
-      }, "Keep conversations organized in Slack, the smart alternative to email."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Keep conversations organized in Quack!, the avian alternative to email."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tryDemoButtons"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "getStartedButton"
-      }, "Try Quack"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/signup"
+      }, "Sign up"), "."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "tryDemoButton"
-      }, "See the Demo")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/login"
+      }, "Sign in"), ".")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "usingQuack"
       }, "Already using Quack?", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login"
@@ -1214,7 +1222,9 @@ var Logout = /*#__PURE__*/function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Logout"));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "sideBarInfoLogoutButton"
+      }, "Logout"));
     }
   }]);
 
@@ -2066,7 +2076,7 @@ function mDTP(dispatch) {
     key: "renderSidebarInfo",
     value: function renderSidebarInfo() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SidebarInfo__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        channelName: "Quacking! Time!",
+        channelName: "Quack!",
         username: this.props.currentUser ? this.props.currentUser.username : ""
       });
     }
@@ -2122,8 +2132,12 @@ function SidebarInfo(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sideBarInfoChannelName"
   }, props.channelName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "sideBarInfoUsernameContainer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sideBarInfoUsername"
-  }, props.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Logout__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "duckUserIcon"
+  }, "\uD83E\uDD86"), " ", props.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Logout__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (SidebarInfo);

@@ -14,7 +14,7 @@ export default class Logout extends Component {
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<button>Logout</button>
+				<button className="sideBarInfoLogoutButton">Logout</button>
 			</form>
 		);
 	}
