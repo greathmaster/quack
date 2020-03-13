@@ -20,6 +20,7 @@ export default class Home extends Component {
 						/>
 
 				</video> */}
+				
 					<div className="leftPage">
 						<div className="benefitStatment">
 							Quack! replaces email inside your flock!

@@ -4,7 +4,9 @@ Start Home page splash and slider/video
 */
 .homePageSplash {
 	/* background-color: red; */
-	background: url('background-2.jpg');
+	/* background: url('background-2.jpg'); */
+	background: url(asset_path('background-2.jpg'));
+
 	-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
