@@ -1,4 +1,3 @@
-require "byebug"
 class ChannelsChannel < ApplicationCable::Channel
 	def subscribed
 		@room =  Channel.find_by_id(params[:room])
