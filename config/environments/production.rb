@@ -2,6 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.web_socket_server_url = "wss://quackit.herokuapp.com/cable" 
+  config.action_cable.allowed_request_origins = ['https://quackit.herokuapp.com', 'http://quackit.herokuapp.com']
 
 
   # Code is not reloaded between requests.
