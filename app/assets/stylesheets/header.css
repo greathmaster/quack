@@ -67,6 +67,7 @@ h1.header {
 	transition: box-shadow 420ms cubic-bezier(0.165, 0.84, 0.44, 1),
 		color 420ms cubic-bezier(0.165, 0.84, 0.44, 1),
 		background 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
+	cursor: pointer;
 }
 
 .getStartedButton a {

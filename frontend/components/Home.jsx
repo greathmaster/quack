@@ -20,7 +20,7 @@ export default class Home extends Component {
 						/>
 
 				</video> */}
-				
+
 					<div className="leftPage">
 						<div className="benefitStatment">
 							Quack! replaces email inside your flock!
@@ -30,11 +30,16 @@ export default class Home extends Component {
 							alternative to email.
 						</div>
 						<div className="tryDemoButtons">
-							<button className="getStartedButton">
-								<Link to={`/signup`}>Sign up</Link>.
+							<button
+								onClick={() => {
+									this.props.history.push("./signup");
+								}}
+								className="getStartedButton"
+							>
+								<Link to={`/signup`}>Sign up</Link>
 							</button>
-							<button className="tryDemoButton">
-								<Link to={`/login`}>Sign in</Link>.
+							<button onClick={() => this.props.history.push('./login')} className="tryDemoButton">
+								<Link to={`/login`}>Sign in</Link>
 							</button>
 						</div>
 						<div className="usingQuack">

@@ -71,6 +71,7 @@ button.buttonLogin {
 	border-radius: 4px;
 	font-weight: 550;
 	margin-top: 6px;
+	cursor: pointer;
 }
 
 .submit {
