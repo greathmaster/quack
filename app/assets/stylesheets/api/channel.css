@@ -1,18 +1,11 @@
 .sidebar {
-	background-color: #4D394B;
-	/* background-color: purple; */
+	background-color: #4d394b;
 	height: 100%;
-	/* margin-right: 10px; */
-	/* min-width: 20%; */
-	/* overflow-y: scroll; */
 	overflow: auto;
 	flex: none;
 	color: white;
-	/* margin-right: 20px; */
-	max-width: 18%;
-
+	width: 200px;
 }
-
 
 .channelContainer {
 	display: flex;
@@ -24,7 +17,6 @@
 
 .chatContainer {
 	height: 100%;
-	/* background-color: darkred; */
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
@@ -33,30 +25,24 @@
 .mainChat {
 	width: 100%;
 	min-height: 365px;
-	/* background-color: darkcyan; */
 	flex-grow: 1;
 	overflow: scroll;
 	overflow-x: hidden;
 	display: flex;
 	flex-direction: column-reverse;
-	/* justify-content: flex-end; */ /*TODO: Fix the scrolling issue. Adding this CSS param hides the scrool bar*/
+	/* justify-content: flex-end; */ /*TODO: Fix the scrolling issue. Adding this CSS param hides the scroll bar*/
 }
 .chatBar {
-	/* width: 100%; */
 	min-height: 120px;
-	/* background-color: green; */
 	background-color: white;
 	z-index: 10;
 	padding-left: 10px;
 	padding-right: 10px;
-	/* display: flex; */
-	
 }
 
 .singleMessage {
 	background-color: white;
 	display: flex;
-	/* justify-content: start; */
 	position: relative;
 	padding-left: 10px;
 	padding-right: 20px;
@@ -82,22 +68,20 @@
 	color: grey;
 	font-weight: 400;
 	margin-left: 5px;
-
 }
 
 .username {
 	font-size: 15px;
 	font-family: Lato, sans-serif;
 	font-weight: 600;
-	/* text-decoration; */
 }
 
 /* .avatarContainer {
 	/* height: 36px; */
-	/* width: 36px; */
-	/* height: 36px; */
-	/* display: inline-block; */
-	/* background-color: brown; */
+/* width: 36px; */
+/* height: 36px; */
+/* display: inline-block; */
+/* background-color: brown; */
 /* } */
 
 .avatar {
@@ -116,7 +100,5 @@
 	line-height: 1.2;
 	margin-top: 5px;
 }
-
-
 
 /*End Channel CSS*/
