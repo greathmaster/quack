@@ -1,6 +1,6 @@
 import SessionForm from "./SessionForm"
 import { connect } from "react-redux"
-import {signup} from '../actions/session_actions'
+import {signup, clearSessionErrors} from '../actions/session_actions'
 
 function mSTP(state, ownProps) {
 	return {
@@ -11,7 +11,9 @@ function mSTP(state, ownProps) {
 
 function mDTP(dispatch) {
 	return {
-		processForm: (user, redirect) => dispatch(signup(user, redirect))
+		processForm: (user, redirect) => dispatch(signup(user, redirect)),
+		clearSessionErrors: () => dispatch(clearSessionErrors())
+
 	}
 }
 

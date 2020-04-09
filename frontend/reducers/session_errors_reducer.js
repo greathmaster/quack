@@ -1,5 +1,8 @@
-import {RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER} from '../actions/session_actions'
-
+import {
+	RECEIVE_SESSION_ERRORS,
+	RECEIVE_CURRENT_USER,
+	CLEAR_SESSION_ERRORS,
+} from "../actions/session_actions";
 
 export default function sessionErrorsReducer(prevState = [], action) {
 	Object.freeze(prevState);
@@ -11,6 +14,8 @@ export default function sessionErrorsReducer(prevState = [], action) {
 		case RECEIVE_CURRENT_USER:
 			newState = [];
 			return newState;
+		case CLEAR_SESSION_ERRORS:
+			return [];
 
 		default:
 			return prevState;

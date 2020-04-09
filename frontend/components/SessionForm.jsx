@@ -24,9 +24,14 @@ export default withRouter(
 
 		onSubmit(e) {
 			e.preventDefault();
+			console.log(this.props.errors)
 			this.props.processForm(this.state, id => {
 				this.props.history.push(`/channel/${id}`);
 			});
+		}
+
+		componentDidMount() {
+			this.props.clearSessionErrors()
 		}
 
 		renderErrors() {
@@ -102,7 +107,7 @@ export default withRouter(
 										/>
 
 										<input
-											type="text"
+											type="password"
 											onChange={this.handlePassword}
 											value={this.state.password}
 											placeholder={"Password"}
