@@ -840,7 +840,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
     value: function render() {
       var _this = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outterHeader"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "leftSide"
@@ -858,22 +860,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
         icon: _iconify_icons_mdi_duck__WEBPACK_IMPORTED_MODULE_3___default.a
       }), "Quack!")), " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "links"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "",
-        className: "inline"
-      }, "Why Quack!?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "",
-        className: "inline"
-      }, "Solutions"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "",
-        className: "inline"
-      }, "Resources"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "",
-        className: "inline"
-      }, "Enterprise"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "",
-        className: "inline"
-      }, "Pricing"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signInOut"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "links"
@@ -888,7 +875,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/signup",
         className: "inline"
-      }, "Get Started"))))));
+      }, "Get Started")))));
     }
   }]);
 
@@ -947,15 +934,27 @@ var Home = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "homePageSplash"
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outter-home-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "leftPage"
+        className: "c-billboard"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "benefitStatment"
-      }, "Quack! replaces email inside your flock!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "additionalBenefit"
-      }, "Keep conversations organized in Quack!, the avian alternative to email."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "c-billboard-containter"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "c-illustration"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://a.slack-edge.com/dd0405/marketing/img/solutions/remote-work/img-hero-remote.jpg",
+        srcset: "https://a.slack-edge.com/dd0405/marketing/img/solutions/remote-work/img-hero-remote.jpg 1x, https://a.slack-edge.com/dd0405/marketing/img/solutions/remote-work/img-hero-remote@2x.jpg 2x",
+        alt: "A Slack channel surrounded by people\u2019s profile photos and messages like \u201CWorking from home!\u201D and \u201CCommuting, be there soon\u201D"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "c-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "c-kicker-text"
+      }, "Work from Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Quack! brings the team together, wherever you are"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "c-subtext"
+      }, "With all of your communication and tools in one place, remote teams will stay productive no matter where you\u2019re working from."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tryDemoButtons"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
@@ -966,18 +965,16 @@ var Home = /*#__PURE__*/function (_Component) {
         to: "/signup"
       }, "Sign up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this.props.history.push('./login');
+          return _this.props.history.push("./login");
         },
         className: "tryDemoButton"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login"
-      }, "Sign in"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Sign in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "usingQuack"
-      }, "Already using Quack?", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, "Already using Quack!? ", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login"
-      }, "Sign in"), ".")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "rightPage"
-      })));
+      }, "Sign in"), ".")))))));
     }
   }]);
 

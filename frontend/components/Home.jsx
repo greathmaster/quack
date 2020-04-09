@@ -5,51 +5,59 @@ import Header from "../components/Header";
 export default class Home extends Component {
 	render() {
 		return (
-			<>
+			<div className="outter-home-container">
 				<Header />
-				<div className="homePageSplash">
-					{/* <video 
-					autoPlay="" 
-					loop="" 
-					muted="" 
-					playsInline="" 
-					className="o-hero__background o-hero__background--video" 
-					poster="https://a.slack-edge.com/59662/marketing/img/homepage/video/brand-campaign_hero-poster.jpg">
-						<source src="https://a.slack-edge.com/085e3/marketing/img/homepage/video/brand-campaign_hero-video.mp4" 
-								type="video/mp4"
-						/>
+				<div className="main">
+					<div className="c-billboard">
+						<div className="c-billboard-containter">
+							<div className="c-illustration">
+								<img
+									src="https://a.slack-edge.com/dd0405/marketing/img/solutions/remote-work/img-hero-remote.jpg"
+									srcset="https://a.slack-edge.com/dd0405/marketing/img/solutions/remote-work/img-hero-remote.jpg 1x, https://a.slack-edge.com/dd0405/marketing/img/solutions/remote-work/img-hero-remote@2x.jpg 2x"
+									alt="A Slack channel surrounded by people’s profile photos and messages like “Working from home!” and “Commuting, be there soon”"
+								/>
+							</div>
+							<div className="c-text">
+								<div className="c-kicker-text">
+									Work from Home
+								</div>
+								<h1>
+									Quack! brings the team together, wherever
+									you are
+								</h1>
+								<div className="c-subtext">
+									With all of your communication and tools in
+									one place, remote teams will stay productive
+									no matter where you’re working from.
+								</div>
 
-				</video> */}
-
-					<div className="leftPage">
-						<div className="benefitStatment">
-							Quack! replaces email inside your flock!
-						</div>
-						<div className="additionalBenefit">
-							Keep conversations organized in Quack!, the avian
-							alternative to email.
-						</div>
-						<div className="tryDemoButtons">
-							<button
-								onClick={() => {
-									this.props.history.push("./signup");
-								}}
-								className="getStartedButton"
-							>
-								<Link to={`/signup`}>Sign up</Link>
-							</button>
-							<button onClick={() => this.props.history.push('./login')} className="tryDemoButton">
-								<Link to={`/login`}>Sign in</Link>
-							</button>
-						</div>
-						<div className="usingQuack">
-							Already using Quack?{" "}
-							<Link to={`/login`}>Sign in</Link>.
+								<div className="tryDemoButtons">
+									<button
+										onClick={() => {
+											this.props.history.push("./signup");
+										}}
+										className="getStartedButton"
+									>
+										<Link to={`/signup`}>Sign up</Link>
+									</button>
+									<button
+										onClick={() =>
+											this.props.history.push("./login")
+										}
+										className="tryDemoButton"
+									>
+										<Link to={`/login`}>Sign in</Link>
+									</button>
+									<div className="usingQuack">
+										Already using Quack!? {" "}
+										<Link to={`/login`}>Sign in</Link>.
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div className="rightPage"></div>
 				</div>
-			</>
+			</div>
 		);
 	}
 }

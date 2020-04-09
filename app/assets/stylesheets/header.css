@@ -1,6 +1,26 @@
 /* start header */
+
+header {
+	background-color: white;
+	display: flex;
+	align-self: center;
+	justify-self: center;
+	max-width: none;
+	margin-left: 300px;
+}
+
+.outterHeader {
+	border-bottom: 1px solid whitesmoke;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	align-items: center;
+	justify-items: left;
+	max-width: 76.875rem;
+	margin: 0 auto;
+	padding: 0;
+}
+
 h1.header {
-	/* padding: 20px; */
 	font-size: 24px;
 	text-align: left;
 	font-weight: 900;
@@ -10,43 +30,38 @@ h1.header {
 .headerLink2 {
 	color: rgb(41, 40, 40);
 	text-decoration: none;
-}
-
-.inline {
-	/* display: inline-block */
-	margin: 10px;
+	font-family: "Helvetica Neue", sans-serif;
+	font-size: 1.25em;
 }
 
 .logo {
-	/* width: 75px; */
-	margin-right: 5px;
-	/* margin-top: 2px; */
-	/* display:inline-block; */
+	margin-right: 10px;
 }
 .nav {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	margin-left: 30px;
-	margin-right: 69px;
-	/* margin-top:10px; */
-	/* height: 40px; */
-	/* margin: 20px; */
+	height: 70px;
+	margin-left: 3em;
 }
 .links {
 	display: inline-block;
-	padding: 20px;
-	/* padding-top: 10px; */
+    width: max-content;
+    margin-right: 20px;
+}
+
+.signInOut {
+	display: flex;
+	align-items: center;
+	margin-left: 17em;
 }
 
 .links a {
-	/* display: block; */
 	text-decoration: none;
 	color: #1d1d1d;
 	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial,
 		sans-serif;
 	font-size: 14px;
-	padding-top: 10px;
 }
 
 .getStartedButton {
@@ -79,9 +94,6 @@ h1.header {
 	display: flex;
 	justify-content: end;
 	align-items: center;
-	/* padding:50px; */
 }
-
-
 
 /* finsh header */
