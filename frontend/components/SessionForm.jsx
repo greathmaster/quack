@@ -24,7 +24,6 @@ export default withRouter(
 
 		onSubmit(e) {
 			e.preventDefault();
-			console.log(this.props.errors)
 			this.props.processForm(this.state, id => {
 				this.props.history.push(`/channel/${id}`);
 			});

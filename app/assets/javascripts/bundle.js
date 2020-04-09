@@ -1928,7 +1928,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
       var _this2 = this;
 
       e.preventDefault();
-      console.log(this.props.errors);
       this.props.processForm(this.state, function (id) {
         _this2.props.history.push("/channel/".concat(id));
       });
