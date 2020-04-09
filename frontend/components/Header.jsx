@@ -13,7 +13,7 @@ export default withRouter(
 		render() {
 			return (
 				<header>
-					<div>
+					<div className="outterHeader">
 						<div className="nav">
 							<div className="leftSide">
 								<div className="logo">
@@ -32,41 +32,25 @@ export default withRouter(
 										</span>{" "}
 									</h1>
 								</div>
-								<div className="links">
-									<Link to={``} className="inline">
-										Why Quack!?
-									</Link>
-									<Link to={``} className="inline">
-										Solutions
-									</Link>
-									<Link to={``} className="inline">
-										Resources
-									</Link>
-									<Link to={``} className="inline">
-										Enterprise
-									</Link>
-									<Link to={``} className="inline">
-										Pricing
-									</Link>
-								</div>
+								<div className="links"></div>
 							</div>
-							<div className="signInOut">
-								<div className="links">
-									<Link to={`/login`} className="inline">
-										Sign in
-									</Link>
-								</div>
-								<button
-									onClick={() => {
-										this.props.history.push("./signup");
-									}}
-									className="getStartedButton"
-								>
-									<Link to={`/signup`} className="inline">
-										Get Started
-									</Link>
-								</button>
+						</div>
+						<div className="signInOut">
+							<div className="links">
+								<Link to={`/login`} className="inline">
+									Sign in
+								</Link>
 							</div>
+							<button
+								onClick={() => {
+									this.props.history.push("./signup");
+								}}
+								className="getStartedButton"
+							>
+								<Link to={`/signup`} className="inline">
+									Get Started
+								</Link>
+							</button>
 						</div>
 					</div>
 				</header>

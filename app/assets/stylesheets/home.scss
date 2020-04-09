@@ -1,16 +1,90 @@
-
 /*
 Start Home page splash and slider/video
 */
+.main {
+	flex: 0 1 1;
+}
+
+.outter-home-container {
+	overflow: scroll;
+	height: 100%;
+}
+
+.c-billboard {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+	max-width: none;
+	background-color: white;
+	margin: 0, auto;
+}
+
+.c-kicker-text {
+	text-transform: uppercase!important;
+	font-size: 0.875rem;
+	font-family: Helvetica, sans-serif;
+	font-weight: bold;
+	margin-left: 2rem;
+	margin-bottom: 1rem;
+}
+
+.c-billboard-containter {
+	display: grid;
+	grid-column-gap: 5%;
+	grid-template-columns: 40% 55%;
+	align-items: center;
+	justify-items: self-end;
+	flex-wrap: wrap;
+	max-width: 76.875rem;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.c-text {
+	text-align: left;
+	width: 100%;
+	
+}
+
+.c-text h1 {
+
+	font-size: 2.9rem;
+	font-family: sans-serif;
+	line-height: 1.25;
+	margin-left: 2rem;
+	font-weight: 900;
+}
+
+.c-subtext {
+    max-width: 44rem;
+    margin-left: 2.1rem;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+.c-illustration {
+	order: 2;
+}
+
+.c-illustration img {
+	width: 100%;
+	height: auto;
+}
+
 .homePageSplash {
 	/* background-color: red; */
 	/* background: url('background-2.jpg'); */
-	background: url(asset_path('background-2.jpg'));
+	background: url(asset_path("background-2.jpg"));
 
 	-webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 
 	width: 100%;
 	height: 100%;
@@ -29,8 +103,6 @@ Start Home page splash and slider/video
 	/* color: black; */
 	/* color: #1d1d1d; */
 	color: whitesmoke;
-
-
 }
 .additionalBenefit {
 	width: 290px;
@@ -43,17 +115,13 @@ Start Home page splash and slider/video
 	margin-bottom: 13px;
 }
 .tryDemoButtons {
-}
-.rightPage {
+	margin-left: 2rem;
 }
 
 .tryDemoButton {
 	width: 125px;
 	height: 40px;
 	border: 1px solid #611f69;
-	/* background-color: #621f6900; */
-	color: white;
-	background-color: rgba(151, 151, 151, 0.178);
 	border-radius: 4px;
 	text-align: center;
 	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial,
@@ -71,11 +139,12 @@ Start Home page splash and slider/video
 }
 
 .usingQuack {
-	color: white;
-	font-size: 11px;
-	margin-top:9px;
-	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-
+	color: black;
+	font-size: 13px;
+	margin-top: 12px;
+	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial,
+		sans-serif;
+	letter-spacing: 1.25px;
 }
 
 .usingQuack a {
@@ -83,6 +152,6 @@ Start Home page splash and slider/video
 }
 
 .tryDemoButton a {
-	color: white;
+	color: #611f69;
 	text-decoration: none;
 }
