@@ -9,6 +9,58 @@ header {
 	margin-left: 300px;
 }
 
+.more-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 14px;
+	margin-left: 25px;
+}
+
+.linkedin-logo-container:hover {
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.github-logo-container {
+	font-size: 13px;
+	margin-left: 5px;
+	margin-right: 12px;
+}
+
+.github-logo-container:hover {
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.github-logo {
+	margin-right: 3px;
+}
+
+.angel-list-logo-container:hover {
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.angel-list-logo-container a {
+	text-decoration: none !important;
+
+}
+
+.angel-list-logo-container a {
+	text-decoration: none !important;
+	color:black;	
+}
+
+.angel-list-logo-text {
+	font-family: Helvetica, sans-serif;
+	font-weight: 600;
+}
+
+.angel-list-logo {
+	margin-right: 2px;
+}
+
 .outterHeader {
 	border-bottom: 1px solid whitesmoke;
 	display: grid;
@@ -46,8 +98,8 @@ h1.header {
 }
 .links {
 	display: inline-block;
-    width: max-content;
-    margin-right: 20px;
+	width: max-content;
+	margin-right: 20px;
 }
 
 .signInOut {
