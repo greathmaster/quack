@@ -102,6 +102,8 @@ export default connect(
 					});
 			}
 			return (
+				<>
+					<div className="bar"> </div>
 				<div className="channelContainer">
 					<div className="sidebar">
 						<Sidebar />
@@ -116,6 +118,7 @@ export default connect(
 						</div>
 					</div>
 				</div>
+				</>
 			);
 		}
 	}

@@ -1,21 +1,16 @@
 .sidebarListItem {
-	padding-left: 5px;
+	padding: 0px 15px 0px 12px;
 	/* font-family: Lato, sans-serif; */
-	font-family: "Helvetica Neue", sans-serif;
-	line-height: 1.75;
-	font-weight: 400;
-	font-size: 14px;
-	/* color: #cac4c9; */
-	color: white;
+	font-family: "Circular", sans-serif;
+	line-height: 28px;
+	font-weight: 200;
+	font-size: 15px;
+	letter-spacing: 1.1px;
+	color: #cac4c9;
+	/* color: white; */
 }
 
-a.sidebarListItem {
-	max-width: 30ch;
-	text-overflow: ellipsis;
-	overflow: hidden;
 
-	text-decoration: none;
-}
 
 .sidebarListItem:hover {
 	/* background-color: rgb(163, 163, 163); */
@@ -23,16 +18,35 @@ a.sidebarListItem {
 }
 
 .sidebarListItemSelected {
-	background-color:#4c9689;
+	/* background-color:#4c9689; */
+	background-color: #1164a3;
+	color:white !important;
+	padding: 0px 15px 0px 12px;
 	
+}
+
+a.sidebarListItemSelected {
+	/* background-color:#4c9689; */
+	/* background-color: #1164a3; */
+	color:white;
+	/* padding: 0px 15px 0px 12px; */
+	
+}
+
+a.sidebarListItem {
+	/* max-width: 30ch; */
+	/* text-overflow: ellipsis; */
+	/* overflow: hidden; */
+	color: #cac4c9;
+	text-decoration: none;
 }
 
 .sidebarListName {
 	font-size: 14px;
 	font-family: "Helvetica Neue", sans-serif;
 	font-weight: 400;
-	padding-bottom: 5px;
-	padding-left: 5px;
+	/* padding-bottom: 5px; */
+	/* padding-left: 5px; */
 }
 
 .sidebarList {
@@ -48,7 +62,7 @@ a.sidebarListItem {
 	background-color: red;
 	border-radius: 50%;
 	display: inline-block;
-	margin-bottom: 2px;
+	margin-right: 5px;
 	/* align-items: center; */
 	/* justify-content: center; */
 }

@@ -1,26 +1,79 @@
 .sideBarInfoContainer {
 	font-family: "Helvetica Neue", sans-serif;
-	margin-top: 8px;
-	margin-bottom: 16px;
-	margin-left: 16px;
-	margin-right: 16px;
-	display:flex;
+	/* margin-top: 8px; */
+	/* margin-bottom: 16px; */
+	/* margin-left: 16px; */
+	/* margin-right: 16px; */
+	/* display:flex;
 	justify-content: space-around;
 	flex-direction: column;
+	height: 60px;
+	border: 1px solid rgb(82,38,83); */
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 54px 0 16px;
+	transition-property: background-color, border-color;
+	transition-duration: 80ms;
+	transition-timing-function: cubic-bezier(0.36, 0.19, 0.29, 1);
+	border: 1px solid rgb(82, 38, 83);
+	background-clip: padding-box;
+	position: relative;
+	z-index: 1;
+	height: 60px;
+}
+
+.sidebar-info-username {
+	display: flex;
+	align-items: center;
+	/* margin-right: 8px; */
+	font-size: 13px;
+	opacity: 0.8;
+}
+
+.outer-sidebar-info-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.sidebar-info-logout {
+	position: absolute;
+	font-size: 25px;
+	left: 160px;
 }
 
 .sideBarInfoChannelName {
-	font-size: 20px;
+	font-size: 15px;
+	font-family: appleLogo, sans-serif;
+	font-weight: 600;
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	margin-bottom: 3px;
+	letter-spacing: 0.5px;
+}
+
+.sidebar-info-username-row {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 4px;
 }
 
 .sideBarInfoUsername {
 	/* margin */
-	font-size: 14px;
-	font-weight: bold;
+	/* font-size: 14px; */
+	/* font-weight: bold; */
 }
 
 .duckUserIcon {
-	font-size: 20px;
+	/* font-size: 20px; */
 }
 
 .sideBarInfoUsernameContainer {

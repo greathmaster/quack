@@ -1,10 +1,15 @@
 .sidebar {
-	background-color: #4d394b;
+	background-color: #3f0e40;
 	height: 100%;
 	overflow: auto;
 	flex: none;
 	color: white;
-	width: 200px;
+	width: 220px;
+}
+
+.bar {
+	height: 38px;
+	background-color: #350d36;
 }
 
 .channelContainer {
