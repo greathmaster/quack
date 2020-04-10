@@ -811,6 +811,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _iconify_icons_mdi_duck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @iconify/icons-mdi/duck */ "./node_modules/@iconify/icons-mdi/duck.js");
 /* harmony import */ var _iconify_icons_mdi_duck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_mdi_duck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _iconify_icons_logos_linkedin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @iconify/icons-logos/linkedin */ "./node_modules/@iconify/icons-logos/linkedin.js");
+/* harmony import */ var _iconify_icons_logos_linkedin__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_logos_linkedin__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _iconify_icons_logos_github__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @iconify/icons-logos/github */ "./node_modules/@iconify/icons-logos/github.js");
+/* harmony import */ var _iconify_icons_logos_github__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_logos_github__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _iconify_icons_logos_github_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @iconify/icons-logos/github-icon */ "./node_modules/@iconify/icons-logos/github-icon.js");
+/* harmony import */ var _iconify_icons_logos_github_icon__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_logos_github_icon__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _iconify_icons_logos_angellist__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @iconify/icons-logos/angellist */ "./node_modules/@iconify/icons-logos/angellist.js");
+/* harmony import */ var _iconify_icons_logos_angellist__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_logos_angellist__WEBPACK_IMPORTED_MODULE_7__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -828,6 +836,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
 
 
 
@@ -867,8 +879,37 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
         className: "logo",
         icon: _iconify_icons_mdi_duck__WEBPACK_IMPORTED_MODULE_3___default.a
       }), "Quack!")), " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "links"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "more-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "linkedin-logo-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.linkedin.com/in/hersha-venkatesh-19500b61/",
+        target: "_blank"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+        className: "logo",
+        icon: _iconify_icons_logos_linkedin__WEBPACK_IMPORTED_MODULE_4___default.a
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "github-logo-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://github.com/greathmaster",
+        target: "_blank"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+        className: "github-logo",
+        icon: _iconify_icons_logos_github_icon__WEBPACK_IMPORTED_MODULE_6___default.a
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+        className: "github-logo-text",
+        icon: _iconify_icons_logos_github__WEBPACK_IMPORTED_MODULE_5___default.a
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "angel-list-logo-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://angel.co/u/hersha-venkatesh",
+        target: "_blank"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+        className: "angel-list-logo",
+        icon: _iconify_icons_logos_angellist__WEBPACK_IMPORTED_MODULE_7___default.a
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "angel-list-logo-text"
+      }, "AngelList")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signInOut"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "links"
@@ -888,7 +929,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
   }]);
 
   return Header;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component)));
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component))); // // npm install --save-dev @iconify/react @iconify/icons-logos
+// import { Icon, InlineIcon } from '@iconify/react';
+// import linkedinIcon from '@iconify/icons-logos/linkedin';
 
 /***/ }),
 
@@ -3420,6 +3463,78 @@ var data = {
 	"body": "<path d=\"M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192s192-86 192-192z\" fill=\"none\" stroke=\"currentColor\" stroke-miterlimit=\"10\" stroke-width=\"32\"/><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"32\" d=\"M320 320L192 192\"/><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"32\" d=\"M192 320l128-128\"/>",
 	"width": 512,
 	"height": 512
+};
+exports.__esModule = true;
+exports.default = data;
+
+
+/***/ }),
+
+/***/ "./node_modules/@iconify/icons-logos/angellist.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@iconify/icons-logos/angellist.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = {
+	"body": "<path d=\"M214.9 157.358c15.265 2.348 25.834 9.394 31.706 18.789c5.871 9.394 9.394 25.835 9.394 46.972c0 42.275-12.917 77.505-38.752 104.514c-25.835 27.01-58.716 41.1-98.642 41.1c-15.267 0-30.533-2.348-45.799-8.22c-15.266-5.87-27.009-14.091-37.578-23.485c-11.743-10.57-21.137-23.487-27.009-35.23C3.523 288.881 0 275.963 0 263.046c0-14.092 3.523-25.835 9.394-34.055c5.872-8.22 16.44-12.918 29.358-16.44c-2.348-5.872-4.697-10.57-5.871-15.267c-1.175-3.523-2.349-7.045-2.349-9.394c0-7.046 3.523-15.266 11.743-23.486s15.266-11.743 22.312-11.743c3.523 0 5.872 0 9.395 1.174c3.523 1.174 7.046 2.348 11.743 5.871c-10.569-35.229-21.138-64.587-27.01-84.55c-5.871-19.963-8.22-32.88-8.22-41.101c0-10.569 2.349-18.789 8.22-24.66C63.414 3.522 71.634 0 81.029 0c15.266 0 35.229 35.23 59.89 106.862c4.697 11.744 7.045 21.138 9.394 28.184c2.349-4.697 4.697-12.918 8.22-22.312C183.192 42.275 204.33 7.046 220.771 7.046c8.22 0 15.266 2.348 21.137 8.22c4.698 5.872 8.22 14.092 8.22 23.486c0 7.046-2.348 21.138-8.22 41.101c-7.046 19.964-15.266 45.798-27.009 77.505zM34.054 260.698c2.349 2.348 5.872 7.045 9.395 12.917C54.018 288.88 64.587 297.1 73.982 297.1c3.523 0 5.871-1.174 8.22-3.523c2.348-2.349 3.523-4.697 3.523-5.872c0-2.348-1.175-7.045-4.697-12.917c-3.523-5.872-8.22-12.917-14.092-19.963c-7.046-8.22-12.918-15.266-16.44-18.79c-4.698-3.522-8.22-5.87-10.57-5.87c-5.871 0-11.743 3.522-16.44 9.394c-4.697 5.871-7.046 14.091-7.046 22.312c0 7.045 1.175 14.091 4.698 23.486c3.523 8.22 8.22 17.614 15.266 25.835c10.568 11.743 22.312 22.312 37.578 29.357c15.266 7.046 30.532 10.57 49.32 10.57c32.881 0 59.89-11.744 82.203-36.404c22.312-24.661 32.88-55.193 32.88-92.771c0-11.743-1.174-19.963-2.348-27.01c-1.175-7.045-4.698-11.742-8.22-14.091c-7.046-5.872-19.964-10.569-39.927-15.266c-19.963-4.697-41.101-7.046-62.239-7.046c-5.871 0-10.568 1.174-12.917 3.523s-3.523 5.872-3.523 10.569c0 11.743 5.872 19.963 18.789 24.66c12.917 4.698 34.055 8.22 62.239 8.22h10.568c2.349 0 4.698 1.175 5.872 2.35c1.174 2.348 2.349 4.696 2.349 8.22c-2.35 2.348-8.22 5.871-17.615 9.394c-9.395 3.523-15.266 7.046-19.963 10.569c-10.57 7.046-18.79 16.44-24.661 27.009c-5.872 10.569-9.395 19.963-9.395 29.358c0 5.871 1.175 11.743 3.523 19.963c2.35 8.22 3.523 12.917 3.523 14.092v4.697c-7.046 0-12.917-4.697-17.614-12.917c-4.698-8.22-5.872-18.79-5.872-32.881v-2.349c-1.174 1.174-2.348 2.349-3.523 2.349c-1.174 0-2.348 1.174-4.697 1.174h-4.697c-1.175 0-2.349-1.174-4.698-1.174c0 2.348 1.175 3.523 1.175 5.871v4.698c0 5.871-2.349 11.743-7.046 16.44c-4.697 4.697-10.569 7.046-17.615 7.046c-10.569 0-21.137-4.697-32.88-15.266c-10.57-10.569-16.44-19.964-16.44-30.532c0-2.349 0-3.523 1.173-4.698c0-5.871 1.175-7.045 2.349-8.22zm76.33 5.87c2.349 0 5.872-1.174 8.22-3.522c2.35-2.349 3.523-5.872 3.523-8.22c0-3.523-2.348-10.57-7.045-22.312c-4.698-11.743-10.57-23.486-17.615-34.055c-4.697-8.22-10.569-15.266-15.266-18.79c-4.697-4.697-9.395-5.87-14.092-5.87c-3.523 0-7.046 2.348-11.743 7.045s-5.872 8.22-5.872 12.917c0 3.523 2.349 10.57 5.872 18.79c4.697 8.22 9.394 16.44 16.44 25.834C79.853 247.78 86.9 256 93.945 261.872c7.046 2.348 11.743 4.697 16.44 4.697zm24.66-122.128l-28.183-78.679c-7.045-19.963-11.743-34.055-16.44-39.926c-3.523-5.872-7.046-9.395-11.743-9.395c-3.523 0-5.872 1.175-8.22 3.523c-3.523 3.523-4.698 7.046-4.698 11.743c0 8.22 3.523 21.138 9.395 39.927c5.872 18.789 15.266 44.624 27.01 75.156c1.173-2.349 2.348-3.523 4.696-3.523c2.349-1.174 4.698-1.174 7.046-1.174h5.872c3.523 1.174 8.22 1.174 15.266 2.348zm28.184 76.33c-7.046 0-14.091-1.174-21.137-2.348c-7.046-1.174-12.918-2.349-18.79-4.697c2.35 5.871 4.698 10.569 7.047 16.44c2.348 5.872 3.523 10.569 4.697 16.44c3.523-4.697 8.22-9.394 12.917-14.091c5.872-4.697 10.57-8.22 15.266-11.743zm34.055-68.11c11.744-30.532 19.964-56.366 27.01-76.33c5.871-19.963 9.394-31.706 9.394-36.403c0-4.698-1.174-8.22-3.523-11.744c-2.348-2.348-4.697-3.522-8.22-3.522c-4.697 0-9.395 3.522-14.092 11.743c-4.697 8.22-10.569 19.963-16.44 37.578l-25.835 72.807l31.706 5.872z\" fill=\"#000\"/>",
+	"width": 256,
+	"height": 369
+};
+exports.__esModule = true;
+exports.default = data;
+
+
+/***/ }),
+
+/***/ "./node_modules/@iconify/icons-logos/github-icon.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@iconify/icons-logos/github-icon.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = {
+	"body": "<path d=\"M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46c6.397 1.185 8.746-2.777 8.746-6.158c0-3.052-.12-13.135-.174-23.83c-35.61 7.742-43.124-15.103-43.124-15.103c-5.823-14.795-14.213-18.73-14.213-18.73c-11.613-7.944.876-7.78.876-7.78c12.853.902 19.621 13.19 19.621 13.19c11.417 19.568 29.945 13.911 37.249 10.64c1.149-8.272 4.466-13.92 8.127-17.116c-28.431-3.236-58.318-14.212-58.318-63.258c0-13.975 5-25.394 13.188-34.358c-1.329-3.224-5.71-16.242 1.24-33.874c0 0 10.749-3.44 35.21 13.121c10.21-2.836 21.16-4.258 32.038-4.307c10.878.049 21.837 1.47 32.066 4.307c24.431-16.56 35.165-13.12 35.165-13.12c6.967 17.63 2.584 30.65 1.255 33.873c8.207 8.964 13.173 20.383 13.173 34.358c0 49.163-29.944 59.988-58.447 63.157c4.591 3.972 8.682 11.762 8.682 23.704c0 17.126-.148 30.91-.148 35.126c0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002C256 57.307 198.691 0 128.001 0zm-80.06 182.34c-.282.636-1.283.827-2.194.39c-.929-.417-1.45-1.284-1.15-1.922c.276-.655 1.279-.838 2.205-.399c.93.418 1.46 1.293 1.139 1.931zm6.296 5.618c-.61.566-1.804.303-2.614-.591c-.837-.892-.994-2.086-.375-2.66c.63-.566 1.787-.301 2.626.591c.838.903 1 2.088.363 2.66zm4.32 7.188c-.785.545-2.067.034-2.86-1.104c-.784-1.138-.784-2.503.017-3.05c.795-.547 2.058-.055 2.861 1.075c.782 1.157.782 2.522-.019 3.08zm7.304 8.325c-.701.774-2.196.566-3.29-.49c-1.119-1.032-1.43-2.496-.726-3.27c.71-.776 2.213-.558 3.315.49c1.11 1.03 1.45 2.505.701 3.27zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033c-1.448-.439-2.395-1.613-2.103-2.626c.301-1.01 1.747-1.484 3.207-1.028c1.446.436 2.396 1.602 2.095 2.622zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95c-1.53.034-2.769-.82-2.786-1.86c0-1.065 1.202-1.932 2.733-1.958c1.522-.03 2.768.818 2.768 1.868zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37c-1.485.271-2.861-.365-3.05-1.386c-.184-1.056.893-2.114 2.376-2.387c1.514-.263 2.868.356 3.061 1.403z\" fill=\"#161614\"/>",
+	"width": 256,
+	"height": 250
+};
+exports.__esModule = true;
+exports.default = data;
+
+
+/***/ }),
+
+/***/ "./node_modules/@iconify/icons-logos/github.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@iconify/icons-logos/github.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = {
+	"body": "<path d=\"M98.696 59.312h-43.06c-1.111 0-2.013.903-2.013 2.014v21.053c0 1.111.902 2.015 2.012 2.015h16.799v26.157s-3.772 1.286-14.2 1.286c-12.303 0-29.49-4.496-29.49-42.288c0-37.8 17.897-42.773 34.698-42.773c14.543 0 20.809 2.56 24.795 3.794c1.253.384 2.412-.863 2.412-1.975l4.803-20.342c0-.52-.176-1.146-.769-1.571C93.064 5.527 83.187 0 58.233 0C29.488 0 0 12.23 0 71.023c0 58.795 33.76 67.556 62.21 67.556c23.555 0 37.844-10.066 37.844-10.066c.59-.325.653-1.148.653-1.526V61.326c0-1.11-.9-2.014-2.01-2.014zm221.8-51.953c0-1.12-.888-2.024-1.999-2.024h-24.246a2.016 2.016 0 0 0-2.008 2.024l.006 46.856h-37.792V7.36c0-1.12-.892-2.024-2.001-2.024H228.21a2.014 2.014 0 0 0-2.003 2.024v126.872c0 1.12.9 2.03 2.003 2.03h24.245c1.109 0 2-.91 2-2.03V79.964h37.793l-.066 54.267c0 1.12.9 2.03 2.008 2.03h24.304c1.11 0 1.998-.91 2-2.03V7.36zM144.37 24.322c0-8.73-7-15.786-15.635-15.786c-8.627 0-15.632 7.055-15.632 15.786c0 8.72 7.005 15.795 15.632 15.795c8.635 0 15.635-7.075 15.635-15.795zm-1.924 83.212V48.97c0-1.112-.897-2.021-2.006-2.021h-24.169c-1.109 0-2.1 1.144-2.1 2.256v83.905c0 2.466 1.536 3.199 3.525 3.199h21.775c2.39 0 2.975-1.173 2.975-3.239v-25.536zM413.162 46.95h-24.06c-1.104 0-2.002.909-2.002 2.028v62.21s-6.112 4.472-14.788 4.472c-8.675 0-10.977-3.937-10.977-12.431v-54.25c0-1.12-.897-2.03-2.001-2.03h-24.419c-1.102 0-2.005.91-2.005 2.03v58.358c0 25.23 14.063 31.403 33.408 31.403c15.87 0 28.665-8.767 28.665-8.767s.61 4.62.885 5.168c.276.547.994 1.098 1.77 1.098l15.535-.068c1.102 0 2.005-.911 2.005-2.025l-.008-85.168c0-1.119-.9-2.028-2.008-2.028zm55.435 68.758c-8.345-.254-14.006-4.041-14.006-4.041V71.488s5.585-3.423 12.436-4.035c8.664-.776 17.013 1.841 17.013 22.51c0 21.795-3.768 26.096-15.443 25.744zm9.49-71.483c-13.665 0-22.96 6.097-22.96 6.097V7.359a2.01 2.01 0 0 0-2-2.024h-24.315a2.013 2.013 0 0 0-2.004 2.024v126.872c0 1.12.898 2.03 2.007 2.03h16.87c.76 0 1.335-.39 1.76-1.077c.419-.682 1.024-5.85 1.024-5.85s9.942 9.422 28.763 9.422c22.096 0 34.768-11.208 34.768-50.315s-20.238-44.217-33.913-44.217zM212.229 46.73h-18.187l-.028-24.027c0-.909-.468-1.364-1.52-1.364H167.71c-.964 0-1.481.424-1.481 1.35v24.83s-12.42 2.998-13.26 3.24a2.013 2.013 0 0 0-1.452 1.934v15.603c0 1.122.896 2.027 2.005 2.027h12.707v37.536c0 27.88 19.556 30.619 32.753 30.619c6.03 0 13.243-1.937 14.434-2.376c.72-.265 1.138-1.01 1.138-1.82l.02-17.164c0-1.119-.945-2.025-2.01-2.025c-1.06 0-3.77.431-6.562.431c-8.933 0-11.96-4.154-11.96-9.53l-.001-35.67h18.188a2.014 2.014 0 0 0 2.006-2.028V48.753c0-1.12-.897-2.022-2.006-2.022z\" fill=\"#11110F\"/>",
+	"width": 512,
+	"height": 139
+};
+exports.__esModule = true;
+exports.default = data;
+
+
+/***/ }),
+
+/***/ "./node_modules/@iconify/icons-logos/linkedin.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@iconify/icons-logos/linkedin.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = {
+	"body": "<path d=\"M0 19.164h19.987v72.804h37.01v18.443H0V19.164\" fill=\"#1A1918\"/><path d=\"M75.43 17.811c6.153 0 11.146 4.993 11.146 11.14c0 6.157-4.993 11.138-11.146 11.138c-6.145 0-11.138-4.981-11.138-11.138c0-6.147 4.993-11.14 11.138-11.14zm-9.606 30.74h19.213v61.837H65.824V48.55z\" fill=\"#1A1918\"/><path d=\"M95.662 48.558h18.442v8.452h.256c2.56-4.865 8.837-9.985 18.186-9.985c19.469 0 23.054 12.803 23.054 29.45v33.913h-19.212V80.322c0-7.176-.132-16.395-9.994-16.395c-9.987 0-11.52 7.816-11.52 15.88v30.58H95.661V48.559\" fill=\"#1A1918\"/><path d=\"M165.344 19.158h19.205v54.535l21.757-25.17h23.547l-25.198 28.63l24.67 33.258h-24.143L184.8 79.844h-.251v30.567h-19.205V19.158\" fill=\"#1A1918\"/><path d=\"M286.552 99.68c-6.153 7.816-16.262 12.302-26.256 12.302c-19.207 0-34.577-12.814-34.577-32.664s15.37-32.654 34.577-32.654c17.94 0 29.204 12.804 29.204 32.654v6.02H244.93c1.526 7.3 7.04 12.04 14.47 12.04c6.278 0 10.501-3.203 13.705-7.56l13.446 9.862zM270.29 72.278c.126-6.405-4.868-11.783-11.79-11.783c-8.45 0-13.062 5.764-13.569 11.783h25.36z\" fill=\"#1A1918\"/><path d=\"M362.567 110.377h-17.68v-8.2h-.249c-2.955 4.482-10.376 9.736-19.088 9.736c-18.448 0-30.613-13.315-30.613-32.144c0-17.293 10.758-33.173 28.43-33.173c7.947 0 15.375 2.176 19.73 8.194h.253V19.158h19.217v91.219zM329.51 63.502c-9.598 0-15.36 6.41-15.36 15.75c0 9.36 5.762 15.755 15.36 15.755c9.615 0 15.377-6.395 15.377-15.754c0-9.341-5.762-15.75-15.377-15.75z\" fill=\"#1A1918\"/><path d=\"M501.764 0H391.343c-5.277 0-9.564 4.182-9.564 9.34v110.885c0 5.161 4.287 9.35 9.564 9.35h110.42c5.286 0 9.593-4.189 9.593-9.35V9.339c0-5.157-4.307-9.339-9.592-9.339\" fill=\"#006087\"/><path d=\"M410.603 17.839c6.146 0 11.138 4.993 11.138 11.14c0 6.151-4.992 11.146-11.138 11.146c-6.158 0-11.144-4.995-11.144-11.146c0-6.147 4.986-11.14 11.144-11.14zm-9.613 30.739h19.219v61.837H400.99V48.578z\" fill=\"#FFF\"/><path d=\"M432.263 48.578h18.436v8.448h.256c2.565-4.86 8.834-9.987 18.184-9.987c19.461 0 23.054 12.807 23.054 29.457v33.919h-19.205V80.344c0-7.175-.132-16.398-9.987-16.398c-10.002 0-11.533 7.812-11.533 15.878v30.59h-19.205V48.579\" fill=\"#FFF\"/>",
+	"width": 512,
+	"height": 130
 };
 exports.__esModule = true;
 exports.default = data;
