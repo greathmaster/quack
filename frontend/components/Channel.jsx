@@ -37,6 +37,7 @@ export default connect(
 		}
 
 		componentDidMount() {
+			console.log(this.props)
 			if (this.props.currentUser) {
 				this.props.fetchAllChannelMessages(this.props.match.params.id);
 				this.props.fetchAllChannels(this.props.currentUser.id);
@@ -52,7 +53,9 @@ export default connect(
 
 			// 	this.props.history.goBack();
 			// }
-
+			// debugger
+			// console.log("HELlo!")
+			console.log("Hello")
 			if (
 				prevProps &&
 				prevProps.match.params.id !== this.props.match.params.id

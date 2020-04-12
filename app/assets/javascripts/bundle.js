@@ -490,6 +490,8 @@ function mapDispatchToProps(dispatch) {
   _createClass(Channel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      console.log(this.props);
+
       if (this.props.currentUser) {
         this.props.fetchAllChannelMessages(this.props.match.params.id);
         this.props.fetchAllChannels(this.props.currentUser.id);
@@ -505,6 +507,10 @@ function mapDispatchToProps(dispatch) {
       // ) {
       // 	this.props.history.goBack();
       // }
+      // debugger
+      // console.log("HELlo!")
+      console.log("Hello");
+
       if (prevProps && prevProps.match.params.id !== this.props.match.params.id) {
         this.props.fetchAllChannels(this.props.currentUser.id);
         this.props.fetchAllChannelMessages(this.props.match.params.id);
@@ -771,20 +777,22 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "createNewChnnelOutterContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "createNewChannelContainer",
         onClick: this.handleClick
       }, this.props.type == "public" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          marginRight: 5 + "px"
-        }
+        className: "createNewChannelIcon"
       }, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "createNewChannelTitle"
       }, "Add a Channel")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "createDirectMessage"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "createChannelIcon"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Direct Message")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Direct Message")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "createDirectMessageIcon"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
         icon: _iconify_icons_ion_add_circle_outline__WEBPACK_IMPORTED_MODULE_3___default.a
       }))))));
     }
@@ -1406,20 +1414,20 @@ function mSTP(state, ownProps) {
 
       if (this.state.photoFile) {
         formData.append("user[avatar]", this.state.photoFile);
-      }
+      } // $.ajax({
+      // 	url: `/api/users/${this.props.userID}`,
+      // 	method: "PATCH",
+      // 	data: formData,
+      // 	contentType: false,
+      // 	processData: false,
+      // }).then(
+      // 	response => console.log(response.message),
+      // 	response => {
+      // 		console.log("error?");
+      // 		console.log(response.responseJSON);
+      // 	}
+      // );
 
-      $.ajax({
-        url: "/api/users/".concat(this.props.userID),
-        method: "PATCH",
-        data: formData,
-        contentType: false,
-        processData: false
-      }).then(function (response) {
-        return console.log(response.message);
-      }, function (response) {
-        console.log("error?");
-        console.log(response.responseJSON);
-      });
     }
   }, {
     key: "render",
