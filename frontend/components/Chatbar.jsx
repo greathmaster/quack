@@ -87,7 +87,7 @@ export default withRouter(
 									onKeyDown={this.handleKeyPressed}
 									value={this.state.message}
 								/>
-								<button>Submit</button>
+								
 							</div>
 						</form>
 					</>

@@ -21,14 +21,14 @@ export default withRouter(
 
 		render() {
 			return (
-				<div>
+				<div className="createNewChnnelOutterContainer">
 					<div
 						className="createNewChannelContainer"
 						onClick={this.handleClick}
 					>
 						{this.props.type == "public" ? (
 							<>
-								<div style={{ marginRight: 5 + "px" }}>+</div>
+								<div className="createNewChannelIcon">+</div>
 								<div className="createNewChannelTitle">
 									Add a Channel
 								</div>
@@ -39,7 +39,7 @@ export default withRouter(
 									<div className="createChannelIcon">
 										<div>Direct Message</div>
 									</div>
-										<div><Icon icon={addCircleOutline} /></div>
+										<div className="createDirectMessageIcon"><Icon icon={addCircleOutline} /></div>
 								</div>
 							</>
 						)}

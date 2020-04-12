@@ -1,8 +1,19 @@
+.createNewChnnelOutterContainer {
+	margin-bottom: -10px;
+}
+
+.createNewChannelIcon {
+	margin-right: 5px;
+    font-size: 14px;
+    font-family: "Circular", sans-serif;
+    font-weight: 200;
+}
+
 .createNewChannelContainer {
-	display:flex;
+	display: flex;
+	padding-left: 24px;
 	justify-content: flex-start;
 	align-items: center;
-	margin-left: 7px;
 }
 .createNewChannelContainer:hover {
 	/* background-color: darkgrey; */
@@ -10,21 +21,41 @@
 }
 
 .createNewChannelTitle {
-	font-size: 14px;
-	font-family: "Helvetica Neue", sans-serif;
+	
+	font-weight: 200;
+    font-family: "Circular", sans-serif;
+    line-height: 28px;
+    font-weight: 200;
+    font-size: 14px;
+    letter-spacing: 1.1px;
+    color: #cac4c9;
+    /* color: white;
+
 
 }
 .createChannelIcon {
-	display:flex;
+	display: flex;
 	justify-content: space-between;
 	/* flex: 1; */
 	padding-right: 5px;
 	/* font-size: 20px; */
 }
 
+.createDirectMessageIcon {
+	margin-left: 10px;
+	margin-top:3px;
+}
+
 .createDirectMessage {
-	font-size: 14px;
-	font-family: "Helvetica Neue", sans-serif;
 	display: flex;
 	justify-content: space-around;
+
+	padding: 0px 15px 0px 24;
+	/* font-family: Lato, sans-serif; */
+	font-family: "Circular", sans-serif;
+	line-height: 28px;
+	font-weight: 200;
+	font-size: 14px;
+	letter-spacing: 1.1px;
+	color: #cac4c9;
 }

@@ -53,19 +53,19 @@ export default connect(mSTP)(
 				formData.append("user[avatar]", this.state.photoFile);
 			}
 
-			$.ajax({
-				url: `/api/users/${this.props.userID}`,
-				method: "PATCH",
-				data: formData,
-				contentType: false,
-				processData: false,
-			}).then(
-				response => console.log(response.message),
-				response => {
-					console.log("error?");
-					console.log(response.responseJSON);
-				}
-			);
+			// $.ajax({
+			// 	url: `/api/users/${this.props.userID}`,
+			// 	method: "PATCH",
+			// 	data: formData,
+			// 	contentType: false,
+			// 	processData: false,
+			// }).then(
+			// 	response => console.log(response.message),
+			// 	response => {
+			// 		console.log("error?");
+			// 		console.log(response.responseJSON);
+			// 	}
+			// );
 		}
 
 		render() {

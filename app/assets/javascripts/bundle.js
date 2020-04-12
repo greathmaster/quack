@@ -490,6 +490,8 @@ function mapDispatchToProps(dispatch) {
   _createClass(Channel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      console.log(this.props);
+
       if (this.props.currentUser) {
         this.props.fetchAllChannelMessages(this.props.match.params.id);
         this.props.fetchAllChannels(this.props.currentUser.id);
@@ -505,6 +507,10 @@ function mapDispatchToProps(dispatch) {
       // ) {
       // 	this.props.history.goBack();
       // }
+      // debugger
+      // console.log("HELlo!")
+      console.log("Hello");
+
       if (prevProps && prevProps.match.params.id !== this.props.match.params.id) {
         this.props.fetchAllChannels(this.props.currentUser.id);
         this.props.fetchAllChannelMessages(this.props.match.params.id);
@@ -547,7 +553,9 @@ function mapDispatchToProps(dispatch) {
         });
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bar"
+      }, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "channelContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
@@ -557,7 +565,7 @@ function mapDispatchToProps(dispatch) {
         className: "mainChat"
       }, messages ? messages.reverse() : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "chatBar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Chatbar__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Chatbar__WEBPACK_IMPORTED_MODULE_3__["default"], null)))));
     }
   }]);
 
@@ -695,7 +703,7 @@ function mapDispatchToProps(dispatch) {
         onChange: this.handleMessage,
         onKeyDown: this.handleKeyPressed,
         value: this.state.message
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Submit"))));
+      }))));
     }
   }]);
 
@@ -769,20 +777,22 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "createNewChnnelOutterContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "createNewChannelContainer",
         onClick: this.handleClick
       }, this.props.type == "public" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          marginRight: 5 + "px"
-        }
+        className: "createNewChannelIcon"
       }, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "createNewChannelTitle"
       }, "Add a Channel")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "createDirectMessage"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "createChannelIcon"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Direct Message")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Direct Message")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "createDirectMessageIcon"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
         icon: _iconify_icons_ion_add_circle_outline__WEBPACK_IMPORTED_MODULE_3___default.a
       }))))));
     }
@@ -1404,20 +1414,20 @@ function mSTP(state, ownProps) {
 
       if (this.state.photoFile) {
         formData.append("user[avatar]", this.state.photoFile);
-      }
+      } // $.ajax({
+      // 	url: `/api/users/${this.props.userID}`,
+      // 	method: "PATCH",
+      // 	data: formData,
+      // 	contentType: false,
+      // 	processData: false,
+      // }).then(
+      // 	response => console.log(response.message),
+      // 	response => {
+      // 		console.log("error?");
+      // 		console.log(response.responseJSON);
+      // 	}
+      // );
 
-      $.ajax({
-        url: "/api/users/".concat(this.props.userID),
-        method: "PATCH",
-        data: formData,
-        contentType: false,
-        processData: false
-      }).then(function (response) {
-        return console.log(response.message);
-      }, function (response) {
-        console.log("error?");
-        console.log(response.responseJSON);
-      });
     }
   }, {
     key: "render",
@@ -2189,21 +2199,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Logout */ "./frontend/components/Logout.jsx");
+/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @iconify/react */ "./node_modules/@iconify/react/dist/icon.js");
+/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @iconify/icons-websymbol/logout */ "./node_modules/@iconify/icons-websymbol/logout.js");
+/* harmony import */ var _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3__);
+
+
 
 
 
 function SidebarInfo(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "outer-sidebar-info-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sideBarInfoContainer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sideBarInfoChannelName"
-  }, props.channelName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "sideBarInfoUsernameContainer"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "sideBarInfoUsername"
-  }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "duckUserIcon"
-  }, "\uD83E\uDD86"), " ", props.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Logout__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+  }, "App Academy"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "sidebar-info-username-row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "dot"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "sidebar-info-username"
+  }, "Hersha Venkatesh"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "sidebar-info-logout"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+    icon: _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3___default.a
+  }))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (SidebarInfo);
@@ -3553,6 +3575,24 @@ var data = {
 	"body": "<path d=\"M8.5 5A1.5 1.5 0 0 0 7 6.5A1.5 1.5 0 0 0 8.5 8A1.5 1.5 0 0 0 10 6.5A1.5 1.5 0 0 0 8.5 5M10 2a5 5 0 0 1 5 5c0 1.7-.85 3.2-2.14 4.1c1.58.15 3.36.51 5.14 1.4c3 1.5 4-.5 4-.5s-1 9-7 9H9s-5 0-5-5c0-3 3-4 2-6c-4 0-4-3.5-4-3.5c1 .5 2.24.5 3 .15A5.02 5.02 0 0 1 10 2z\" fill=\"currentColor\"/>",
 	"width": 24,
 	"height": 24
+};
+exports.__esModule = true;
+exports.default = data;
+
+
+/***/ }),
+
+/***/ "./node_modules/@iconify/icons-websymbol/logout.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@iconify/icons-websymbol/logout.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = {
+	"body": "<path d=\"M912 236l276 266l-276 264V589H499V413h413V236zM746 748l106 107q-156 146-338 146q-217 0-365.5-143.5T0 499q0-135 68-250T251.5 67.5T502 1q184 0 349 148L746 255Q632 151 503 151q-149 0-251.5 104T149 509q0 140 105.5 241T502 851q131 0 244-103z\" fill=\"currentColor\"/>",
+	"width": 1188,
+	"height": 1000
 };
 exports.__esModule = true;
 exports.default = data;
