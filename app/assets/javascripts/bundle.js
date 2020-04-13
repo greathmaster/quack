@@ -651,6 +651,7 @@ function mapDispatchToProps(dispatch) {
     key: "handleKeyPressed",
     value: function handleKeyPressed(e) {
       if (e.key === "Enter" && this.state.message.trim().length !== 0) {
+        e.preventDefault();
         this.submitMessage();
       }
     }

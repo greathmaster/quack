@@ -47,6 +47,7 @@ export default withRouter(
 					e.key === "Enter" &&
 					this.state.message.trim().length !== 0
 				) {
+					e.preventDefault()
 					this.submitMessage();
 				}
 			}
