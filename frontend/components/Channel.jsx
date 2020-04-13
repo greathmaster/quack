@@ -21,9 +21,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		fetchAllChannelMessages: channelId =>
+		fetchAllChannelMessages: (channelId) =>
 			dispatch(fetchAllChannelMessages(channelId)),
-		fetchAllChannels: userID => dispatch(fetchAllChannels(userID)),
+		fetchAllChannels: (userID) => dispatch(fetchAllChannels(userID)),
 	};
 }
 
@@ -37,7 +37,6 @@ export default connect(
 		}
 
 		componentDidMount() {
-			console.log(this.props)
 			if (this.props.currentUser) {
 				this.props.fetchAllChannelMessages(this.props.match.params.id);
 				this.props.fetchAllChannels(this.props.currentUser.id);
@@ -45,14 +44,13 @@ export default connect(
 		}
 
 		componentDidUpdate(prevProps) {
-
 			if (
 				prevProps &&
 				prevProps.match.params.id !== this.props.match.params.id
 			) {
 				//consider removing the line below...
 				this.props.fetchAllChannels(this.props.currentUser.id);
-				
+
 				this.props.fetchAllChannelMessages(this.props.match.params.id);
 			}
 		}
@@ -78,8 +76,8 @@ export default connect(
 
 				let chID = this.props.match.params.id;
 				messages = this.props.messages
-					.filter(message => message.channel_id == chID) //don't change to === different types
-					.map(message => {
+					.filter((message) => message.channel_id == chID) //don't change to === different types
+					.map((message) => {
 						return (
 							<SingleMessage
 								key={message.id}
@@ -99,20 +97,20 @@ export default connect(
 			return (
 				<>
 					<div className="bar"> </div>
-				<div className="channelContainer">
-					<div className="sidebar">
-						<Sidebar />
-					</div>
-					<div className="chatContainer">
-						{this.renderSearchBar()}
-						<div className="mainChat">
-							{messages ? messages.reverse() : null}
+					<div className="channelContainer">
+						<div className="sidebar">
+							<Sidebar />
 						</div>
-						<div className="chatBar">
-							<Chatbar />
+						<div className="chatContainer">
+							{this.renderSearchBar()}
+							<div className="mainChat">
+								{messages ? messages.reverse() : null}
+							</div>
+							<div className="chatBar">
+								<Chatbar />
+							</div>
 						</div>
 					</div>
-				</div>
 				</>
 			);
 		}

@@ -4,15 +4,18 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 function mapStateToProps(state, ownProps) {
+	console.log("ownProps");
+	console.log(ownProps);
 	return {
 		currentUser: state.entities.users[state.session.id],
 		channelId: ownProps.match.params.id,
+		channelInfo: state.entities.channels[ownProps.match.params.id],
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		createNewMessage: message => dispatch(createNewMessage(message)),
+		createNewMessage: (message) => dispatch(createNewMessage(message)),
 	};
 }
 
@@ -47,6 +50,7 @@ export default withRouter(
 					e.key === "Enter" &&
 					this.state.message.trim().length !== 0
 				) {
+					e.preventDefault();
 					this.submitMessage();
 				}
 			}
@@ -59,8 +63,9 @@ export default withRouter(
 			submitMessage() {
 				let now = new Date();
 
-
-				const audioEl = document.getElementsByClassName("audio-element")[0]
+				const audioEl = document.getElementsByClassName(
+					"audio-element"
+				)[0];
 				audioEl.play();
 
 				let message = {
@@ -73,6 +78,9 @@ export default withRouter(
 			}
 
 			render() {
+				console.log("Seccond");
+				console.log(this.props);
+
 				return (
 					<>
 						<audio className="audio-element">
@@ -82,12 +90,15 @@ export default withRouter(
 							<div className="formFieldContainer">
 								<textarea
 									className="chatArea"
-									placeholder="Send a message"
+									placeholder={
+										!!this.props.channelInfo
+											? `Message ${this.props.channelInfo.name}`
+											: ""
+									}
 									onChange={this.handleMessage}
 									onKeyDown={this.handleKeyPressed}
 									value={this.state.message}
 								/>
-								
 							</div>
 						</form>
 					</>
