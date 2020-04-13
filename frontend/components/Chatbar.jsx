@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 function mapStateToProps(state, ownProps) {
-	console.log("ownProps");
-	console.log(ownProps);
+
 	return {
 		currentUser: state.entities.users[state.session.id],
 		channelId: ownProps.match.params.id,
@@ -78,8 +77,6 @@ export default withRouter(
 			}
 
 			render() {
-				console.log("Seccond");
-				console.log(this.props);
 
 				return (
 					<>
@@ -92,7 +89,7 @@ export default withRouter(
 									className="chatArea"
 									placeholder={
 										!!this.props.channelInfo
-											? `Message ${this.props.channelInfo.name}`
+											? `Message # ${this.props.channelInfo.name}`
 											: ""
 									}
 									onChange={this.handleMessage}

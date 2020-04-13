@@ -600,8 +600,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 function mapStateToProps(state, ownProps) {
-  console.log("ownProps");
-  console.log(ownProps);
   return {
     currentUser: state.entities.users[state.session.id],
     channelId: ownProps.match.params.id,
@@ -681,8 +679,6 @@ function mapDispatchToProps(dispatch) {
   }, {
     key: "render",
     value: function render() {
-      console.log("Seccond");
-      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         className: "audio-element"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
@@ -693,7 +689,7 @@ function mapDispatchToProps(dispatch) {
         className: "formFieldContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "chatArea",
-        placeholder: !!this.props.channelInfo ? "Message ".concat(this.props.channelInfo.name) : "",
+        placeholder: !!this.props.channelInfo ? "Message # ".concat(this.props.channelInfo.name) : "",
         onChange: this.handleMessage,
         onKeyDown: this.handleKeyPressed,
         value: this.state.message
