@@ -182,7 +182,7 @@ export default connect(
 									</div>
 								</div>
 								<div>
-									<div className="searchResults">
+									<div className="searchResultsChannel">
 										{users.length === 0 ? (
 											<SearchItem message="No matches" />
 										) : (

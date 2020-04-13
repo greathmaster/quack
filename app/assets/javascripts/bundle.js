@@ -2660,7 +2660,7 @@ function mDTP(dispatch) {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "searchCreateDMButton"
         }, "Go")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "searchResults"
+          className: "searchResultsChannel"
         }, users.length === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SearchItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
           message: "No matches"
         }) : users)))));

@@ -1,5 +1,3 @@
-
-
 .searchContainer {
 	display: flex;
 	flex-direction: column;
@@ -20,10 +18,17 @@
 	/* align-items: center; */
 	flex-direction: column;
 	justify-content: center;
-	
 	height: 300px;
 	overflow-y: scroll;
+	border-bottom: 1px solid lightgrey;
+}
 
+.searchResultsChannel {
+	flex-direction: column;
+	justify-content: center;
+	height: 200px;
+	overflow-y: scroll;
+	border-bottom: 1px solid lightgrey;
 }
 
 .searchUpper {
@@ -57,14 +62,14 @@
 .searchSelectedTagRemoveX {
 	margin-left: 4px;
 	vertical-align: super;
-	cursor: pointer
+	cursor: pointer;
 }
 
 .searchFieldAndButton {
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
-	flex: 1
+	flex: 1;
 }
 
 .searchCreateDMButton {
@@ -81,10 +86,10 @@
 }
 
 .searchExit {
-	font-size:40px;
+	font-size: 25px;
 	display: flex;
 	justify-content: flex-end;
-	margin: 20px ;
+	margin: 20px;
 	cursor: pointer;
 }
 
@@ -103,7 +108,6 @@
 .searchTextFieldsContainer {
 	display: flex;
 	flex-direction: column;
-
 }
 .searchDirections {
 	font-family: "Helvetica Neue", sans-serif;
