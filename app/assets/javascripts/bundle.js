@@ -500,18 +500,8 @@ function mapDispatchToProps(dispatch) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      // if (
-      // 	Object.entries(this.props.channels).length !== 0 &&
-      // 	!this.props.channels[this.props.match.params.id] &&
-      // 	prevProps.match.params.id != this.props.match.params.id
-      // ) {
-      // 	this.props.history.goBack();
-      // }
-      // debugger
-      // console.log("HELlo!")
-      console.log("Hello");
-
       if (prevProps && prevProps.match.params.id !== this.props.match.params.id) {
+        //consider removing the line below...
         this.props.fetchAllChannels(this.props.currentUser.id);
         this.props.fetchAllChannelMessages(this.props.match.params.id);
       }
@@ -2660,7 +2650,7 @@ function mDTP(dispatch) {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "searchCreateDMButton"
         }, "Go")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "searchResults"
+          className: "searchResultsChannel"
         }, users.length === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SearchItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
           message: "No matches"
         }) : users)))));

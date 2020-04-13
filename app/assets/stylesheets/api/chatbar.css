@@ -14,6 +14,7 @@
 	flex-direction: column;
 	flex: 1;
 	resize: none;
+	margin-right:10px;
 }
 
 .formFieldContainer {

@@ -45,22 +45,14 @@ export default connect(
 		}
 
 		componentDidUpdate(prevProps) {
-			// if (
-			// 	Object.entries(this.props.channels).length !== 0 &&
-			// 	!this.props.channels[this.props.match.params.id] &&
-			// 	prevProps.match.params.id != this.props.match.params.id
-			// ) {
 
-			// 	this.props.history.goBack();
-			// }
-			// debugger
-			// console.log("HELlo!")
-			console.log("Hello")
 			if (
 				prevProps &&
 				prevProps.match.params.id !== this.props.match.params.id
 			) {
+				//consider removing the line below...
 				this.props.fetchAllChannels(this.props.currentUser.id);
+				
 				this.props.fetchAllChannelMessages(this.props.match.params.id);
 			}
 		}
