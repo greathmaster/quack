@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar";
 import Chatbar from "../components/Chatbar";
 import SingleMessage from "../components/SingleMessage";
+import InfoBar from "../components/InfoBar"
 import {
 	fetchAllChannelMessages,
 	fetchAllChannels,
@@ -110,6 +111,7 @@ export default connect(
 								<Chatbar />
 							</div>
 						</div>
+						<InfoBar />
 					</div>
 				</>
 			);
