@@ -3,3 +3,7 @@
 	border-left: 1px solid lightgrey;
 	height: 100%;
 }
+
+.info-bar-hidden {
+	display: none;
+}

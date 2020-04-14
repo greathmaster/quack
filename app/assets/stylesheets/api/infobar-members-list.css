@@ -1,0 +1,13 @@
+.info-bar-members-list-container {
+	margin: 0px 12px 0px 16px;
+	margin-top: 20px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.info-bar-members-header {
+	font-family: "Lato", sans-serif;
+	font-weight: 600;
+	margin: 10px 12px 0px 16px;
+	font-size: 14px;
+}

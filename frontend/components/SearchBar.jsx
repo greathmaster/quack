@@ -14,7 +14,7 @@ export default class SearchBar extends Component {
 		return (
 			<div className="searchBar">
 				<div className="channelName">{this.props.channel && `# ${this.props.channel.name}`}</div>
-				<div className="numMembersContainer">
+				<div onClick={this.props.openInfoBar} className="numMembersContainer">
 					<Icon className="numMembersIcon" icon={userIcon} />
 					<span className="numMembers">{this.props.numMembers}</span>
 				</div>
@@ -22,3 +22,7 @@ export default class SearchBar extends Component {
 		);
 	}
 }
+
+// npm install --save-dev @iconify/react @iconify/icons-ic
+// import { Icon, InlineIcon } from '@iconify/react';
+// import outlineClose from '@iconify/icons-ic/outline-close';

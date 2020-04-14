@@ -40,6 +40,7 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@iconify/icons-fa-regular": "^1.0.4",
+		"@iconify/icons-ic": "^1.0.10",
 		"@iconify/icons-ion": "^1.0.10",
 		"@iconify/icons-logos": "^1.0.10",
 		"@iconify/icons-mdi": "^1.0.76",
