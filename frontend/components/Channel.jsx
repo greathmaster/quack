@@ -6,6 +6,7 @@ import SingleMessage from "../components/SingleMessage";
 import InfoBar from "../components/InfoBar";
 import InfoBarHeader from "./InfoBarHeader";
 import InfoBarMembersList from "./InfoBarMembersList";
+import RichChatbar from "../components/RichChatbar"
 
 import {
 	fetchAllChannelMessages,
@@ -137,7 +138,7 @@ export default connect(
 								{messages ? messages.reverse() : null}
 							</div>
 							<div className="chatBar">
-								<Chatbar />
+							<RichChatbar />
 							</div>
 						</div>
 
