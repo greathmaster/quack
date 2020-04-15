@@ -1755,8 +1755,25 @@ react_quill__WEBPACK_IMPORTED_MODULE_4__["Quill"].register({
   "formats/emoji": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.EmojiBlot,
   "modules/emoji-toolbar": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ToolbarEmoji,
   "modules/emoji-textarea": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.TextAreaEmoji,
-  "modules/emoji-shortname": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ShortNameEmoji
-}, true);
+  "modules/emoji-shortname": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ShortNameEmoji,
+  "modules/counter": function modulesCounter(quill, options) {
+    var container = document.querySelector('.ql-counter');
+    container.addEventListener('click', function () {
+      console.log("ckisdf");
+    });
+  }
+}, true); // Implement and register module
+// Quill.register('modules/counter', function(quill, options) {
+// 	// console.log(quill);
+// 	var container = document.querySelector('#counter');
+// 	quill.on('onclick', function() {
+// 		console.log("Hello It worked")
+// 	});
+//   });
+
+function something() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Stuff");
+}
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -1772,6 +1789,10 @@ function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_messagesActions__WEBPACK_IMPORTED_MODULE_1__["createNewMessage"])(message));
     }
   };
+}
+
+function insertStar() {
+  console.log("Stuff");
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)( /*#__PURE__*/function (_Component) {
@@ -1791,24 +1812,102 @@ function mapDispatchToProps(dispatch) {
     _this.handleKeyPressed = _this.handleKeyPressed.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.submitMessage = _this.submitMessage.bind(_assertThisInitialized(_this));
+    _this.onCustomControlClick = _this.onCustomControlClick.bind(_assertThisInitialized(_this));
+    _this.renderContainer = _this.renderContainer.bind(_assertThisInitialized(_this));
     _this.modules = {
-      toolbar: [// ["bold", "italic", "underline"],
-      // [{ list: "ordered" }, { list: "bullet" }],
-      // ["emoji"]
-      ["bold", "italic", "underline", {
-        list: "ordered"
-      }, {
-        list: "bullet"
-      }], ["emoji"]],
+      // toolbar: [
+      // 	[
+      // 		"bold",
+      // 		"italic",
+      // 		"underline",
+      // 		{ list: "ordered" },
+      // 		{ list: "bullet" },
+      // 	],
+      // 	[
+      // 		"emoji",
+      // 	],
+      // ],
+      // 	toolbar: {
+      // 		container: [
+      // 			[
+      // 				"bold",
+      // 				"italic",
+      // 				"underline",
+      // 				{ list: "ordered" },
+      // 				{ list: "bullet" },
+      // 				"emoji",
+      // 			],
+      // 			["customControl"],
+      // 		],
+      // 		handlers: {
+      // 			customControl: () => {
+      // 				console.log("customControl was clicked");
+      // 			},
+      // 		},
+      // 	},
+      // 	"emoji-toolbar": true,
+      // 	"emoji-textarea": false,
+      // 	"emoji-shortname": true,
+      // };
+      toolbar: {
+        container: [["bold", "italic", "underline", {
+          list: "ordered"
+        }, {
+          list: "bullet"
+        }], ["emoji", "counter"]]
+      },
       "emoji-toolbar": true,
       "emoji-textarea": false,
-      "emoji-shortname": true
-    };
-    _this.formats = ["bold", "italic", "underline", "list", "bullet", "emoji"];
+      "emoji-shortname": true,
+      "counter": true
+    }; // 	toolbar: [
+    // 		[{ font: [] }, { header: [] }],
+    // 		[
+    // 			"bold",
+    // 			"italic",
+    // 			"underline",
+    // 			"strike",
+    // 			"blockquote",
+    // 			"code-block",
+    // 		],
+    // 		[{ color: [] }, { background: [] }],
+    // 		[
+    // 			{ list: "ordered" },
+    // 			{ list: "bullet" },
+    // 			{ indent: "-1" },
+    // 			{ indent: "+1" },
+    // 		],
+    // 		[{ align: [] }],
+    // 		["emoji"],
+    // 		["link", "image"],
+    // 		["clean", "counter"],
+    // 	],
+    // 	"emoji-toolbar": true,
+    // 	"emoji-textarea": true,
+    // 	"emoji-shortname": true,
+    // 	"counter": true,
+    // };
+
+    _this.formats = ["bold", "italic", "underline", "list", "bullet", "emoji"]; // var toolbar = Quill.getModule("toolbar");
+    // console.log(toolbar);
+
     return _this;
   }
 
   _createClass(RichChatbar, [{
+    key: "onCustomControlClick",
+    value: function onCustomControlClick() {
+      console.log("Here");
+    }
+  }, {
+    key: "renderContainer",
+    value: function renderContainer() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "custom-control",
+        value: "customControl"
+      });
+    }
+  }, {
     key: "handleMessage",
     value: function handleMessage(content, delta, source, editor) {
       return this.setState({
