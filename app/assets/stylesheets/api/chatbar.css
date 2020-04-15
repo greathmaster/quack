@@ -18,7 +18,6 @@
 }
 
 .rich-chat-area {
-	
 	overflow-y: auto;
 	overflow-x: hidden;
 	border-radius: 5px;
@@ -42,15 +41,14 @@
 	display: flex;
 }
 
-
 .quill {
 	display: flex;
-    flex-direction: column-reverse;
-    border-top: 1px solid lightgrey;
-    align-items: stretch;
-    margin-right: 28px;
-    border: 1px solid black;
-    border-radius: 10px;
+	flex-direction: column-reverse;
+	border-top: 1px solid lightgrey;
+	align-items: stretch;
+	margin-right: 28px;
+	border: 1px solid black;
+	border-radius: 10px;
 }
 
 .ql-toolbar.ql-snow {
@@ -58,11 +56,72 @@
 	padding: 4px 8px 4px 8px !important;
 	border-radius: 0px 0px 10px 10px !important;
 	background-color: #f1f0f0 !important;
+	display: flex;
+	justify-content: space-between !important;
 }
 
+.ql-snow.ql-toolbar:after,
+.ql-snow .ql-toolbar:after {
+	content: unset !important;
+}
 .ql-container.ql-snow {
 	border-bottom: 1px solid #ccc !important;
 	border-top: none !important;
 	border-left: none !important;
 	border-right: none !important;
+}
+
+/* #emoji-palette {
+	position: absolute !important;
+	top: 100% !important;
+	left: 100% !important;
+	right: 100px;
+	border-radius: 10px !important;
+} */
+
+#emoji-palette {
+
+width: 100%;
+position: absolute !important;
+/* bottom: 100px !important; */
+top: -217px !important;
+/* left: 5% !important; */
+right: 0px;
+left: unset !important;
+/* left: 450px !important; */
+border-radius: 10px !important;
+}
+#tab-panel .bem {
+	margin: 5px;
+	zoom: 125%;
+}
+
+#tab-toolbar {
+	border-radius: 10px 10px 0px 0px;
+}
+
+#tab-panel {
+	border-radius: 0px 10px 10px 10px;
+}
+
+.ql-toolbar.ql-snow .ql-formats {
+	margin-right: 0px !important;
+}
+
+scrollbar {
+	background-color: blue;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	/* background-color: rgb(226, 226, 226); */
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: rgba(219, 216, 219, 0.808);
 }

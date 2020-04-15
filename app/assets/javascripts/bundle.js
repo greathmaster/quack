@@ -1792,7 +1792,10 @@ function mapDispatchToProps(dispatch) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.submitMessage = _this.submitMessage.bind(_assertThisInitialized(_this));
     _this.modules = {
-      toolbar: [["bold", "italic", "underline"], [{
+      toolbar: [// ["bold", "italic", "underline"],
+      // [{ list: "ordered" }, { list: "bullet" }],
+      // ["emoji"]
+      ["bold", "italic", "underline", {
         list: "ordered"
       }, {
         list: "bullet"

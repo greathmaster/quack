@@ -31,11 +31,13 @@
 	width: 100%;
 	/* min-height: 365px; */
 	flex-grow: 1;
-	overflow: scroll;
+	overflow-y: scroll;
 	overflow-x: hidden;
 	display: flex;
 	flex-direction: column-reverse;
-	/* justify-content: flex-end; */ /*TODO: Fix the scrolling issue. Adding this CSS param hides the scroll bar*/
+	
+	/* TODO: Fix the scrolling issue. Adding this CSS param hides the scroll bar */
+	justify-content: flex-start;
 }
 .chatBar {
 	min-height: 120px;

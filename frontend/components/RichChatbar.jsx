@@ -52,9 +52,12 @@ export default withRouter(
 
 				this.modules = {
 					toolbar: [
-						["bold", "italic", "underline"],
-						[{ list: "ordered" }, { list: "bullet" }],
-						["emoji"]
+						// ["bold", "italic", "underline"],
+						// [{ list: "ordered" }, { list: "bullet" }],
+						// ["emoji"]
+				["bold", "italic", "underline", { list: "ordered" }, { list: "bullet" }],
+				
+						["emoji"]		
 
 					
 					],
