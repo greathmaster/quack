@@ -65,9 +65,9 @@ export default withRouter(
 							"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
 							"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
 							"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
-							"modules/counter": (quill, options) => {
+							"modules/submit": (quill, options) => {
 								var container = document.querySelector(
-									".ql-counter"
+									".ql-submit"
 								);
 								container.addEventListener("click", (event) => {
 									this.handleSubmit(event);
@@ -90,14 +90,14 @@ export default withRouter(
 								{ list: "ordered" },
 								{ list: "bullet" },
 							],
-							["emoji", "counter"],
+							["emoji", "submit"],
 						],
 					},
 
 					"emoji-toolbar": true,
 					"emoji-textarea": false,
 					"emoji-shortname": true,
-					counter: true,
+					"submit": true,
 				};
 
 				this.formats = [
@@ -177,9 +177,7 @@ export default withRouter(
 												: ""
 										}
 									/>
-								</div>
-								<div>
-									<input type="submit" value="submit" />
+									<div>Info and text</div>
 								</div>
 							</div>
 						</form>

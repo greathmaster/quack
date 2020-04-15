@@ -1805,8 +1805,8 @@ function mapDispatchToProps(dispatch) {
       "modules/emoji-toolbar": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ToolbarEmoji,
       "modules/emoji-textarea": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.TextAreaEmoji,
       "modules/emoji-shortname": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ShortNameEmoji,
-      "modules/counter": function modulesCounter(quill, options) {
-        var container = document.querySelector(".ql-counter");
+      "modules/submit": function modulesSubmit(quill, options) {
+        var container = document.querySelector(".ql-submit");
         container.addEventListener("click", function (event) {
           _this.handleSubmit(event);
         });
@@ -1818,12 +1818,12 @@ function mapDispatchToProps(dispatch) {
           list: "ordered"
         }, {
           list: "bullet"
-        }], ["emoji", "counter"]]
+        }], ["emoji", "submit"]]
       },
       "emoji-toolbar": true,
       "emoji-textarea": false,
       "emoji-shortname": true,
-      counter: true
+      "submit": true
     };
     _this.formats = ["bold", "italic", "underline", "list", "bullet", "emoji"];
     return _this;
@@ -1899,10 +1899,7 @@ function mapDispatchToProps(dispatch) {
         onChange: this.handleMessage,
         value: this.state.message || "",
         placeholder: !!this.props.channelInfo ? "Message # ".concat(this.props.channelInfo.name) : ""
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "submit",
-        value: "submit"
-      })))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Info and text")))));
     }
   }]);
 
