@@ -8,38 +8,21 @@ import "quill-emoji/dist/quill-emoji.css";
 import "react-quill/dist/quill.snow.css";
 // import "react-quill/dist/quill.bubble.css";
 
-Quill.register(
-	{
-		"formats/emoji": quillEmoji.EmojiBlot,
-		"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
-		"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
-		"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
-		"modules/counter": function(quill, options) {
-			var container = document.querySelector('.ql-counter');
-			container.addEventListener('click', function() {
-				console.log("ckisdf")
-			})
+// Quill.register(
+// 	{
+// 		"formats/emoji": quillEmoji.EmojiBlot,
+// 		"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
+// 		"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
+// 		"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
+// 		"modules/counter": function (quill, options) {
+// 			var container = document.querySelector(".ql-counter");
+// 			container.addEventListener("click", function () {
 
-		}
-	},
-	true
-);
-
-// Implement and register module
-// Quill.register('modules/counter', function(quill, options) {
-
-// 	// console.log(quill);
-
-// 	var container = document.querySelector('#counter');
-// 	quill.on('onclick', function() {
-// 		console.log("Hello It worked")
-	
-// 	});
-//   });
-
-function something() {
-	return <button>Stuff</button>;
-}
+// 			});
+// 		},
+// 	},
+// 	true
+// );
 
 function mapStateToProps(state, ownProps) {
 	return {
@@ -55,10 +38,6 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-function insertStar() {
-	console.log("Stuff");
-}
-
 export default withRouter(
 	connect(
 		mapStateToProps,
@@ -67,6 +46,24 @@ export default withRouter(
 		class RichChatbar extends Component {
 			constructor(props) {
 				super(props);
+
+				Quill.register(
+					{
+						"formats/emoji": quillEmoji.EmojiBlot,
+						"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
+						"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
+						"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
+						"modules/counter": (quill, options) => {
+							var container = document.querySelector(
+								".ql-counter"
+							);
+							container.addEventListener("click", function () {
+								console.log("Test agin!");
+							});
+						},
+					},
+					true
+				);
 
 				this.state = { message: "" }; //bonus pull from local storage if not sent?
 				this.handleMessage = this.handleMessage.bind(this);
@@ -79,98 +76,24 @@ export default withRouter(
 				);
 				this.renderContainer = this.renderContainer.bind(this);
 				this.modules = {
-					// toolbar: [
-					// 	[
-					// 		"bold",
-					// 		"italic",
-					// 		"underline",
-					// 		{ list: "ordered" },
-					// 		{ list: "bullet" },
-					// 	],
-
-					// 	[
-					// 		"emoji",
-
-					// 	],
-					// ],
-
-					// 	toolbar: {
-					// 		container: [
-					// 			[
-					// 				"bold",
-					// 				"italic",
-					// 				"underline",
-					// 				{ list: "ordered" },
-					// 				{ list: "bullet" },
-					// 				"emoji",
-					// 			],
-					// 			["customControl"],
-					// 		],
-
-					// 		handlers: {
-					// 			customControl: () => {
-					// 				console.log("customControl was clicked");
-					// 			},
-					// 		},
-					// 	},
-
-					// 	"emoji-toolbar": true,
-					// 	"emoji-textarea": false,
-					// 	"emoji-shortname": true,
-					// };
-
-											toolbar: {
-							container: [
-								[
-									"bold",
-									"italic",
-									"underline",
-									{ list: "ordered" },
-									{ list: "bullet" },
-								],
-								["emoji", "counter"],
+					toolbar: {
+						container: [
+							[
+								"bold",
+								"italic",
+								"underline",
+								{ list: "ordered" },
+								{ list: "bullet" },
 							],
+							["emoji", "counter"],
+						],
+					},
 
-					
-						},
-
-						"emoji-toolbar": true,
-						"emoji-textarea": false,
-						"emoji-shortname": true,
-						"counter": true
-					};
-
-
-
-				// 	toolbar: [
-				// 		[{ font: [] }, { header: [] }],
-				// 		[
-				// 			"bold",
-				// 			"italic",
-				// 			"underline",
-				// 			"strike",
-				// 			"blockquote",
-				// 			"code-block",
-							
-				// 		],
-				// 		[{ color: [] }, { background: [] }],
-				// 		[
-				// 			{ list: "ordered" },
-				// 			{ list: "bullet" },
-				// 			{ indent: "-1" },
-				// 			{ indent: "+1" },
-				// 		],
-				// 		[{ align: [] }],
-				// 		["emoji"],
-				// 		["link", "image"],
-				// 		["clean", "counter"],
-				// 	],
-				// 	"emoji-toolbar": true,
-				// 	"emoji-textarea": true,
-				// 	"emoji-shortname": true,
-				// 	"counter": true,
-
-				// };
+					"emoji-toolbar": true,
+					"emoji-textarea": false,
+					"emoji-shortname": true,
+					counter: true,
+				};
 
 				this.formats = [
 					"bold",
@@ -180,9 +103,6 @@ export default withRouter(
 					"bullet",
 					"emoji",
 				];
-
-				// var toolbar = Quill.getModule("toolbar");
-				// console.log(toolbar);
 			}
 
 			onCustomControlClick() {
