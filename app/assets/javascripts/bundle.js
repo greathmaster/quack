@@ -1749,7 +1749,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import "react-quill/dist/quill.bubble.css";
+
+var icons = react_quill__WEBPACK_IMPORTED_MODULE_4___default.a.Quill["import"]('ui/icons');
+icons['submit'] = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>'; // icons['submit'] = ''<i class="fa fa-bold" aria-hidden="true"></i>'';
+// import "react-quill/dist/quill.bubble.css";
 // Quill.register(
 // 	{
 // 		"formats/emoji": quillEmoji.EmojiBlot,
@@ -1797,9 +1800,11 @@ function mapDispatchToProps(dispatch) {
     _this.handleMessage = _this.handleMessage.bind(_assertThisInitialized(_this));
     _this.handleKeyPressed = _this.handleKeyPressed.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.submitMessage = _this.submitMessage.bind(_assertThisInitialized(_this));
-    _this.onCustomControlClick = _this.onCustomControlClick.bind(_assertThisInitialized(_this));
-    _this.renderContainer = _this.renderContainer.bind(_assertThisInitialized(_this));
+    _this.submitMessage = _this.submitMessage.bind(_assertThisInitialized(_this)); // this.onCustomControlClick = this.onCustomControlClick.bind(
+    // 	this
+    // );
+    // this.renderContainer = this.renderContainer.bind(this);
+
     react_quill__WEBPACK_IMPORTED_MODULE_4__["Quill"].register({
       "formats/emoji": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.EmojiBlot,
       "modules/emoji-toolbar": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ToolbarEmoji,
@@ -1823,24 +1828,23 @@ function mapDispatchToProps(dispatch) {
       "emoji-toolbar": true,
       "emoji-textarea": false,
       "emoji-shortname": true,
-      "submit": true
+      submit: true
     };
     _this.formats = ["bold", "italic", "underline", "list", "bullet", "emoji"];
     return _this;
   }
 
   _createClass(RichChatbar, [{
-    key: "onCustomControlClick",
-    value: function onCustomControlClick() {
-      console.log("Here");
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("mounted!");
     }
   }, {
-    key: "renderContainer",
-    value: function renderContainer() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "custom-control",
-        value: "customControl"
-      });
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.channelId !== prevProps.channelId) {
+        document.getElementsByClassName("ql-editor ql-blank")[0].setAttribute("data-placeholder", "Message #".concat(this.props.channelInfo.name));
+      }
     }
   }, {
     key: "handleMessage",
@@ -1892,14 +1896,14 @@ function mapDispatchToProps(dispatch) {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rich-chat-area-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_quill__WEBPACK_IMPORTED_MODULE_4___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !!this.props.channelInfo ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_quill__WEBPACK_IMPORTED_MODULE_4___default.a, {
         theme: "snow",
         modules: this.modules,
         formats: this.formats,
         onChange: this.handleMessage,
         value: this.state.message || "",
-        placeholder: !!this.props.channelInfo ? "Message # ".concat(this.props.channelInfo.name) : ""
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Info and text")))));
+        placeholder: "Message #".concat(this.props.channelInfo.name)
+      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Info and text")))));
     }
   }]);
 

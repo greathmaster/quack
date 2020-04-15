@@ -6,6 +6,13 @@ import ReactQuill, { Quill } from "react-quill";
 import quillEmoji from "quill-emoji";
 import "quill-emoji/dist/quill-emoji.css";
 import "react-quill/dist/quill.snow.css";
+
+
+var icons = ReactQuill.Quill.import('ui/icons');
+icons['submit'] = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>';
+
+// icons['submit'] = ''<i class="fa fa-bold" aria-hidden="true"></i>'';
+
 // import "react-quill/dist/quill.bubble.css";
 
 // Quill.register(
@@ -47,39 +54,35 @@ export default withRouter(
 			constructor(props) {
 				super(props);
 
-				
 				this.state = { message: "" }; //bonus pull from local storage if not sent?
 				this.handleMessage = this.handleMessage.bind(this);
 				this.handleKeyPressed = this.handleKeyPressed.bind(this);
 				this.handleSubmit = this.handleSubmit.bind(this);
 				this.submitMessage = this.submitMessage.bind(this);
-				
-				this.onCustomControlClick = this.onCustomControlClick.bind(
-					this
-					);
-					this.renderContainer = this.renderContainer.bind(this);
-					
-					Quill.register(
-						{
-							"formats/emoji": quillEmoji.EmojiBlot,
-							"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
-							"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
-							"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
-							"modules/submit": (quill, options) => {
-								var container = document.querySelector(
-									".ql-submit"
-								);
-								container.addEventListener("click", (event) => {
-									this.handleSubmit(event);
-								});
-							},
+
+				// this.onCustomControlClick = this.onCustomControlClick.bind(
+				// 	this
+				// );
+				// this.renderContainer = this.renderContainer.bind(this);
+
+				Quill.register(
+					{
+						"formats/emoji": quillEmoji.EmojiBlot,
+						"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
+						"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
+						"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
+						"modules/submit": (quill, options) => {
+							var container = document.querySelector(
+								".ql-submit"
+							);
+							container.addEventListener("click", (event) => {
+								this.handleSubmit(event);
+							});
 						},
-						true
-					);
-					
-					
-					
-					
+					},
+					true
+				);
+
 				this.modules = {
 					toolbar: {
 						container: [
@@ -97,7 +100,7 @@ export default withRouter(
 					"emoji-toolbar": true,
 					"emoji-textarea": false,
 					"emoji-shortname": true,
-					"submit": true,
+					submit: true,
 				};
 
 				this.formats = [
@@ -110,14 +113,19 @@ export default withRouter(
 				];
 			}
 
-			onCustomControlClick() {
-				console.log("Here");
+			componentDidMount() {
+				console.log("mounted!");
 			}
 
-			renderContainer() {
-				return (
-					<button className="custom-control" value="customControl" />
-				);
+			componentDidUpdate(prevProps) {
+				if (this.props.channelId !== prevProps.channelId) {
+					document
+						.getElementsByClassName("ql-editor ql-blank")[0]
+						.setAttribute(
+							"data-placeholder",
+							`Message #${this.props.channelInfo.name}`
+						);
+				}
 			}
 
 			handleMessage(content, delta, source, editor) {
@@ -165,18 +173,16 @@ export default withRouter(
 						<form onSubmit={this.handleSubmit}>
 							<div className="rich-chat-area-container">
 								<div>
-									<ReactQuill
-										theme="snow"
-										modules={this.modules}
-										formats={this.formats}
-										onChange={this.handleMessage}
-										value={this.state.message || ""}
-										placeholder={
-											!!this.props.channelInfo
-												? `Message # ${this.props.channelInfo.name}`
-												: ""
-										}
-									/>
+									{!!this.props.channelInfo ? (
+										<ReactQuill
+											theme="snow"
+											modules={this.modules}
+											formats={this.formats}
+											onChange={this.handleMessage}
+											value={this.state.message || ""}
+											placeholder={`Message #${this.props.channelInfo.name}`}
+										/>
+									) : null}
 									<div>Info and text</div>
 								</div>
 							</div>

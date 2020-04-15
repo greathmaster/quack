@@ -16,7 +16,9 @@
 	resize: none;
 	margin-right: 10px;
 }
-
+.rich-chat-area-container {
+	margin-top: 15px;
+}
 .rich-chat-area {
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -41,18 +43,31 @@
 	display: flex;
 }
 
+.ql-editor {
+	background-color: white !important;
+	border-radius: 10px 10px 0px 0px !important;
+	border-left: 1px solid #ccc !important;
+	border-right: 1px solid #ccc !important;
+	border-top: 1px solid #ccc !important;
+}
+
 .quill {
 	display: flex;
 	flex-direction: column-reverse;
-	border-top: 1px solid lightgrey;
+	/* border-top: 1px solid lightgrey; */
 	align-items: stretch;
 	margin-right: 28px;
-	border: 1px solid black;
-	border-radius: 10px;
+	/* border: 1px solid black; */
+	/* border-radius: 10px; */
+	min-height: 75px !important;
+	max-height: 75px !important;
 }
 
 .ql-toolbar.ql-snow {
 	border: none !important;
+	border-left: 1px solid #ccc !important;
+	border-bottom: 1px solid #ccc !important;
+	border-right: 1px solid #ccc !important;
 	padding: 4px 8px 4px 8px !important;
 	border-radius: 0px 0px 10px 10px !important;
 	background-color: #f1f0f0 !important;
@@ -71,25 +86,35 @@
 	border-right: none !important;
 }
 
-/* #emoji-palette {
-	position: absolute !important;
-	top: 100% !important;
-	left: 100% !important;
-	right: 100px;
-	border-radius: 10px !important;
-} */
+.ql-submit {
+	background-color: #007a5a !important;
+	font-size: 20px !important;
+	border-radius: 5px !important;
+	margin-left: auto !important;
+	width: 28px !important;
+	height: 28px !important;
+}
+
+.rich-text-submit {
+	fill: whitesmoke !important;
+}
+
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+	/* padding: 0px !important; */
+	margin: 4px;
+}
 
 #emoji-palette {
-
-width: 100%;
-position: absolute !important;
-/* bottom: 100px !important; */
-top: -217px !important;
-/* left: 5% !important; */
-right: 0px;
-left: unset !important;
-/* left: 450px !important; */
-border-radius: 10px !important;
+	width: 100%;
+	position: absolute !important;
+	/* bottom: 100px !important; */
+	top: -217px !important;
+	/* left: 5% !important; */
+	right: 0px;
+	left: unset !important;
+	/* left: 450px !important; */
+	border-radius: 10px !important;
 }
 #tab-panel .bem {
 	margin: 5px;
