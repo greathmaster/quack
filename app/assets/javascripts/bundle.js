@@ -1790,18 +1790,6 @@ function mapDispatchToProps(dispatch) {
     _classCallCheck(this, RichChatbar);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(RichChatbar).call(this, props));
-    react_quill__WEBPACK_IMPORTED_MODULE_4__["Quill"].register({
-      "formats/emoji": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.EmojiBlot,
-      "modules/emoji-toolbar": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ToolbarEmoji,
-      "modules/emoji-textarea": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.TextAreaEmoji,
-      "modules/emoji-shortname": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ShortNameEmoji,
-      "modules/counter": function modulesCounter(quill, options) {
-        var container = document.querySelector(".ql-counter");
-        container.addEventListener("click", function () {
-          console.log("Test agin!");
-        });
-      }
-    }, true);
     _this.state = {
       message: ""
     }; //bonus pull from local storage if not sent?
@@ -1812,6 +1800,18 @@ function mapDispatchToProps(dispatch) {
     _this.submitMessage = _this.submitMessage.bind(_assertThisInitialized(_this));
     _this.onCustomControlClick = _this.onCustomControlClick.bind(_assertThisInitialized(_this));
     _this.renderContainer = _this.renderContainer.bind(_assertThisInitialized(_this));
+    react_quill__WEBPACK_IMPORTED_MODULE_4__["Quill"].register({
+      "formats/emoji": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.EmojiBlot,
+      "modules/emoji-toolbar": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ToolbarEmoji,
+      "modules/emoji-textarea": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.TextAreaEmoji,
+      "modules/emoji-shortname": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ShortNameEmoji,
+      "modules/counter": function modulesCounter(quill, options) {
+        var container = document.querySelector(".ql-counter");
+        container.addEventListener("click", function (event) {
+          _this.handleSubmit(event);
+        });
+      }
+    }, true);
     _this.modules = {
       toolbar: {
         container: [["bold", "italic", "underline", {

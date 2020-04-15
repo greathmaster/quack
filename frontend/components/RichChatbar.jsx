@@ -47,34 +47,39 @@ export default withRouter(
 			constructor(props) {
 				super(props);
 
-				Quill.register(
-					{
-						"formats/emoji": quillEmoji.EmojiBlot,
-						"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
-						"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
-						"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
-						"modules/counter": (quill, options) => {
-							var container = document.querySelector(
-								".ql-counter"
-							);
-							container.addEventListener("click", function () {
-								console.log("Test agin!");
-							});
-						},
-					},
-					true
-				);
-
+				
 				this.state = { message: "" }; //bonus pull from local storage if not sent?
 				this.handleMessage = this.handleMessage.bind(this);
 				this.handleKeyPressed = this.handleKeyPressed.bind(this);
 				this.handleSubmit = this.handleSubmit.bind(this);
 				this.submitMessage = this.submitMessage.bind(this);
-
+				
 				this.onCustomControlClick = this.onCustomControlClick.bind(
 					this
-				);
-				this.renderContainer = this.renderContainer.bind(this);
+					);
+					this.renderContainer = this.renderContainer.bind(this);
+					
+					Quill.register(
+						{
+							"formats/emoji": quillEmoji.EmojiBlot,
+							"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
+							"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
+							"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
+							"modules/counter": (quill, options) => {
+								var container = document.querySelector(
+									".ql-counter"
+								);
+								container.addEventListener("click", (event) => {
+									this.handleSubmit(event);
+								});
+							},
+						},
+						true
+					);
+					
+					
+					
+					
 				this.modules = {
 					toolbar: {
 						container: [
