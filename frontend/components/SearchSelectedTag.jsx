@@ -9,7 +9,7 @@ export default function SearchSelectedTag(props) {
 		<div>
 			<div className="singleMessage">
 				<div className="avatarContainer">
-					<img className="avatar" src={userImage} />
+					<img className="avatar" src={props.avatar} />
 				</div>
 				<div className="messageContainer">
 					<div className="senderNameInfo">

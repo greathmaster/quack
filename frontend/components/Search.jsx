@@ -10,7 +10,6 @@ import { fetchAllChannelMessages } from "../actions/channels_actions";
 import { Redirect } from "react-router-dom";
 import userImage from "../../app/assets/images/user.jpg";
 
-
 function mSTP(state, ownProps) {
 	return {
 		currentUser: state.entities.users[state.session.id],
@@ -21,7 +20,7 @@ function mDTP(dispatch) {
 	return {
 		createNewChannel: (channel, redirect) =>
 			dispatch(createNewChannel(channel, redirect)),
-		fetchAllChannelMessages: channelId =>
+		fetchAllChannelMessages: (channelId) =>
 			dispatch(fetchAllChannelMessages(channelId)),
 	};
 }
@@ -49,7 +48,7 @@ export default connect(
 		componentDidMount() {
 			findUsers({
 				type: "users",
-			}).then(users => {
+			}).then((users) => {
 				this.setState({ results: users });
 			});
 		}
@@ -70,11 +69,10 @@ export default connect(
 			//this.props.history.push("/channel/");
 			// this.props.history.pop()
 			this.props.history.goBack();
-
 		}
 
 		handleRemoveSearchTag(userId) {
-			let newSelected = this.state.selected.filter(selectedUserId => {
+			let newSelected = this.state.selected.filter((selectedUserId) => {
 				return userId !== selectedUserId;
 			});
 			this.setState({ selected: newSelected });
@@ -83,7 +81,7 @@ export default connect(
 		matches() {
 			const matches = [];
 
-			Object.values(this.state.results).forEach(user => {
+			Object.values(this.state.results).forEach((user) => {
 				const sub = user.username.slice(0, this.state.searchStr.length);
 				if (sub.toLowerCase() === this.state.searchStr.toLowerCase()) {
 					matches.push(user);
@@ -116,15 +114,16 @@ export default connect(
 				private: true,
 				users: users,
 			};
-			this.props.createNewChannel(newChannel, id => {
+			this.props.createNewChannel(newChannel, (id) => {
 				this.setState({ newChannelID: id });
 			});
 		}
 
 		renderSelected() {
-			return this.state.selected.map(userId => {
+			return this.state.selected.map((userId) => {
 				return (
 					<SearchSelectedTag
+						avatar={this.state.results[userId].avatar ? this.state.results[userId].avatar : userImage}
 						className="searchSelectedTag"
 						username={this.state.results[userId].username}
 						handleRemoveSearchTag={() =>
@@ -136,13 +135,13 @@ export default connect(
 		}
 		render() {
 			let m = this.matches();
-			let users = m.map(user => {
+			let users = m.map((user) => {
 				return (
 					<SearchItem
 						handleClick={() => this.handleClick(user.id)}
 						key={user.id}
 						username={user.username}
-						avatar={user.avatar? user.avatar : userImage}
+						avatar={user.avatar ? user.avatar : userImage}
 					/>
 				);
 			});

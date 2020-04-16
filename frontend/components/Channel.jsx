@@ -105,7 +105,15 @@ export default connect(
 												.username
 										: null
 								}
-								avatar={message.avatar}
+								avatar={
+									this.props.users[message.sender_id]
+										? this.props.users[message.sender_id]
+												.avatar
+										: null
+								}
+								// avatar={message.avatar}
+
+
 								timestamp={formatTimestamp(message.created_at)}
 							/>
 						);

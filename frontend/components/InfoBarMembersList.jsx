@@ -24,9 +24,10 @@ export default withRouter(
 
 			renderSingleUser(user) {
 				return (
-					<div className="singleMessage">
+					<div key={user.id} className="singleMessage">
+						
 						<div className="avatarContainer">
-							<img className="avatar" src={userImage} />
+							<img className="avatar" src={user.avatar ? user.avatar: userImage} />
 						</div>
 						<div className="messageContainer">
 							<div className="senderNameInfo">

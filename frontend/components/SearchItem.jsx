@@ -6,7 +6,7 @@ export default function SearchItem(props) {
 		<div onClick={props.handleClick} className="pointer">
 			<div className="singleMessage">
 				<div className="avatarContainer">
-					{props.avatar && <img className="avatar" src={userImage} />}
+					{props.avatar && <img className="avatar" src={props.avatar} />}
 				</div>
 				<div className="messageContainer">
 					<div className="senderNameInfo">
