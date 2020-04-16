@@ -4,12 +4,16 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ReactQuill, { Quill } from "react-quill";
 import quillEmoji from "quill-emoji";
+import { Icon, InlineIcon } from "@iconify/react";
+import commandIcon from "@iconify/icons-icomoon-free/command";
+import appleKeyboardCommand from "@iconify/icons-mdi/apple-keyboard-command";
+
 import "quill-emoji/dist/quill-emoji.css";
 import "react-quill/dist/quill.snow.css";
 
-
-var icons = ReactQuill.Quill.import('ui/icons');
-icons['submit'] = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>';
+var icons = ReactQuill.Quill.import("ui/icons");
+icons["submit"] =
+	'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>';
 
 // icons['submit'] = ''<i class="fa fa-bold" aria-hidden="true"></i>'';
 
@@ -183,7 +187,30 @@ export default withRouter(
 											placeholder={`Message #${this.props.channelInfo.name}`}
 										/>
 									) : null}
-									<div>Info and text</div>
+									<div className="rich-chat-info-footer-text">
+										<span className="rich-chat-info-footer-item-1">
+											<InlineIcon
+												icon={appleKeyboardCommand}
+											/>
+											<span className="rich-chat-info-footer-left-space">
+												{" "}
+												+ Return{" "}
+											</span>
+											<span className="rich-chat-info-footer-left-space">
+												{"to send"}
+											</span>
+										</span>
+										<span className="rich-chat-info-footer-item-2">
+											<span
+												rich-chat-info-footer-text-bold
+											>
+												{"Return"}
+											</span>
+											<span className="rich-chat-info-footer-left-space">
+												{"to add a new line"}
+											</span>
+										</span>
+									</div>
 								</div>
 							</div>
 						</form>

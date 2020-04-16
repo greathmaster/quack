@@ -16,9 +16,12 @@
 	resize: none;
 	margin-right: 10px;
 }
-.rich-chat-area-container {
-	/* margin-top: 15px; */
+
+div.quill > div.ql-toolbar.ql-snow > span:nth-child(2) {
+	display:  flex;
+	align-items:  center;
 }
+
 .rich-chat-area {
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -29,9 +32,6 @@
 	font-size: 14px;
 	font-family: Lato, sans-serif;
 	font-weight: 200;
-	/* padding-left: 40px;
-	padding-top: 20px; */
-	/* display: flex; */
 	flex-direction: column;
 	flex: 1;
 	resize: none;
@@ -54,11 +54,8 @@
 .quill {
 	display: flex;
 	flex-direction: column-reverse;
-	/* border-top: 1px solid lightgrey; */
 	align-items: stretch;
 	margin-right: 28px;
-	/* border: 1px solid black; */
-	/* border-radius: 10px; */
 	min-height: 75px !important;
 	max-height: 75px !important;
 }
@@ -93,6 +90,10 @@
 	margin-left: auto !important;
 	width: 28px !important;
 	height: 28px !important;
+}
+
+.ql-submit:focus {
+	outline: none !important;
 }
 
 .rich-text-submit {
@@ -138,7 +139,7 @@ scrollbar {
 }
 
 ::-webkit-scrollbar {
-	width: 12px;
+	width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -150,3 +151,37 @@ scrollbar {
 	border-radius: 10px;
 	background: rgba(219, 216, 219, 0.808);
 }
+
+.rich-chat-info-footer-text {
+    display: flex;
+	justify-content: flex-end;
+    margin-right: 32px;
+    align-items: flex-end;
+    /* line-height: 1.8em; */
+	font-family: "Lato", sans-serif;
+	font-size: .7em;
+	margin-top: .75em;
+	color:rgb(97, 96, 97);
+}
+
+.rich-chat-info-footer-item-2 {
+	margin-left: 1.5em;
+}
+
+.rich-chat-info-footer-item-1 {
+	display:flex;
+	align-items:center;
+}
+
+.rich-chat-info-footer-item-2 {
+	display:flex;
+	align-items:center;
+}
+
+.rich-chat-info-footer-left-space {
+	margin-left: .25em;
+}
+
+/* // npm install --save-dev @iconify/react @iconify/icons-mdi
+import { Icon, InlineIcon } from '@iconify/react';
+import appleKeyboardCommand from '@iconify/icons-mdi/apple-keyboard-command'; */

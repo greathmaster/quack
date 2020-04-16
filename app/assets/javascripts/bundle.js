@@ -1720,10 +1720,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_quill__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_quill__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var quill_emoji__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! quill-emoji */ "./node_modules/quill-emoji/dist/quill-emoji.js");
 /* harmony import */ var quill_emoji__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(quill_emoji__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! quill-emoji/dist/quill-emoji.css */ "./node_modules/quill-emoji/dist/quill-emoji.css");
-/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
-/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @iconify/react */ "./node_modules/@iconify/react/dist/icon.js");
+/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _iconify_icons_icomoon_free_command__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @iconify/icons-icomoon-free/command */ "./node_modules/@iconify/icons-icomoon-free/command.js");
+/* harmony import */ var _iconify_icons_icomoon_free_command__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_icomoon_free_command__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @iconify/icons-mdi/apple-keyboard-command */ "./node_modules/@iconify/icons-mdi/apple-keyboard-command.js");
+/* harmony import */ var _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! quill-emoji/dist/quill-emoji.css */ "./node_modules/quill-emoji/dist/quill-emoji.css");
+/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
+/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1750,8 +1756,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var icons = react_quill__WEBPACK_IMPORTED_MODULE_4___default.a.Quill["import"]('ui/icons');
-icons['submit'] = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>'; // icons['submit'] = ''<i class="fa fa-bold" aria-hidden="true"></i>'';
+
+
+
+var icons = react_quill__WEBPACK_IMPORTED_MODULE_4___default.a.Quill["import"]("ui/icons");
+icons["submit"] = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>'; // icons['submit'] = ''<i class="fa fa-bold" aria-hidden="true"></i>'';
 // import "react-quill/dist/quill.bubble.css";
 // Quill.register(
 // 	{
@@ -1903,7 +1912,23 @@ function mapDispatchToProps(dispatch) {
         onChange: this.handleMessage,
         value: this.state.message || "",
         placeholder: "Message #".concat(this.props.channelInfo.name)
-      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Info and text")))));
+      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rich-chat-info-footer-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-item-1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_6__["InlineIcon"], {
+        icon: _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8___default.a
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-left-space"
+      }, " ", "+ Return", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-left-space"
+      }, "to send")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-item-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        "rich-chat-info-footer-text-bold": true
+      }, "Return"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-left-space"
+      }, "to add a new line")))))));
     }
   }]);
 
@@ -3924,6 +3949,24 @@ exports.default = data;
 
 /***/ }),
 
+/***/ "./node_modules/@iconify/icons-icomoon-free/command.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@iconify/icons-icomoon-free/command.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = {
+	"body": "<path d=\"M11.5 14A2.502 2.502 0 0 1 9 11.5V10H7v1.5C7 12.879 5.878 14 4.5 14S2 12.879 2 11.5S3.122 9 4.5 9H6V7H4.5C3.122 7 2 5.878 2 4.5S3.122 2 4.5 2S7 3.122 7 4.5V6h2V4.5C9 3.122 10.121 2 11.5 2S14 3.122 14 4.5S12.879 7 11.5 7H10v2h1.5c1.379 0 2.5 1.121 2.5 2.5S12.879 14 11.5 14zM10 10v1.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H10zm-5.5 0c-.827 0-1.5.673-1.5 1.5S3.673 13 4.5 13S6 12.327 6 11.5V10H4.5zM7 9h2V7H7v2zm3-3h1.5c.827 0 1.5-.673 1.5-1.5S12.327 3 11.5 3S10 3.673 10 4.5V6zM4.5 3C3.673 3 3 3.673 3 4.5S3.673 6 4.5 6H6V4.5C6 3.673 5.327 3 4.5 3z\" fill=\"currentColor\"/>",
+	"width": 16,
+	"height": 16
+};
+exports.__esModule = true;
+exports.default = data;
+
+
+/***/ }),
+
 /***/ "./node_modules/@iconify/icons-ion/add-circle-outline.js":
 /*!***************************************************************!*\
   !*** ./node_modules/@iconify/icons-ion/add-circle-outline.js ***!
@@ -4025,6 +4068,24 @@ var data = {
 	"body": "<path d=\"M0 19.164h19.987v72.804h37.01v18.443H0V19.164\" fill=\"#1A1918\"/><path d=\"M75.43 17.811c6.153 0 11.146 4.993 11.146 11.14c0 6.157-4.993 11.138-11.146 11.138c-6.145 0-11.138-4.981-11.138-11.138c0-6.147 4.993-11.14 11.138-11.14zm-9.606 30.74h19.213v61.837H65.824V48.55z\" fill=\"#1A1918\"/><path d=\"M95.662 48.558h18.442v8.452h.256c2.56-4.865 8.837-9.985 18.186-9.985c19.469 0 23.054 12.803 23.054 29.45v33.913h-19.212V80.322c0-7.176-.132-16.395-9.994-16.395c-9.987 0-11.52 7.816-11.52 15.88v30.58H95.661V48.559\" fill=\"#1A1918\"/><path d=\"M165.344 19.158h19.205v54.535l21.757-25.17h23.547l-25.198 28.63l24.67 33.258h-24.143L184.8 79.844h-.251v30.567h-19.205V19.158\" fill=\"#1A1918\"/><path d=\"M286.552 99.68c-6.153 7.816-16.262 12.302-26.256 12.302c-19.207 0-34.577-12.814-34.577-32.664s15.37-32.654 34.577-32.654c17.94 0 29.204 12.804 29.204 32.654v6.02H244.93c1.526 7.3 7.04 12.04 14.47 12.04c6.278 0 10.501-3.203 13.705-7.56l13.446 9.862zM270.29 72.278c.126-6.405-4.868-11.783-11.79-11.783c-8.45 0-13.062 5.764-13.569 11.783h25.36z\" fill=\"#1A1918\"/><path d=\"M362.567 110.377h-17.68v-8.2h-.249c-2.955 4.482-10.376 9.736-19.088 9.736c-18.448 0-30.613-13.315-30.613-32.144c0-17.293 10.758-33.173 28.43-33.173c7.947 0 15.375 2.176 19.73 8.194h.253V19.158h19.217v91.219zM329.51 63.502c-9.598 0-15.36 6.41-15.36 15.75c0 9.36 5.762 15.755 15.36 15.755c9.615 0 15.377-6.395 15.377-15.754c0-9.341-5.762-15.75-15.377-15.75z\" fill=\"#1A1918\"/><path d=\"M501.764 0H391.343c-5.277 0-9.564 4.182-9.564 9.34v110.885c0 5.161 4.287 9.35 9.564 9.35h110.42c5.286 0 9.593-4.189 9.593-9.35V9.339c0-5.157-4.307-9.339-9.592-9.339\" fill=\"#006087\"/><path d=\"M410.603 17.839c6.146 0 11.138 4.993 11.138 11.14c0 6.151-4.992 11.146-11.138 11.146c-6.158 0-11.144-4.995-11.144-11.146c0-6.147 4.986-11.14 11.144-11.14zm-9.613 30.739h19.219v61.837H400.99V48.578z\" fill=\"#FFF\"/><path d=\"M432.263 48.578h18.436v8.448h.256c2.565-4.86 8.834-9.987 18.184-9.987c19.461 0 23.054 12.807 23.054 29.457v33.919h-19.205V80.344c0-7.175-.132-16.398-9.987-16.398c-10.002 0-11.533 7.812-11.533 15.878v30.59h-19.205V48.579\" fill=\"#FFF\"/>",
 	"width": 512,
 	"height": 130
+};
+exports.__esModule = true;
+exports.default = data;
+
+
+/***/ }),
+
+/***/ "./node_modules/@iconify/icons-mdi/apple-keyboard-command.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@iconify/icons-mdi/apple-keyboard-command.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = {
+	"body": "<path d=\"M6 2a4 4 0 0 1 4 4v2h4V6a4 4 0 0 1 4-4a4 4 0 0 1 4 4a4 4 0 0 1-4 4h-2v4h2a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4v-2h-4v2a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4h2v-4H6a4 4 0 0 1-4-4a4 4 0 0 1 4-4m10 16a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2h-2v2m-2-8h-4v4h4v-4m-8 6a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2v-2H6M8 6a2 2 0 0 0-2-2a2 2 0 0 0-2 2a2 2 0 0 0 2 2h2V6m10 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2h2z\" fill=\"currentColor\"/>",
+	"width": 24,
+	"height": 24
 };
 exports.__esModule = true;
 exports.default = data;
