@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 function mapStateToProps(state, ownProps) {
-	console.log("ownProps");
-	console.log(ownProps);
+
 	return {
 		currentUser: state.entities.users[state.session.id],
 		channelId: ownProps.match.params.id,
@@ -28,18 +27,12 @@ export default withRouter(
 			constructor(props) {
 				super(props);
 
-				// this.currentUser = null;
-
 				this.state = { message: "" }; //bonus pull from local storage if not sent?
 				this.handleMessage = this.handleMessage.bind(this);
 				this.handleKeyPressed = this.handleKeyPressed.bind(this);
 				this.handleSubmit = this.handleSubmit.bind(this);
 				this.submitMessage = this.submitMessage.bind(this);
 			}
-
-			// componentDidMount() {
-			// 	// this.currentUser = this.props.currentUser;
-			// }
 
 			handleMessage(e) {
 				return this.setState({ message: e.target.value });
@@ -78,8 +71,6 @@ export default withRouter(
 			}
 
 			render() {
-				console.log("Seccond");
-				console.log(this.props);
 
 				return (
 					<>
@@ -92,7 +83,7 @@ export default withRouter(
 									className="chatArea"
 									placeholder={
 										!!this.props.channelInfo
-											? `Message ${this.props.channelInfo.name}`
+											? `Message # ${this.props.channelInfo.name}`
 											: ""
 									}
 									onChange={this.handleMessage}

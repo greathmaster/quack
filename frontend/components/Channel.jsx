@@ -3,6 +3,11 @@ import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar";
 import Chatbar from "../components/Chatbar";
 import SingleMessage from "../components/SingleMessage";
+import InfoBar from "../components/InfoBar";
+import InfoBarHeader from "./InfoBarHeader";
+import InfoBarMembersList from "./InfoBarMembersList";
+import RichChatbar from "../components/RichChatbar"
+
 import {
 	fetchAllChannelMessages,
 	fetchAllChannels,
@@ -34,6 +39,9 @@ export default connect(
 	class Channel extends Component {
 		constructor(props) {
 			super(props);
+			this.state = { showInfoBar: true };
+			this.closeInfoBar = this.closeInfoBar.bind(this);
+			this.openInfoBar = this.openInfoBar.bind(this);
 		}
 
 		componentDidMount() {
@@ -62,11 +70,20 @@ export default connect(
 					<SearchBar
 						channel={this.props.channels[channelId]}
 						numMembers={Object.values(this.props.users).length}
+						openInfoBar={this.openInfoBar}
 					/>
 				);
 			}
 
 			return null;
+		}
+
+		closeInfoBar() {
+			this.setState({ showInfoBar: false });
+		}
+
+		openInfoBar() {
+			this.setState({ showInfoBar: true });
 		}
 
 		render() {
@@ -94,6 +111,20 @@ export default connect(
 						);
 					});
 			}
+
+			let channelNameRightSidebar = "";
+			if (Object.values(this.props.channels).length !== 0) {
+				let currentChannel = this.props.channels[
+					this.props.match.params.id
+				];
+
+				if (!currentChannel.private) {
+					channelNameRightSidebar = `#${currentChannel.name}`;
+				} else {
+					channelNameRightSidebar = currentChannel.name;
+				}
+			}
+
 			return (
 				<>
 					<div className="bar"> </div>
@@ -107,9 +138,22 @@ export default connect(
 								{messages ? messages.reverse() : null}
 							</div>
 							<div className="chatBar">
-								<Chatbar />
+							<RichChatbar />
 							</div>
 						</div>
+
+						{this.state.showInfoBar ? (
+							<InfoBar
+								header={
+									<InfoBarHeader
+										firstLine={"Members"}
+										secondLine={channelNameRightSidebar}
+										closeInfoBar={this.closeInfoBar}
+									/>
+								}
+								main={<InfoBarMembersList />}
+							/>
+						) : null}
 					</div>
 				</>
 			);

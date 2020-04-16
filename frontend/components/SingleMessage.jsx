@@ -15,9 +15,7 @@ export default function SingleMessage(props) {
 					<span className="username">{props.username}</span>
 					<span className="timestamp">{props.timestamp}</span>
 				</div>
-				<div className="messageContent">
-					<p>{props.message}</p>
-				</div>
+				<div dangerouslySetInnerHTML={{__html:props.message}} className="messageContent" />
 			</div>
 		</div>
 	);

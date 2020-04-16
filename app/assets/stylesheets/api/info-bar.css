@@ -1,0 +1,9 @@
+.info-bar {
+	min-width: 337px;
+	border-left: 1px solid lightgrey;
+	height: 100%;
+}
+
+.info-bar-hidden {
+	display: none;
+}
