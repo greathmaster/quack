@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import "regenerator-runtime/runtime";
+import ReactModal from "react-modal";
+
 function mSTP(state, ownProps) {
 	return {
 		userID: [state.session.id],
@@ -18,14 +19,25 @@ export default connect(mSTP)(
 				username: "",
 				photoFile: null,
 				photoUrl: null,
+				showModal: false,
 			};
+			this.handleCloseModal = this.handleCloseModal.bind(this);
+			this.handleOpenModal = this.handleOpenModal.bind(this);
+		}
+
+		handleOpenModal() {
+			this.setState({ showModal: true });
+		}
+
+		handleCloseModal() {
+			this.setState({ showModal: false });
 		}
 
 		componentDidMount() {
 			$.ajax({
 				url: `api/users/${this.props.userID}`,
 				method: "GET",
-			}).then(user => {
+			}).then((user) => {
 				this.setState({ loading: false, username: user.username });
 			});
 		}
@@ -60,8 +72,8 @@ export default connect(mSTP)(
 				contentType: false,
 				processData: false,
 			}).then(
-				response => console.log(response.message),
-				response => {
+				(response) => console.log(response.message),
+				(response) => {
 					console.log("error?");
 					console.log(response.responseJSON);
 				}
@@ -77,65 +89,23 @@ export default connect(mSTP)(
 			return this.state.loading ? (
 				<>Loading</>
 			) : (
-				<>
-					{/* <div> */}
-					{/* <form onSubmit={this.handleSubmit.bind(this)}>
-						<label>
-							Username
-						
-								<input
-							type="text"
-							onChange={this.handleInput.bind(this)}
-							value={this.state.username}
-							placeholder={"Username"}
-							className="signinup"
-						/>
-							<input
-								type="file"
-								onChange={this.handleFile.bind(this)}
-							/>
-						</label>
-						{preview}
-						<button>Update</button>
-					</form> */}
-					{/* </div> */}
-
-					<div className="">
-						<div className="profileUpperContainer">
-							<form onSubmit={this.onSubmit}>
-								<div>
-									<div className="imagePreviewContainer">
-										<div className="profileFileUpload">
-											<div className="imagePreview">
-												{preview}
-											</div>
-											<input
-												type="file"
-												onChange={this.handleFile.bind(
-													this
-												)}
-											/>
-										</div>
-										<input
-											type="text"
-											onChange={this.handleUsername}
-											value={this.state.username}
-											placeholder={"Username"}
-											className="signinup"
-										/>
-
-										<button
-											className="buttonLogin"
-											onSubmit={this.onSubmit}
-										>
-											{"Update"}
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</>
+				<div>
+					<button onClick={this.handleOpenModal}>
+						Trigger Modal
+					</button>
+					<ReactModal
+						isOpen={this.state.showModal}
+						contentLabel="onRequestClose Example"
+						onRequestClose={this.handleCloseModal}
+						className="Modal"
+						overlayClassName="Overlay"
+					>
+						<p>Modal text!</p>
+						<button onClick={this.handleCloseModal}>
+							Close Modal
+						</button>
+					</ReactModal>
+				</div>
 			);
 		}
 	}
