@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ReactQuill, { Quill } from "react-quill";
 import quillEmoji from "quill-emoji";
-import { Icon, InlineIcon } from "@iconify/react";
-import commandIcon from "@iconify/icons-icomoon-free/command";
+import { InlineIcon } from "@iconify/react";
 import appleKeyboardCommand from "@iconify/icons-mdi/apple-keyboard-command";
 
 import "quill-emoji/dist/quill-emoji.css";
@@ -40,7 +39,6 @@ export default withRouter(
 
 				this.state = { message: "" }; //bonus pull from local storage if not sent?
 				this.handleMessage = this.handleMessage.bind(this);
-				// this.handleKeyPressed = this.handleKeyPressed.bind(this);
 				this.handleSubmit = this.handleSubmit.bind(this);
 				this.submitMessage = this.submitMessage.bind(this);
 				this.quillRef = null;
@@ -68,22 +66,11 @@ export default withRouter(
 				let that = this;
 
 				this.modules = {
-					// keyboard: {
-					// 	bindings: {
-					// 		enter: {
-					// 			key: 13,
-					// 			handler: function (range, context) {
-					// 				if (!context.empty) {
-					// 					that.submitMessage();
-					// 				}
-					// 			},
-					// 		},
-					// 	},
-					// },
 					keyboard: {
 						bindings: [
 							{
-								key: 13,
+								//if both the Enter and ⌘ command key are pressed insert a new line w/o submitting the form
+								key: 13,	//the enter key code
 								metaKey: true, //Mac ⌘ command key
 								handler: function (range, context) {
 									var range = that.quillRef.getSelection();
@@ -92,10 +79,10 @@ export default withRouter(
 								},
 							},
 							{
-								key: 13,
+								key: 13,	//the enter key code
 								handler: function (range, context) {
 									if (!context.empty) {
-										that.submitMessage();
+										that.submitMessage();	//just submit the message if the enter key is pressed
 									}
 								},
 							},
@@ -165,17 +152,6 @@ export default withRouter(
 			handleMessage(content, delta, source, editor) {
 				return this.setState({ message: editor.getHTML() });
 			}
-
-			// handleKeyPressed(e) {
-			// 	console.log("it was pressed!");
-			// 	// if (
-			// 	// 	e.key === "Enter" &&
-			// 	// 	this.state.message.trim().length !== 0
-			// 	// ) {
-			// 	e.preventDefault();
-			// 	this.submitMessage();
-			// 	// }
-			// }
 
 			handleSubmit(e) {
 				e.preventDefault();
@@ -255,24 +231,3 @@ export default withRouter(
 		}
 	)
 );
-
-// bindings = {
-// 	enter: {
-// 		key: 13,
-// 		handler: function () {
-// 			console.log("enter pressed");
-// 			this.hideSymbols = !this.hideSymbols;
-// 			console.log(this.hideSymbols);
-// 		},
-// 	},
-// };
-// this.modules = {
-// 	keyboard: {
-// 		bindings: this.bindings,
-// 	},
-// 	formula: true,
-// 	toolbar: true,
-// 	counter: { container: "#counter", unit: "word" },
-// 	equalsSymbol: { container: "#equalsBtn", selector: "equals" },
-// 	impliesSymbol: { container: "#impliesBtn", selector: "implies" },
-// };

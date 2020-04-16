@@ -1722,14 +1722,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var quill_emoji__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(quill_emoji__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @iconify/react */ "./node_modules/@iconify/react/dist/icon.js");
 /* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _iconify_icons_icomoon_free_command__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @iconify/icons-icomoon-free/command */ "./node_modules/@iconify/icons-icomoon-free/command.js");
-/* harmony import */ var _iconify_icons_icomoon_free_command__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_icomoon_free_command__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @iconify/icons-mdi/apple-keyboard-command */ "./node_modules/@iconify/icons-mdi/apple-keyboard-command.js");
-/* harmony import */ var _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! quill-emoji/dist/quill-emoji.css */ "./node_modules/quill-emoji/dist/quill-emoji.css");
-/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
-/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @iconify/icons-mdi/apple-keyboard-command */ "./node_modules/@iconify/icons-mdi/apple-keyboard-command.js");
+/* harmony import */ var _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! quill-emoji/dist/quill-emoji.css */ "./node_modules/quill-emoji/dist/quill-emoji.css");
+/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
+/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1747,7 +1745,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -1791,8 +1788,7 @@ function mapDispatchToProps(dispatch) {
       message: ""
     }; //bonus pull from local storage if not sent?
 
-    _this.handleMessage = _this.handleMessage.bind(_assertThisInitialized(_this)); // this.handleKeyPressed = this.handleKeyPressed.bind(this);
-
+    _this.handleMessage = _this.handleMessage.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.submitMessage = _this.submitMessage.bind(_assertThisInitialized(_this));
     _this.quillRef = null;
@@ -1814,21 +1810,11 @@ function mapDispatchToProps(dispatch) {
     var that = _assertThisInitialized(_this);
 
     _this.modules = {
-      // keyboard: {
-      // 	bindings: {
-      // 		enter: {
-      // 			key: 13,
-      // 			handler: function (range, context) {
-      // 				if (!context.empty) {
-      // 					that.submitMessage();
-      // 				}
-      // 			},
-      // 		},
-      // 	},
-      // },
       keyboard: {
         bindings: [{
+          //if both the Enter and ⌘ command key are pressed insert a new line w/o submitting the form
           key: 13,
+          //the enter key code
           metaKey: true,
           //Mac ⌘ command key
           handler: function handler(range, context) {
@@ -1838,9 +1824,10 @@ function mapDispatchToProps(dispatch) {
           }
         }, {
           key: 13,
+          //the enter key code
           handler: function handler(range, context) {
             if (!context.empty) {
-              that.submitMessage();
+              that.submitMessage(); //just submit the message if the enter key is pressed
             }
           }
         }]
@@ -1891,17 +1878,7 @@ function mapDispatchToProps(dispatch) {
       return this.setState({
         message: editor.getHTML()
       });
-    } // handleKeyPressed(e) {
-    // 	console.log("it was pressed!");
-    // 	// if (
-    // 	// 	e.key === "Enter" &&
-    // 	// 	this.state.message.trim().length !== 0
-    // 	// ) {
-    // 	e.preventDefault();
-    // 	this.submitMessage();
-    // 	// }
-    // }
-
+    }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
@@ -1952,7 +1929,7 @@ function mapDispatchToProps(dispatch) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "rich-chat-info-footer-item-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_6__["InlineIcon"], {
-        icon: _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8___default.a
+        icon: _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7___default.a
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "rich-chat-info-footer-left-space"
       }, " ", "+", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -1970,26 +1947,7 @@ function mapDispatchToProps(dispatch) {
   }]);
 
   return RichChatbar;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"])))); // bindings = {
-// 	enter: {
-// 		key: 13,
-// 		handler: function () {
-// 			console.log("enter pressed");
-// 			this.hideSymbols = !this.hideSymbols;
-// 			console.log(this.hideSymbols);
-// 		},
-// 	},
-// };
-// this.modules = {
-// 	keyboard: {
-// 		bindings: this.bindings,
-// 	},
-// 	formula: true,
-// 	toolbar: true,
-// 	counter: { container: "#counter", unit: "word" },
-// 	equalsSymbol: { container: "#equalsBtn", selector: "equals" },
-// 	impliesSymbol: { container: "#impliesBtn", selector: "implies" },
-// };
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]))));
 
 /***/ }),
 
@@ -3998,24 +3956,6 @@ var data = {
 	"body": "<path d=\"M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z\" fill=\"currentColor\"/>",
 	"width": 24,
 	"height": 24
-};
-exports.__esModule = true;
-exports.default = data;
-
-
-/***/ }),
-
-/***/ "./node_modules/@iconify/icons-icomoon-free/command.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@iconify/icons-icomoon-free/command.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var data = {
-	"body": "<path d=\"M11.5 14A2.502 2.502 0 0 1 9 11.5V10H7v1.5C7 12.879 5.878 14 4.5 14S2 12.879 2 11.5S3.122 9 4.5 9H6V7H4.5C3.122 7 2 5.878 2 4.5S3.122 2 4.5 2S7 3.122 7 4.5V6h2V4.5C9 3.122 10.121 2 11.5 2S14 3.122 14 4.5S12.879 7 11.5 7H10v2h1.5c1.379 0 2.5 1.121 2.5 2.5S12.879 14 11.5 14zM10 10v1.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H10zm-5.5 0c-.827 0-1.5.673-1.5 1.5S3.673 13 4.5 13S6 12.327 6 11.5V10H4.5zM7 9h2V7H7v2zm3-3h1.5c.827 0 1.5-.673 1.5-1.5S12.327 3 11.5 3S10 3.673 10 4.5V6zM4.5 3C3.673 3 3 3.673 3 4.5S3.673 6 4.5 6H6V4.5C6 3.673 5.327 3 4.5 3z\" fill=\"currentColor\"/>",
-	"width": 16,
-	"height": 16
 };
 exports.__esModule = true;
 exports.default = data;
