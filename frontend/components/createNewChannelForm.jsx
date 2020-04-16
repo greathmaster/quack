@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react";
 import closeCircleOutline from "@iconify/icons-ion/close-circle-outline";
 import { fetchAllChannelMessages } from "../actions/channels_actions";
 import { Redirect } from "react-router-dom";
+import userImage from "../../app/assets/images/user.jpg";
 
 function mSTP(state, ownProps) {
 	return {
@@ -19,7 +20,7 @@ function mDTP(dispatch) {
 	return {
 		createNewChannel: (channel, redirect) =>
 			dispatch(createNewChannel(channel, redirect)),
-		fetchAllChannelMessages: channelId =>
+		fetchAllChannelMessages: (channelId) =>
 			dispatch(fetchAllChannelMessages(channelId)),
 	};
 }
@@ -39,7 +40,7 @@ export default connect(
 				newChannelID: null,
 			};
 			this.handleInput = this.handleInput.bind(this);
-			this.handleNewChannelTitle = this.handleNewChannelTitle.bind(this)
+			this.handleNewChannelTitle = this.handleNewChannelTitle.bind(this);
 			this.handleClick = this.handleClick.bind(this);
 			this.handleExit = this.handleExit.bind(this);
 			this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,7 +50,7 @@ export default connect(
 		componentDidMount() {
 			findUsers({
 				type: "users",
-			}).then(users => {
+			}).then((users) => {
 				this.setState({ results: users });
 			});
 		}
@@ -59,7 +60,7 @@ export default connect(
 		}
 
 		handleNewChannelTitle(e) {
-			this.setState({ newChannelName: e.target.value})
+			this.setState({ newChannelName: e.target.value });
 		}
 
 		handleClick(userId) {
@@ -75,7 +76,7 @@ export default connect(
 		}
 
 		handleRemoveSearchTag(userId) {
-			let newSelected = this.state.selected.filter(selectedUserId => {
+			let newSelected = this.state.selected.filter((selectedUserId) => {
 				return userId !== selectedUserId;
 			});
 			this.setState({ selected: newSelected });
@@ -84,7 +85,7 @@ export default connect(
 		matches() {
 			const matches = [];
 
-			Object.values(this.state.results).forEach(user => {
+			Object.values(this.state.results).forEach((user) => {
 				const sub = user.username.slice(0, this.state.searchStr.length);
 				if (sub.toLowerCase() === this.state.searchStr.toLowerCase()) {
 					matches.push(user);
@@ -107,15 +108,20 @@ export default connect(
 				private: false,
 				users: users,
 			};
-			this.props.createNewChannel(newChannel, id => {
+			this.props.createNewChannel(newChannel, (id) => {
 				this.setState({ newChannelID: id });
 			});
 		}
 
 		renderSelected() {
-			return this.state.selected.map(userId => {
+			return this.state.selected.map((userId) => {
 				return (
 					<SearchSelectedTag
+						avatar={
+							this.state.results[userId].avatar
+								? this.state.results[userId].avatar
+								: userImage
+						}
 						className="searchSelectedTag"
 						username={this.state.results[userId].username}
 						handleRemoveSearchTag={() =>
@@ -128,13 +134,13 @@ export default connect(
 		render() {
 			let m = this.matches();
 
-			let users = m.map(user => {
+			let users = m.map((user) => {
 				return (
 					<SearchItem
 						handleClick={() => this.handleClick(user.id)}
 						key={user.id}
 						username={user.username}
-						avatar={true}
+						avatar={user.avatar ? user.avatar : userImage}
 					/>
 				);
 			});
@@ -152,11 +158,11 @@ export default connect(
 								Create a New Channel
 							</h2>
 							<div className="searchDirections">
-								Enter a new channel name, and select users to add
+								Enter a new channel name, and select users to
+								add
 							</div>
 							<form onSubmit={this.handleSubmit}>
 								<div className="searchTextFieldsContainer">
-									
 									<input
 										type="text"
 										value={this.state.newChannelName}

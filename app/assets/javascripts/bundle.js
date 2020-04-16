@@ -566,7 +566,8 @@ function mapDispatchToProps(dispatch) {
             key: message.id,
             message: message.content,
             username: _this2.props.users[message.sender_id] ? _this2.props.users[message.sender_id].username : null,
-            avatar: message.avatar,
+            avatar: _this2.props.users[message.sender_id] ? _this2.props.users[message.sender_id].avatar : null // avatar={message.avatar}
+            ,
             timestamp: Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_11__["formatTimestamp"])(message.created_at)
           });
         });
@@ -1243,12 +1244,13 @@ function mapStateToProps(state, ownProps) {
     key: "renderSingleUser",
     value: function renderSingleUser(user) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: user.id,
         className: "singleMessage"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "avatarContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "avatar",
-        src: _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]
+        src: user.avatar ? user.avatar : _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "messageContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1647,20 +1649,20 @@ function mSTP(state, ownProps) {
 
       if (this.state.photoFile) {
         formData.append("user[avatar]", this.state.photoFile);
-      } // $.ajax({
-      // 	url: `/api/users/${this.props.userID}`,
-      // 	method: "PATCH",
-      // 	data: formData,
-      // 	contentType: false,
-      // 	processData: false,
-      // }).then(
-      // 	response => console.log(response.message),
-      // 	response => {
-      // 		console.log("error?");
-      // 		console.log(response.responseJSON);
-      // 	}
-      // );
+      }
 
+      $.ajax({
+        url: "/api/users/".concat(this.props.userID),
+        method: "PATCH",
+        data: formData,
+        contentType: false,
+        processData: false
+      }).then(function (response) {
+        return console.log(response.message);
+      }, function (response) {
+        console.log("error?");
+        console.log(response.responseJSON);
+      });
     }
   }, {
     key: "render",
@@ -2153,6 +2155,7 @@ function mDTP(dispatch) {
 
       return this.state.selected.map(function (userId) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SearchSelectedTag__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          avatar: _this5.state.results[userId].avatar ? _this5.state.results[userId].avatar : _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_9__["default"],
           className: "searchSelectedTag",
           username: _this5.state.results[userId].username,
           handleRemoveSearchTag: function handleRemoveSearchTag() {
@@ -2331,7 +2334,7 @@ function SearchItem(props) {
     className: "avatarContainer"
   }, props.avatar && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "avatar",
-    src: _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_1__["default"]
+    src: props.avatar
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "messageContainer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2371,7 +2374,7 @@ function SearchSelectedTag(props) {
     className: "avatarContainer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "avatar",
-    src: _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_1__["default"]
+    src: props.avatar
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "messageContainer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2913,6 +2916,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _iconify_icons_ion_close_circle_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @iconify/icons-ion/close-circle-outline */ "./node_modules/@iconify/icons-ion/close-circle-outline.js");
 /* harmony import */ var _iconify_icons_ion_close_circle_outline__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_ion_close_circle_outline__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../app/assets/images/user.jpg */ "./app/assets/images/user.jpg");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -2938,6 +2942,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -3088,6 +3093,7 @@ function mDTP(dispatch) {
 
       return this.state.selected.map(function (userId) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SearchSelectedTag__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          avatar: _this5.state.results[userId].avatar ? _this5.state.results[userId].avatar : _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_9__["default"],
           className: "searchSelectedTag",
           username: _this5.state.results[userId].username,
           handleRemoveSearchTag: function handleRemoveSearchTag() {
@@ -3109,7 +3115,7 @@ function mDTP(dispatch) {
           },
           key: user.id,
           username: user.username,
-          avatar: true
+          avatar: user.avatar ? user.avatar : _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_9__["default"]
         });
       }); // debugger
 
