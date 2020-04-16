@@ -15,26 +15,6 @@ var icons = ReactQuill.Quill.import("ui/icons");
 icons["submit"] =
 	'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>';
 
-// icons['submit'] = ''<i class="fa fa-bold" aria-hidden="true"></i>'';
-
-// import "react-quill/dist/quill.bubble.css";
-
-// Quill.register(
-// 	{
-// 		"formats/emoji": quillEmoji.EmojiBlot,
-// 		"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
-// 		"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
-// 		"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
-// 		"modules/counter": function (quill, options) {
-// 			var container = document.querySelector(".ql-counter");
-// 			container.addEventListener("click", function () {
-
-// 			});
-// 		},
-// 	},
-// 	true
-// );
-
 function mapStateToProps(state, ownProps) {
 	return {
 		currentUser: state.entities.users[state.session.id],
@@ -60,14 +40,12 @@ export default withRouter(
 
 				this.state = { message: "" }; //bonus pull from local storage if not sent?
 				this.handleMessage = this.handleMessage.bind(this);
-				this.handleKeyPressed = this.handleKeyPressed.bind(this);
+				// this.handleKeyPressed = this.handleKeyPressed.bind(this);
 				this.handleSubmit = this.handleSubmit.bind(this);
 				this.submitMessage = this.submitMessage.bind(this);
-
-				// this.onCustomControlClick = this.onCustomControlClick.bind(
-				// 	this
-				// );
-				// this.renderContainer = this.renderContainer.bind(this);
+				this.quillRef = null;
+				this.reactQuillRef = null;
+				this.attachQuillRefs = this.attachQuillRefs.bind(this);
 
 				Quill.register(
 					{
@@ -87,7 +65,43 @@ export default withRouter(
 					true
 				);
 
+				let that = this;
+
 				this.modules = {
+					// keyboard: {
+					// 	bindings: {
+					// 		enter: {
+					// 			key: 13,
+					// 			handler: function (range, context) {
+					// 				if (!context.empty) {
+					// 					that.submitMessage();
+					// 				}
+					// 			},
+					// 		},
+					// 	},
+					// },
+					keyboard: {
+						bindings: [
+							{
+								key: 13,
+								metaKey: true, //Mac ⌘ command key
+								handler: function (range, context) {
+									var range = that.quillRef.getSelection();
+									let position = range ? range.index : 0;
+									that.quillRef.insertText(position, "\n");
+								},
+							},
+							{
+								key: 13,
+								handler: function (range, context) {
+									if (!context.empty) {
+										that.submitMessage();
+									}
+								},
+							},
+						],
+					},
+
 					toolbar: {
 						container: [
 							[
@@ -118,10 +132,12 @@ export default withRouter(
 			}
 
 			componentDidMount() {
-				console.log("mounted!");
+				this.attachQuillRefs();
 			}
 
 			componentDidUpdate(prevProps) {
+				this.attachQuillRefs();
+
 				if (this.props.channelId !== prevProps.channelId) {
 					document
 						.getElementsByClassName("ql-editor ql-blank")[0]
@@ -132,19 +148,34 @@ export default withRouter(
 				}
 			}
 
+			attachQuillRefs() {
+				// Ensure React-Quill reference is available:
+				if (
+					this.reactQuillRef === null ||
+					typeof this.reactQuillRef.getEditor !== "function"
+				)
+					return;
+				// Skip if Quill reference is defined:
+				if (this.quillRef != null) return;
+
+				const quillRef = this.reactQuillRef.getEditor();
+				if (quillRef != null) this.quillRef = quillRef;
+			}
+
 			handleMessage(content, delta, source, editor) {
 				return this.setState({ message: editor.getHTML() });
 			}
 
-			handleKeyPressed(e) {
-				// if (
-				// 	e.key === "Enter" &&
-				// 	this.state.message.trim().length !== 0
-				// ) {
-				e.preventDefault();
-				this.submitMessage();
-				// }
-			}
+			// handleKeyPressed(e) {
+			// 	console.log("it was pressed!");
+			// 	// if (
+			// 	// 	e.key === "Enter" &&
+			// 	// 	this.state.message.trim().length !== 0
+			// 	// ) {
+			// 	e.preventDefault();
+			// 	this.submitMessage();
+			// 	// }
+			// }
 
 			handleSubmit(e) {
 				e.preventDefault();
@@ -179,6 +210,9 @@ export default withRouter(
 								<div>
 									{!!this.props.channelInfo ? (
 										<ReactQuill
+											ref={(el) => {
+												this.reactQuillRef = el;
+											}}
 											theme="snow"
 											modules={this.modules}
 											formats={this.formats}
@@ -194,20 +228,21 @@ export default withRouter(
 											/>
 											<span className="rich-chat-info-footer-left-space">
 												{" "}
-												+ Return{" "}
-											</span>
-											<span className="rich-chat-info-footer-left-space">
-												{"to send"}
-											</span>
-										</span>
-										<span className="rich-chat-info-footer-item-2">
-											<span
-												rich-chat-info-footer-text-bold
-											>
-												{"Return"}
+												+{" "}
+												<span className="rich-chat-info-footer-text-bold">
+													Return
+												</span>{" "}
 											</span>
 											<span className="rich-chat-info-footer-left-space">
 												{"to add a new line"}
+											</span>
+										</span>
+										<span className="rich-chat-info-footer-item-2">
+											<span className="rich-chat-info-footer-text-bold">
+												{"Return"}
+											</span>
+											<span className="rich-chat-info-footer-left-space">
+												{"to send"}
 											</span>
 										</span>
 									</div>
@@ -220,3 +255,24 @@ export default withRouter(
 		}
 	)
 );
+
+// bindings = {
+// 	enter: {
+// 		key: 13,
+// 		handler: function () {
+// 			console.log("enter pressed");
+// 			this.hideSymbols = !this.hideSymbols;
+// 			console.log(this.hideSymbols);
+// 		},
+// 	},
+// };
+// this.modules = {
+// 	keyboard: {
+// 		bindings: this.bindings,
+// 	},
+// 	formula: true,
+// 	toolbar: true,
+// 	counter: { container: "#counter", unit: "word" },
+// 	equalsSymbol: { container: "#equalsBtn", selector: "equals" },
+// 	impliesSymbol: { container: "#impliesBtn", selector: "implies" },
+// };

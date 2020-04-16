@@ -182,6 +182,7 @@ scrollbar {
 	margin-left: .25em;
 }
 
-/* // npm install --save-dev @iconify/react @iconify/icons-mdi
-import { Icon, InlineIcon } from '@iconify/react';
-import appleKeyboardCommand from '@iconify/icons-mdi/apple-keyboard-command'; */
+.rich-chat-info-footer-text-bold {
+	font-weight: 600;
+}
+

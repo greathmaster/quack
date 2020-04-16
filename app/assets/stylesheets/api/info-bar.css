@@ -1,5 +1,5 @@
 .info-bar {
-	width: 337px;
+	min-width: 337px;
 	border-left: 1px solid lightgrey;
 	height: 100%;
 }

@@ -1760,22 +1760,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var icons = react_quill__WEBPACK_IMPORTED_MODULE_4___default.a.Quill["import"]("ui/icons");
-icons["submit"] = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>'; // icons['submit'] = ''<i class="fa fa-bold" aria-hidden="true"></i>'';
-// import "react-quill/dist/quill.bubble.css";
-// Quill.register(
-// 	{
-// 		"formats/emoji": quillEmoji.EmojiBlot,
-// 		"modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
-// 		"modules/emoji-textarea": quillEmoji.TextAreaEmoji,
-// 		"modules/emoji-shortname": quillEmoji.ShortNameEmoji,
-// 		"modules/counter": function (quill, options) {
-// 			var container = document.querySelector(".ql-counter");
-// 			container.addEventListener("click", function () {
-// 			});
-// 		},
-// 	},
-// 	true
-// );
+icons["submit"] = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2l.01 7z"  class="rich-text-submit"/></svg>';
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -1806,14 +1791,13 @@ function mapDispatchToProps(dispatch) {
       message: ""
     }; //bonus pull from local storage if not sent?
 
-    _this.handleMessage = _this.handleMessage.bind(_assertThisInitialized(_this));
-    _this.handleKeyPressed = _this.handleKeyPressed.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.submitMessage = _this.submitMessage.bind(_assertThisInitialized(_this)); // this.onCustomControlClick = this.onCustomControlClick.bind(
-    // 	this
-    // );
-    // this.renderContainer = this.renderContainer.bind(this);
+    _this.handleMessage = _this.handleMessage.bind(_assertThisInitialized(_this)); // this.handleKeyPressed = this.handleKeyPressed.bind(this);
 
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.submitMessage = _this.submitMessage.bind(_assertThisInitialized(_this));
+    _this.quillRef = null;
+    _this.reactQuillRef = null;
+    _this.attachQuillRefs = _this.attachQuillRefs.bind(_assertThisInitialized(_this));
     react_quill__WEBPACK_IMPORTED_MODULE_4__["Quill"].register({
       "formats/emoji": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.EmojiBlot,
       "modules/emoji-toolbar": quill_emoji__WEBPACK_IMPORTED_MODULE_5___default.a.ToolbarEmoji,
@@ -1826,7 +1810,41 @@ function mapDispatchToProps(dispatch) {
         });
       }
     }, true);
+
+    var that = _assertThisInitialized(_this);
+
     _this.modules = {
+      // keyboard: {
+      // 	bindings: {
+      // 		enter: {
+      // 			key: 13,
+      // 			handler: function (range, context) {
+      // 				if (!context.empty) {
+      // 					that.submitMessage();
+      // 				}
+      // 			},
+      // 		},
+      // 	},
+      // },
+      keyboard: {
+        bindings: [{
+          key: 13,
+          metaKey: true,
+          //Mac ⌘ command key
+          handler: function handler(range, context) {
+            var range = that.quillRef.getSelection();
+            var position = range ? range.index : 0;
+            that.quillRef.insertText(position, "\n");
+          }
+        }, {
+          key: 13,
+          handler: function handler(range, context) {
+            if (!context.empty) {
+              that.submitMessage();
+            }
+          }
+        }]
+      },
       toolbar: {
         container: [["bold", "italic", "underline", {
           list: "ordered"
@@ -1846,14 +1864,26 @@ function mapDispatchToProps(dispatch) {
   _createClass(RichChatbar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("mounted!");
+      this.attachQuillRefs();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
+      this.attachQuillRefs();
+
       if (this.props.channelId !== prevProps.channelId) {
         document.getElementsByClassName("ql-editor ql-blank")[0].setAttribute("data-placeholder", "Message #".concat(this.props.channelInfo.name));
       }
+    }
+  }, {
+    key: "attachQuillRefs",
+    value: function attachQuillRefs() {
+      // Ensure React-Quill reference is available:
+      if (this.reactQuillRef === null || typeof this.reactQuillRef.getEditor !== "function") return; // Skip if Quill reference is defined:
+
+      if (this.quillRef != null) return;
+      var quillRef = this.reactQuillRef.getEditor();
+      if (quillRef != null) this.quillRef = quillRef;
     }
   }, {
     key: "handleMessage",
@@ -1861,17 +1891,17 @@ function mapDispatchToProps(dispatch) {
       return this.setState({
         message: editor.getHTML()
       });
-    }
-  }, {
-    key: "handleKeyPressed",
-    value: function handleKeyPressed(e) {
-      // if (
-      // 	e.key === "Enter" &&
-      // 	this.state.message.trim().length !== 0
-      // ) {
-      e.preventDefault();
-      this.submitMessage(); // }
-    }
+    } // handleKeyPressed(e) {
+    // 	console.log("it was pressed!");
+    // 	// if (
+    // 	// 	e.key === "Enter" &&
+    // 	// 	this.state.message.trim().length !== 0
+    // 	// ) {
+    // 	e.preventDefault();
+    // 	this.submitMessage();
+    // 	// }
+    // }
+
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
@@ -1897,6 +1927,8 @@ function mapDispatchToProps(dispatch) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         className: "audio-element"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
@@ -1906,6 +1938,9 @@ function mapDispatchToProps(dispatch) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rich-chat-area-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !!this.props.channelInfo ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_quill__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        ref: function ref(el) {
+          _this2.reactQuillRef = el;
+        },
         theme: "snow",
         modules: this.modules,
         formats: this.formats,
@@ -1920,20 +1955,41 @@ function mapDispatchToProps(dispatch) {
         icon: _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_8___default.a
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "rich-chat-info-footer-left-space"
-      }, " ", "+ Return", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, " ", "+", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-text-bold"
+      }, "Return"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "rich-chat-info-footer-left-space"
-      }, "to send")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "to add a new line")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "rich-chat-info-footer-item-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "rich-chat-info-footer-text-bold": true
+        className: "rich-chat-info-footer-text-bold"
       }, "Return"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "rich-chat-info-footer-left-space"
-      }, "to add a new line")))))));
+      }, "to send")))))));
     }
   }]);
 
   return RichChatbar;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]))));
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"])))); // bindings = {
+// 	enter: {
+// 		key: 13,
+// 		handler: function () {
+// 			console.log("enter pressed");
+// 			this.hideSymbols = !this.hideSymbols;
+// 			console.log(this.hideSymbols);
+// 		},
+// 	},
+// };
+// this.modules = {
+// 	keyboard: {
+// 		bindings: this.bindings,
+// 	},
+// 	formula: true,
+// 	toolbar: true,
+// 	counter: { container: "#counter", unit: "word" },
+// 	equalsSymbol: { container: "#equalsBtn", selector: "equals" },
+// 	impliesSymbol: { container: "#impliesBtn", selector: "implies" },
+// };
 
 /***/ }),
 
