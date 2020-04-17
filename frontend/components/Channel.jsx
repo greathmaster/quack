@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar";
-import Chatbar from "../components/Chatbar";
+// import Chatbar from "../components/Chatbar";
 import SingleMessage from "../components/SingleMessage";
 import InfoBar from "../components/InfoBar";
 import InfoBarHeader from "./InfoBarHeader";
 import InfoBarMembersList from "./InfoBarMembersList";
-import RichChatbar from "../components/RichChatbar"
+import RichChatbar from "../components/RichChatbar";
 
 import {
 	fetchAllChannelMessages,
@@ -39,9 +39,11 @@ export default connect(
 	class Channel extends Component {
 		constructor(props) {
 			super(props);
-			this.state = { showInfoBar: true };
+			this.state = { showInfoBar: true, showEditProfile: false };
 			this.closeInfoBar = this.closeInfoBar.bind(this);
 			this.openInfoBar = this.openInfoBar.bind(this);
+			this.closeEditProfile = this.closeEditProfile.bind(this);
+			this.openEditProfile = this.openEditProfile.bind(this);
 		}
 
 		componentDidMount() {
@@ -86,6 +88,13 @@ export default connect(
 			this.setState({ showInfoBar: true });
 		}
 
+		closeEditProfile() {
+			this.setState({ showEditProfile: false });
+		}
+		openEditProfile() {
+			this.setState({ showEditProfile: true });
+		}
+
 		render() {
 			let messages = null;
 			if (this.props.messages) {
@@ -111,8 +120,6 @@ export default connect(
 												.avatar
 										: null
 								}
-								// avatar={message.avatar}
-
 
 								timestamp={formatTimestamp(message.created_at)}
 							/>
@@ -146,7 +153,7 @@ export default connect(
 								{messages ? messages.reverse() : null}
 							</div>
 							<div className="chatBar">
-							<RichChatbar />
+								<RichChatbar />
 							</div>
 						</div>
 

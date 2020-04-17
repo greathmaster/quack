@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import "regenerator-runtime/runtime";
+import ReactModal from "react-modal";
+
 function mSTP(state, ownProps) {
 	return {
 		userID: [state.session.id],
@@ -18,14 +19,25 @@ export default connect(mSTP)(
 				username: "",
 				photoFile: null,
 				photoUrl: null,
+				showModal: true,
 			};
+			this.handleCloseModal = this.handleCloseModal.bind(this);
+			this.handleOpenModal = this.handleOpenModal.bind(this);
+		}
+
+		handleOpenModal() {
+			this.setState({ showModal: true });
+		}
+
+		handleCloseModal() {
+			this.setState({ showModal: false });
 		}
 
 		componentDidMount() {
 			$.ajax({
 				url: `api/users/${this.props.userID}`,
 				method: "GET",
-			}).then(user => {
+			}).then((user) => {
 				this.setState({ loading: false, username: user.username });
 			});
 		}
@@ -60,8 +72,8 @@ export default connect(mSTP)(
 				contentType: false,
 				processData: false,
 			}).then(
-				response => console.log(response.message),
-				response => {
+				(response) => console.log(response.message),
+				(response) => {
 					console.log("error?");
 					console.log(response.responseJSON);
 				}
@@ -77,65 +89,93 @@ export default connect(mSTP)(
 			return this.state.loading ? (
 				<>Loading</>
 			) : (
-				<>
-					{/* <div> */}
-					{/* <form onSubmit={this.handleSubmit.bind(this)}>
-						<label>
-							Username
-						
-								<input
-							type="text"
-							onChange={this.handleInput.bind(this)}
-							value={this.state.username}
-							placeholder={"Username"}
-							className="signinup"
-						/>
-							<input
-								type="file"
-								onChange={this.handleFile.bind(this)}
-							/>
-						</label>
-						{preview}
-						<button>Update</button>
-					</form> */}
-					{/* </div> */}
-
-					<div className="">
-						<div className="profileUpperContainer">
-							<form onSubmit={this.onSubmit}>
-								<div>
-									<div className="imagePreviewContainer">
-										<div className="profileFileUpload">
-											<div className="imagePreview">
-												{preview}
+				<div>
+					<button onClick={this.handleOpenModal}>
+						Trigger Modal
+					</button>
+					<ReactModal
+						isOpen={this.state.showModal}
+						contentLabel="onRequestClose Example"
+						onRequestClose={this.handleCloseModal}
+						className="Modal"
+						overlayClassName="Overlay"
+					>
+						<div className="modal-content">
+							<div className="modal-header">
+								<div>Edit your profile</div>
+								<div>X</div>
+							</div>
+							<div className="modal-content-inner">
+								<div className="modal-content-inner-columns-outter">
+									<div className="modal-content-inner-columns">
+										<div className="modal-content-column-primary">
+											<div className="modal-first-name-container">
+												<div className="modal-label">
+													Full name
+												</div>
+												<input
+													type="text"
+													className="modal-input"
+												/>
 											</div>
-											<input
-												type="file"
-												onChange={this.handleFile.bind(
-													this
-												)}
-											/>
-										</div>
-										<input
-											type="text"
-											onChange={this.handleUsername}
-											value={this.state.username}
-											placeholder={"Username"}
-											className="signinup"
-										/>
 
-										<button
-											className="buttonLogin"
-											onSubmit={this.onSubmit}
-										>
-											{"Update"}
-										</button>
+											<div className="modal-nickname-container">
+												<div className="modal-label">
+													Nickname
+												</div>
+
+												<input
+													type="text"
+													className="modal-input"
+												/>
+												<div className="modal-hint">
+													This could be your first
+													name, or a nickname —
+													however you’d like people to
+													refer to you in Slack.
+												</div>
+											</div>
+
+											<div className="modal-first-name-container">
+												<div className="modal-label">
+													What I do?
+												</div>
+												<input
+													type="text"
+													className="modal-input"
+												/>
+												<div className="modal-hint">
+													Let people know what you do
+													at App Academy.
+												</div>
+											</div>
+										</div>
+										<div className="modal-content-column-secondary">
+											<div className="modal-label">
+												Profile photo
+											</div>
+											<img
+												src="https://ca.slack-edge.com/T03GU501J-URF2PD015-g864c9c14e8e-192"
+												className="modal-image"
+											/>
+											<button className="modal-upload-button">
+												Upload an Image
+											</button>
+										</div>
 									</div>
 								</div>
-							</form>
+							</div>
+							<div className="modal-footer">
+								<button className="modal-upload-button">
+									Cancel
+								</button>
+								<button className="modal-save-button">
+									Save Changes
+								</button>
+							</div>
 						</div>
-					</div>
-				</>
+					</ReactModal>
+				</div>
 			);
 		}
 	}
