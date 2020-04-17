@@ -135,9 +135,20 @@ img.modal-image {
 }
 
 .modal-content-inner {
-	flex: 1;
-	overflow: auto;
+	/* flex: 1; */
+	/* overflow: auto;
 	background: white;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 66%; */
+
+	/*flex: 1; */
+    overflow: auto;
+    background: white;
+    flex-grow: .1;
+    /* flex-shrink: 0; */
+    flex-basis: inherit;
+
 }
 .modal-footer {
 	background-color: white;
@@ -151,5 +162,6 @@ img.modal-image {
     overflow: hidden;
     padding: 24px 28px;
 	/* width: 100%; */
+	margin-top: 0px !important; 
 	border-top: 1px solid lightgrey;
 }
