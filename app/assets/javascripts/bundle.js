@@ -1598,7 +1598,7 @@ function mSTP(state, ownProps) {
       username: "",
       photoFile: null,
       photoUrl: null,
-      showModal: false
+      showModal: true
     };
     _this.handleCloseModal = _this.handleCloseModal.bind(_assertThisInitialized(_this));
     _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this));
@@ -1699,9 +1699,59 @@ function mSTP(state, ownProps) {
         onRequestClose: this.handleCloseModal,
         className: "Modal",
         overlayClassName: "Overlay"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Modal text!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleCloseModal
-      }, "Close Modal")));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Edit your profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "X")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content-inner"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content-inner-columns-outter"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content-inner-columns"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content-column-primary"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-first-name-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-label"
+      }, "Full name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "modal-input"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-nickname-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-label"
+      }, "Nickname"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "modal-input"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-hint"
+      }, "This could be your first name, or a nickname \u2014 however you\u2019d like people to refer to you in Slack.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-first-name-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-label"
+      }, "What I do?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "modal-input"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-hint"
+      }, "Let people know what you do at App Academy."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content-column-secondary"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-label"
+      }, "Profile photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://ca.slack-edge.com/T03GU501J-URF2PD015-g864c9c14e8e-192",
+        className: "modal-image"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "modal-upload-button"
+      }, "Upload an Image"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "modal-upload-button"
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "modal-save-button"
+      }, "Save Changes")))));
     }
   }]);
 
