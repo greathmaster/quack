@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ReactModal from "react-modal";
+import {closeModal} from "../actions/ui_actions"
 
 function mSTP(state, ownProps) {
 	return {
@@ -8,7 +8,13 @@ function mSTP(state, ownProps) {
 	};
 }
 
-export default connect(mSTP)(
+function mDTP(dispatch) {
+	return {
+		closeModal: () => dispatch(closeModal()),
+	}
+}
+
+export default connect(mSTP, mDTP)(
 	class Profile extends Component {
 		constructor(props) {
 			super(props);
@@ -21,8 +27,6 @@ export default connect(mSTP)(
 				photoUrl: null,
 				showModal: true,
 			};
-			this.handleCloseModal = this.handleCloseModal.bind(this);
-			this.handleOpenModal = this.handleOpenModal.bind(this);
 		}
 
 		handleOpenModal() {
@@ -90,91 +94,80 @@ export default connect(mSTP)(
 				<>Loading</>
 			) : (
 				<div>
-					<button onClick={this.handleOpenModal}>
-						Trigger Modal
-					</button>
-					<ReactModal
-						isOpen={this.state.showModal}
-						contentLabel="onRequestClose Example"
-						onRequestClose={this.handleCloseModal}
-						className="Modal"
-						overlayClassName="Overlay"
-					>
-						<div className="modal-content">
-							<div className="modal-header">
-								<div>Edit your profile</div>
-								<div>X</div>
-							</div>
-							<div className="modal-content-inner">
-								<div className="modal-content-inner-columns-outter">
-									<div className="modal-content-inner-columns">
-										<div className="modal-content-column-primary">
-											<div className="modal-first-name-container">
-												<div className="modal-label">
-													Full name
-												</div>
-												<input
-													type="text"
-													className="modal-input"
-												/>
-											</div>
-
-											<div className="modal-nickname-container">
-												<div className="modal-label">
-													Nickname
-												</div>
-
-												<input
-													type="text"
-													className="modal-input"
-												/>
-												<div className="modal-hint">
-													This could be your first
-													name, or a nickname —
-													however you’d like people to
-													refer to you in Slack.
-												</div>
-											</div>
-
-											<div className="modal-first-name-container">
-												<div className="modal-label">
-													What I do?
-												</div>
-												<input
-													type="text"
-													className="modal-input"
-												/>
-												<div className="modal-hint">
-													Let people know what you do
-													at App Academy.
-												</div>
-											</div>
-										</div>
-										<div className="modal-content-column-secondary">
+					<div className="modal-content">
+						<div className="modal-header">
+							<div>Edit your profile</div>
+							<div onClick={this.props.closeModal}>X</div>
+						</div>
+						<div className="modal-content-inner">
+							<div className="modal-content-inner-columns-outter">
+								<div className="modal-content-inner-columns">
+									<div className="modal-content-column-primary">
+										<div className="modal-first-name-container">
 											<div className="modal-label">
-												Profile photo
+												Full name
 											</div>
-											<img
-												src="https://ca.slack-edge.com/T03GU501J-URF2PD015-g864c9c14e8e-192"
-												className="modal-image"
+											<input
+												type="text"
+												className="modal-input"
 											/>
-											<button className="modal-upload-button">
-												Upload an Image
-											</button>
 										</div>
+
+										<div className="modal-nickname-container">
+											<div className="modal-label">
+												Nickname
+											</div>
+
+											<input
+												type="text"
+												className="modal-input"
+											/>
+											<div className="modal-hint">
+												This could be your first name,
+												or a nickname — however you’d
+												like people to refer to you in
+												Slack.
+											</div>
+										</div>
+
+										<div className="modal-first-name-container">
+											<div className="modal-label">
+												What I do?
+											</div>
+											<input
+												type="text"
+												className="modal-input"
+											/>
+											<div className="modal-hint">
+												Let people know what you do at
+												App Academy.
+											</div>
+										</div>
+									</div>
+									<div className="modal-content-column-secondary">
+										<div className="modal-label">
+											Profile photo
+										</div>
+										<img
+											src="https://ca.slack-edge.com/T03GU501J-URF2PD015-g864c9c14e8e-192"
+											className="modal-image"
+										/>
+										<button className="modal-upload-button">
+											Upload an Image
+										</button>
 									</div>
 								</div>
 							</div>
-							<div className="modal-footer">
-								<button className="modal-upload-button">
-									Cancel
-								</button>
-								<button className="modal-save-button">
-									Save Changes
-								</button>
-							</div>
 						</div>
-					</ReactModal>
+						<div className="modal-footer">
+							<button className="modal-upload-button">
+								Cancel
+							</button>
+							<button className="modal-save-button">
+								Save Changes
+							</button>
+						</div>
+					</div>
 				</div>
 			);
 		}

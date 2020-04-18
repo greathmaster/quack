@@ -7,6 +7,7 @@ import InfoBar from "../components/InfoBar";
 import InfoBarHeader from "./InfoBarHeader";
 import InfoBarMembersList from "./InfoBarMembersList";
 import RichChatbar from "../components/RichChatbar";
+import Modal from "../components/Modal";
 
 import {
 	fetchAllChannelMessages,
@@ -21,6 +22,7 @@ function mapStateToProps(state, ownProps) {
 		channels: state.entities.channels,
 		messages: Object.values(state.entities.messages),
 		currentUser: state.entities.users[state.session.id],
+		modal: state.ui.modal,
 	};
 }
 
@@ -120,7 +122,6 @@ export default connect(
 												.avatar
 										: null
 								}
-
 								timestamp={formatTimestamp(message.created_at)}
 							/>
 						);
@@ -142,6 +143,7 @@ export default connect(
 
 			return (
 				<>
+					{!!this.props.modal ? (<Modal />) : null} 
 					<div className="bar"> </div>
 					<div className="channelContainer">
 						<div className="sidebar">
