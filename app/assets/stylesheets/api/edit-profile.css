@@ -1,5 +1,6 @@
 .EditProfileModal {
 	width: 700px;
+	outline: none;
 	/* height: auto; */
 }
 
@@ -13,7 +14,7 @@
 	right: 0;
 	bottom: 0;
 	background-color: rgba(141, 141, 141, 0.869);
-	z-index:100000;
+	z-index:100;
 }
 
 .modal-header {

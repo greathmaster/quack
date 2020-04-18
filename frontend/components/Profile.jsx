@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {closeModal} from "../actions/ui_actions"
+import { closeModal } from "../actions/ui_actions";
+import { InlineIcon } from "@iconify/react";
+import outlineClose from "@iconify/icons-ic/outline-close";
 
 function mSTP(state, ownProps) {
 	return {
@@ -11,10 +13,13 @@ function mSTP(state, ownProps) {
 function mDTP(dispatch) {
 	return {
 		closeModal: () => dispatch(closeModal()),
-	}
+	};
 }
 
-export default connect(mSTP, mDTP)(
+export default connect(
+	mSTP,
+	mDTP
+)(
 	class Profile extends Component {
 		constructor(props) {
 			super(props);
@@ -93,11 +98,13 @@ export default connect(mSTP, mDTP)(
 			return this.state.loading ? (
 				<>Loading</>
 			) : (
-				<div>
+				<>
 					<div className="modal-content">
 						<div className="modal-header">
 							<div>Edit your profile</div>
-							<div onClick={this.props.closeModal}>X</div>
+							<div className="info-bar-header-close-button" onClick={this.props.closeModal}>
+								<InlineIcon icon={outlineClose} />
+							</div>
 						</div>
 						<div className="modal-content-inner">
 							<div className="modal-content-inner-columns-outter">
@@ -160,7 +167,7 @@ export default connect(mSTP, mDTP)(
 							</div>
 						</div>
 						<div className="modal-footer">
-							<button className="modal-upload-button">
+							<button onClick={this.props.closeModal} className="modal-upload-button">
 								Cancel
 							</button>
 							<button className="modal-save-button">
@@ -168,7 +175,7 @@ export default connect(mSTP, mDTP)(
 							</button>
 						</div>
 					</div>
-				</div>
+				</>
 			);
 		}
 	}
