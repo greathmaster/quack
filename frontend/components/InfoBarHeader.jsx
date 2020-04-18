@@ -1,8 +1,16 @@
 import React from "react";
 import { Icon, InlineIcon } from "@iconify/react";
 import outlineClose from "@iconify/icons-ic/outline-close";
+import {connect} from "react-redux"
+import {closeInfoBar} from "../actions/ui_actions"
 
-export default function InfoBarHeader(props) {
+function mapDispatchToProps(dispatch) {
+	return {
+		closeInfoBar: () => dispatch(closeInfoBar())
+	}
+}
+
+function InfoBarHeader(props) {
 	return (
 		<div className="info-bar-header-container">
 			<div className="info-bar-header">
@@ -21,3 +29,5 @@ export default function InfoBarHeader(props) {
 		</div>
 	);
 }
+
+export default connect(null, mapDispatchToProps)(InfoBarHeader)

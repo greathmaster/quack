@@ -4,6 +4,6 @@ import {combineReducers} from "redux"
 
 const uiReducer = combineReducers({
 	modal: modalReducer,
-	// infobar: infobarReducer
+	infobar: infobarReducer
 })
 export default uiReducer;
