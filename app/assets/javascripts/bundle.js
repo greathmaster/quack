@@ -1635,7 +1635,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @iconify/icons-ic/outline-close */ "./node_modules/@iconify/icons-ic/outline-close.js");
 /* harmony import */ var _iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/assets/images/user.jpg */ "./app/assets/images/user.jpg");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1659,9 +1662,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 function mSTP(state, ownProps) {
   return {
-    userID: [state.session.id]
+    currentUser: state.entities.users[state.session.id]
   };
 }
 
@@ -1695,24 +1699,20 @@ function mDTP(dispatch) {
   _createClass(Profile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      $.ajax({
-        url: "api/users/".concat(this.props.userID),
-        method: "GET"
-      }).then(function (user) {
-        _this2.setState({
-          loading: false,
-          username: user.username
-        });
+      this.setState({
+        loading: false,
+        username: this.props.currentUser.username,
+        photoUrl: this.props.currentUser.avatar
       });
     }
   }, {
     key: "handleInput",
-    value: function handleInput(e) {
-      this.setState({
-        username: e.target.value
-      });
+    value: function handleInput(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.target.value));
+      };
     }
   }, {
     key: "handleFile",
@@ -1745,7 +1745,7 @@ function mDTP(dispatch) {
       }
 
       $.ajax({
-        url: "/api/users/".concat(this.props.userID),
+        url: "/api/users/".concat(this.props.currentUser.id),
         method: "PATCH",
         data: formData,
         contentType: false,
@@ -1760,9 +1760,10 @@ function mDTP(dispatch) {
   }, {
     key: "render",
     value: function render() {
-      var preview = this.state.photoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.state.photoUrl
-      }) : null;
+      var preview = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "modal-image",
+        src: this.state.photoUrl ? this.state.photoUrl : _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_5__["default"]
+      });
       return this.state.loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "Loading") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1784,9 +1785,11 @@ function mDTP(dispatch) {
         className: "modal-first-name-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-label"
-      }, "Full name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        className: "modal-input"
+        className: "modal-input",
+        value: this.state.username,
+        onChange: this.handleInput("username")
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-nickname-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1809,10 +1812,7 @@ function mDTP(dispatch) {
         className: "modal-content-column-secondary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-label"
-      }, "Profile photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://ca.slack-edge.com/T03GU501J-URF2PD015-g864c9c14e8e-192",
-        className: "modal-image"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Profile photo"), preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "modal-upload-button"
       }, "Upload an Image"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-footer"
