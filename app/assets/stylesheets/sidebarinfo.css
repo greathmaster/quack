@@ -50,6 +50,11 @@
 	position: absolute;
 	font-size: 25px;
 	left: 160px;
+	z-index: 12;
+}
+
+.sidebar-info-logout:hover {
+	cursor: pointer;
 }
 
 .sideBarInfoChannelName {

@@ -1,4 +1,23 @@
 .searchBar {
+	display:flex;
+	justify-content: space-between;
+}
+
+.searchBarRightContent {
+	border-bottom: 1px solid darkgrey;
+	display: flex;
+    flex-direction: column;
+	justify-content: center;
+	padding-right: 25px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.searchBarRightInfoIconContainer:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.searchBarChannelInfo {
 	min-height: 61px;
 	width: 100%;
 	border-bottom: 1px solid rgb(176, 176, 176);
