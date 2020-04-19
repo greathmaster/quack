@@ -7,6 +7,8 @@ import quillEmoji from "quill-emoji";
 import { InlineIcon } from "@iconify/react";
 import appleKeyboardCommand from "@iconify/icons-mdi/apple-keyboard-command";
 
+import { isWindows, isMacintosh } from "../util/misc_util.js";
+
 import "quill-emoji/dist/quill-emoji.css";
 import "react-quill/dist/quill.snow.css";
 
@@ -70,7 +72,7 @@ export default withRouter(
 						bindings: [
 							{
 								//if both the Enter and ⌘ command key are pressed insert a new line w/o submitting the form
-								key: 13,	//the enter key code
+								key: 13, //the enter key code
 								metaKey: true, //Mac ⌘ command key
 								handler: function (range, context) {
 									var range = that.quillRef.getSelection();
@@ -79,10 +81,20 @@ export default withRouter(
 								},
 							},
 							{
-								key: 13,	//the enter key code
+								//if both the Enter and Ctrl command key are pressed insert a new line w/o submitting the form
+								key: 13, //the enter key code
+								ctrlKey: true, //Windows Ctrl command key
+								handler: function (range, context) {
+									var range = that.quillRef.getSelection();
+									let position = range ? range.index : 0;
+									that.quillRef.insertText(position, "\n");
+								},
+							},
+							{
+								key: 13, //the enter key code
 								handler: function (range, context) {
 									if (!context.empty) {
-										that.submitMessage();	//just submit the message if the enter key is pressed
+										that.submitMessage(); //just submit the message if the enter key is pressed
 									}
 								},
 							},
@@ -149,6 +161,40 @@ export default withRouter(
 				if (quillRef != null) this.quillRef = quillRef;
 			}
 
+			renderNewLineInstructions() {
+				return (
+					<div className="rich-chat-info-footer-text">
+						<span className="rich-chat-info-footer-item-1">
+							{isMacintosh() ? (
+								<InlineIcon icon={appleKeyboardCommand} />
+							) : (
+								<span className="rich-chat-info-footer-text-bold">
+									{"Ctrl"}
+								</span>
+							)}
+							<span className="rich-chat-info-footer-left-space">
+								{" "}
+								+{" "}
+								<span className="rich-chat-info-footer-text-bold">
+									Return
+								</span>{" "}
+							</span>
+							<span className="rich-chat-info-footer-left-space">
+								{"to add a new line"}
+							</span>
+						</span>
+						<span className="rich-chat-info-footer-item-2">
+							<span className="rich-chat-info-footer-text-bold">
+								{"Return"}
+							</span>
+							<span className="rich-chat-info-footer-left-space">
+								{"to send"}
+							</span>
+						</span>
+					</div>
+				);
+			}
+
 			handleMessage(content, delta, source, editor) {
 				return this.setState({ message: editor.getHTML() });
 			}
@@ -197,31 +243,7 @@ export default withRouter(
 											placeholder={`Message #${this.props.channelInfo.name}`}
 										/>
 									) : null}
-									<div className="rich-chat-info-footer-text">
-										<span className="rich-chat-info-footer-item-1">
-											<InlineIcon
-												icon={appleKeyboardCommand}
-											/>
-											<span className="rich-chat-info-footer-left-space">
-												{" "}
-												+{" "}
-												<span className="rich-chat-info-footer-text-bold">
-													Return
-												</span>{" "}
-											</span>
-											<span className="rich-chat-info-footer-left-space">
-												{"to add a new line"}
-											</span>
-										</span>
-										<span className="rich-chat-info-footer-item-2">
-											<span className="rich-chat-info-footer-text-bold">
-												{"Return"}
-											</span>
-											<span className="rich-chat-info-footer-left-space">
-												{"to send"}
-											</span>
-										</span>
-									</div>
+									{this.renderNewLineInstructions()}
 								</div>
 							</div>
 						</form>

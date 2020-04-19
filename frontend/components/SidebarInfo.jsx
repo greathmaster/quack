@@ -1,7 +1,5 @@
 import React from "react";
 import Logout from "../components/Logout";
-import { Icon, InlineIcon } from "@iconify/react";
-import logoutIcon from "@iconify/icons-websymbol/logout";
 import { connect } from "react-redux";
 import { openModal } from "../actions/ui_actions";
 
@@ -15,7 +13,7 @@ function SidebarInfo(props) {
 						<span className="dot"></span>
 						<span
 							onClick={(e) => {
-								e.preventDefault()
+								e.preventDefault();
 								props.openModal({
 									type: "editProfile",
 								});
@@ -26,9 +24,8 @@ function SidebarInfo(props) {
 						</span>
 					</div>
 				</div>
-				<div className="sidebar-info-logout">
-					<Icon icon={logoutIcon} />
-				</div>
+
+				<Logout />
 			</div>
 		</>
 	);

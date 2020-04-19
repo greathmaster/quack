@@ -1441,10 +1441,14 @@ function mDTP(dispatch) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Logout; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @iconify/react */ "./node_modules/@iconify/react/dist/icon.js");
+/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @iconify/icons-websymbol/logout */ "./node_modules/@iconify/icons-websymbol/logout.js");
+/* harmony import */ var _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1455,9 +1459,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1466,40 +1470,42 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: function logout() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
+    }
+  };
+}
+
 var Logout = /*#__PURE__*/function (_Component) {
   _inherits(Logout, _Component);
 
   function Logout(props) {
-    var _this;
-
     _classCallCheck(this, Logout);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Logout).call(this, props));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Logout).call(this, props));
   }
 
   _createClass(Logout, [{
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
-    }
-  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "sideBarInfoLogoutButton"
-      }, "Logout"));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.props.logout,
+        className: "sidebar-info-logout"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["InlineIcon"], {
+        icon: _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3___default.a
+      }));
     }
   }]);
 
   return Logout;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(Logout));
 
 /***/ }),
 
@@ -1766,7 +1772,6 @@ function mDTP(dispatch) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state);
       var preview = this.state.photoUrl ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.photoUrl
       }) : null;
@@ -1859,10 +1864,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @iconify/icons-mdi/apple-keyboard-command */ "./node_modules/@iconify/icons-mdi/apple-keyboard-command.js");
 /* harmony import */ var _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! quill-emoji/dist/quill-emoji.css */ "./node_modules/quill-emoji/dist/quill-emoji.css");
-/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
-/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _util_misc_util_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/misc_util.js */ "./frontend/util/misc_util.js");
+/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! quill-emoji/dist/quill-emoji.css */ "./node_modules/quill-emoji/dist/quill-emoji.css");
+/* harmony import */ var quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(quill_emoji_dist_quill_emoji_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-quill/dist/quill.snow.css */ "./node_modules/react-quill/dist/quill.snow.css");
+/* harmony import */ var react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_10__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1880,6 +1886,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1958,6 +1965,17 @@ function mapDispatchToProps(dispatch) {
             that.quillRef.insertText(position, "\n");
           }
         }, {
+          //if both the Enter and Ctrl command key are pressed insert a new line w/o submitting the form
+          key: 13,
+          //the enter key code
+          ctrlKey: true,
+          //Windows Ctrl command key
+          handler: function handler(range, context) {
+            var range = that.quillRef.getSelection();
+            var position = range ? range.index : 0;
+            that.quillRef.insertText(position, "\n");
+          }
+        }, {
           key: 13,
           //the enter key code
           handler: function handler(range, context) {
@@ -2006,6 +2024,31 @@ function mapDispatchToProps(dispatch) {
       if (this.quillRef != null) return;
       var quillRef = this.reactQuillRef.getEditor();
       if (quillRef != null) this.quillRef = quillRef;
+    }
+  }, {
+    key: "renderNewLineInstructions",
+    value: function renderNewLineInstructions() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rich-chat-info-footer-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-item-1"
+      }, Object(_util_misc_util_js__WEBPACK_IMPORTED_MODULE_8__["isMacintosh"])() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_6__["InlineIcon"], {
+        icon: _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7___default.a
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-text-bold"
+      }, "Ctrl"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-left-space"
+      }, " ", "+", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-text-bold"
+      }, "Return"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-left-space"
+      }, "to add a new line")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-item-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-text-bold"
+      }, "Return"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "rich-chat-info-footer-left-space"
+      }, "to send")));
     }
   }, {
     key: "handleMessage",
@@ -2059,25 +2102,7 @@ function mapDispatchToProps(dispatch) {
         onChange: this.handleMessage,
         value: this.state.message || "",
         placeholder: "Message #".concat(this.props.channelInfo.name)
-      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "rich-chat-info-footer-text"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "rich-chat-info-footer-item-1"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_6__["InlineIcon"], {
-        icon: _iconify_icons_mdi_apple_keyboard_command__WEBPACK_IMPORTED_MODULE_7___default.a
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "rich-chat-info-footer-left-space"
-      }, " ", "+", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "rich-chat-info-footer-text-bold"
-      }, "Return"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "rich-chat-info-footer-left-space"
-      }, "to add a new line")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "rich-chat-info-footer-item-2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "rich-chat-info-footer-text-bold"
-      }, "Return"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "rich-chat-info-footer-left-space"
-      }, "to send")))))));
+      }) : null, this.renderNewLineInstructions()))));
     }
   }]);
 
@@ -2381,6 +2406,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_ui_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/ui_actions */ "./frontend/actions/ui_actions.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _iconify_icons_jam_info__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @iconify/icons-jam/info */ "./node_modules/@iconify/icons-jam/info.js");
+/* harmony import */ var _iconify_icons_jam_info__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_jam_info__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2406,9 +2433,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 function mapStateToProps(state, ownProps) {
   return {
-    channels: state.entities.channels
+    infobar: state.ui.infobar
   };
 }
 
@@ -2417,19 +2445,9 @@ function mapDispatchToProps(dispatch) {
     openInfoBar: function openInfoBar(infobar) {
       return dispatch(Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_4__["openInfoBar"])(infobar));
     },
-    closeInfoBar: function (_closeInfoBar) {
-      function closeInfoBar() {
-        return _closeInfoBar.apply(this, arguments);
-      }
-
-      closeInfoBar.toString = function () {
-        return _closeInfoBar.toString();
-      };
-
-      return closeInfoBar;
-    }(function () {
-      return dispatch(closeInfoBar());
-    })
+    closeInfoBar: function closeInfoBar() {
+      return dispatch(Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_4__["closeInfoBar"])());
+    }
   };
 }
 
@@ -2447,15 +2465,17 @@ var SearchBar = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this = this;
 
-      //	const channelId = this.props.match.params.id;
-      //	let channel = this.props.channels[channelId]
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "searchBar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "searchBarChannelInfo"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "channelName"
       }, this.props.channel && "#".concat(this.props.channel.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: function onClick() {
-          _this.props.openInfoBar({
+        onClick: !!this.props.infobar ? function () {
+          return _this.props.closeInfoBar();
+        } : function () {
+          return _this.props.openInfoBar({
             type: "membersList"
           });
         },
@@ -2465,14 +2485,27 @@ var SearchBar = /*#__PURE__*/function (_Component) {
         icon: _iconify_icons_fa_regular_user__WEBPACK_IMPORTED_MODULE_2___default.a
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "numMembers"
-      }, this.props.numMembers)));
+      }, this.props.numMembers))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "searchBarRightContent"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: !!this.props.infobar ? function () {
+          return _this.props.closeInfoBar();
+        } : function () {
+          return _this.props.openInfoBar({
+            type: "membersList"
+          });
+        },
+        className: "searchBarRightInfoIconContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_1__["InlineIcon"], {
+        icon: _iconify_icons_jam_info__WEBPACK_IMPORTED_MODULE_6___default.a
+      }))));
     }
   }]);
 
   return SearchBar;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, mapDispatchToProps)(SearchBar)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(SearchBar)));
 
 /***/ }),
 
@@ -2855,14 +2888,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Logout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Logout */ "./frontend/components/Logout.jsx");
-/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @iconify/react */ "./node_modules/@iconify/react/dist/icon.js");
-/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @iconify/icons-websymbol/logout */ "./node_modules/@iconify/icons-websymbol/logout.js");
-/* harmony import */ var _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_ui_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/ui_actions */ "./frontend/actions/ui_actions.js");
-
-
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_ui_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/ui_actions */ "./frontend/actions/ui_actions.js");
 
 
 
@@ -2887,22 +2914,18 @@ function SidebarInfo(props) {
       });
     },
     className: "sidebar-info-username"
-  }, "Hersha Venkatesh"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "sidebar-info-logout"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-    icon: _iconify_icons_websymbol_logout__WEBPACK_IMPORTED_MODULE_3___default.a
-  }))));
+  }, "Hersha Venkatesh"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Logout__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     openModal: function openModal(data) {
-      return dispatch(Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])(data));
+      return dispatch(Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(data));
     }
   };
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(SidebarInfo));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, mapDispatchToProps)(SidebarInfo));
 
 /***/ }),
 
@@ -3940,17 +3963,27 @@ var createNewMessage = function createNewMessage(message) {
 /*!************************************!*\
   !*** ./frontend/util/misc_util.js ***!
   \************************************/
-/*! exports provided: formatTimestamp */
+/*! exports provided: formatTimestamp, isMacintosh, isWindows */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatTimestamp", function() { return formatTimestamp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMacintosh", function() { return isMacintosh; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isWindows", function() { return isWindows; });
 function formatTimestamp(dateTimeString) {
   var d = new Date(dateTimeString);
   return d.toLocaleTimeString([], {
     timeStyle: "short"
   });
+} //Taken from https://stackoverflow.com/questions/10527983/best-way-to-detect-mac-os-x-or-windows-computers-with-javascript-or-jquery
+//From user: Benny Neugebauer
+
+function isMacintosh() {
+  return navigator.platform.indexOf('Mac') > -1;
+}
+function isWindows() {
+  return navigator.platform.indexOf('Win') > -1;
 }
 
 /***/ }),
@@ -4269,6 +4302,24 @@ var data = {
 	"body": "<path d=\"M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192s192-86 192-192z\" fill=\"none\" stroke=\"currentColor\" stroke-miterlimit=\"10\" stroke-width=\"32\"/><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"32\" d=\"M320 320L192 192\"/><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"32\" d=\"M192 320l128-128\"/>",
 	"width": 512,
 	"height": 512
+};
+exports.__esModule = true;
+exports.default = data;
+
+
+/***/ }),
+
+/***/ "./node_modules/@iconify/icons-jam/info.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@iconify/icons-jam/info.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var data = {
+	"body": "<path d=\"M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10zm0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16zm0-10a1 1 0 0 1 1 1v5a1 1 0 0 1-2 0v-5a1 1 0 0 1 1-1zm0-1a1 1 0 1 1 0-2a1 1 0 0 1 0 2z\" fill=\"currentColor\"/>",
+	"width": 24,
+	"height": 24
 };
 exports.__esModule = true;
 exports.default = data;
