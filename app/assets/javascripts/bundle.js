@@ -1419,6 +1419,9 @@ function mSTP(state, ownProps) {
 
 function mDTP(dispatch) {
   return {
+    login: function login(user, redirect) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user, redirect));
+    },
     processForm: function processForm(user, redirect) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user, redirect));
     },
@@ -2689,7 +2692,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
       var _this3 = this;
 
       e.preventDefault();
-      this.props.processForm({
+      this.props.login({
         username: "daisy",
         password: "123123"
       }, function (id) {
@@ -3037,6 +3040,9 @@ function mSTP(state, ownProps) {
 
 function mDTP(dispatch) {
   return {
+    login: function login(user, redirect) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user, redirect));
+    },
     processForm: function processForm(user, redirect) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user, redirect));
     },

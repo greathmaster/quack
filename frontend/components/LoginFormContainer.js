@@ -13,6 +13,7 @@ function mSTP(state, ownProps) {
 
 function mDTP(dispatch) {
 	return {
+		login: (user, redirect) => dispatch(login(user, redirect)),
 		processForm: (user, redirect) => dispatch(login(user, redirect)),
 		clearSessionErrors: () => dispatch(clearSessionErrors())
 	};

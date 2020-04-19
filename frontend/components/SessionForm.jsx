@@ -52,7 +52,7 @@ export default withRouter(
 
 		loginDemoUser(e) {
 			e.preventDefault();
-			this.props.processForm(
+			this.props.login(
 				{ username: "daisy", password: "123123" },
 				id => {
 					this.props.history.push(`/channel/${id}`);
