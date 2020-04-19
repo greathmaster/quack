@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { closeModal } from "../actions/ui_actions";
 import { InlineIcon } from "@iconify/react";
 import outlineClose from "@iconify/icons-ic/outline-close";
+import userImage from "../../app/assets/images/user.jpg";
 
 function mSTP(state, ownProps) {
 	return {
-		userID: [state.session.id],
+		currentUser: state.entities.users[state.session.id],
 	};
 }
 
@@ -30,29 +31,19 @@ export default connect(
 				username: "",
 				photoFile: null,
 				photoUrl: null,
-				showModal: true,
 			};
 		}
 
-		handleOpenModal() {
-			this.setState({ showModal: true });
-		}
-
-		handleCloseModal() {
-			this.setState({ showModal: false });
-		}
-
 		componentDidMount() {
-			$.ajax({
-				url: `api/users/${this.props.userID}`,
-				method: "GET",
-			}).then((user) => {
-				this.setState({ loading: false, username: user.username });
+			this.setState({
+				loading: false,
+				username: this.props.currentUser.username,
+				photoUrl: this.props.currentUser.avatar,
 			});
 		}
 
-		handleInput(e) {
-			this.setState({ username: e.target.value });
+		handleInput(field) {
+			return (e) => this.setState({ [field]: e.target.value });
 		}
 
 		handleFile(e) {
@@ -75,7 +66,7 @@ export default connect(
 			}
 
 			$.ajax({
-				url: `/api/users/${this.props.userID}`,
+				url: `/api/users/${this.props.currentUser.id}`,
 				method: "PATCH",
 				data: formData,
 				contentType: false,
@@ -90,9 +81,12 @@ export default connect(
 		}
 
 		render() {
-			const preview = this.state.photoUrl ? (
-				<img src={this.state.photoUrl} />
-			) : null;
+			const preview = (
+				<img
+					className="modal-image"
+					src={this.state.photoUrl ? this.state.photoUrl : userImage}
+				/>
+			);
 
 			return this.state.loading ? (
 				<>Loading</>
@@ -101,7 +95,10 @@ export default connect(
 					<div className="modal-content">
 						<div className="modal-header">
 							<div>Edit your profile</div>
-							<div className="info-bar-header-close-button" onClick={this.props.closeModal}>
+							<div
+								className="info-bar-header-close-button"
+								onClick={this.props.closeModal}
+							>
 								<InlineIcon icon={outlineClose} />
 							</div>
 						</div>
@@ -111,11 +108,13 @@ export default connect(
 									<div className="modal-content-column-primary">
 										<div className="modal-first-name-container">
 											<div className="modal-label">
-												Full name
+												Username
 											</div>
 											<input
 												type="text"
 												className="modal-input"
+												value={this.state.username}
+												onChange={this.handleInput("username")}
 											/>
 										</div>
 
@@ -132,7 +131,7 @@ export default connect(
 												This could be your first name,
 												or a nickname — however you’d
 												like people to refer to you in
-												Slack.
+												Quack.
 											</div>
 										</div>
 
@@ -154,10 +153,11 @@ export default connect(
 										<div className="modal-label">
 											Profile photo
 										</div>
-										<img
+										{/* <img
 											src="https://ca.slack-edge.com/T03GU501J-URF2PD015-g864c9c14e8e-192"
 											className="modal-image"
-										/>
+										/> */}
+										{preview}
 										<button className="modal-upload-button">
 											Upload an Image
 										</button>
@@ -166,7 +166,10 @@ export default connect(
 							</div>
 						</div>
 						<div className="modal-footer">
-							<button onClick={this.props.closeModal} className="modal-upload-button">
+							<button
+								onClick={this.props.closeModal}
+								className="modal-upload-button"
+							>
 								Cancel
 							</button>
 							<button className="modal-save-button">

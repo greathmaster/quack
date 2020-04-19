@@ -210,15 +210,18 @@ export default withRouter(
 				const audioEl = document.getElementsByClassName(
 					"audio-element"
 				)[0];
-				audioEl.play();
-
+				
 				let message = {
 					content: this.state.message,
 					sender_id: this.props.currentUser.id,
 					channel_id: this.props.channelId,
 				};
-				this.setState({ message: "" });
-				this.props.createNewMessage(message);
+				
+				if (this.state.message !== "" ) {
+					this.props.createNewMessage(message);
+					audioEl.play();
+					this.setState({ message: "" });
+				}
 			}
 
 			render() {
