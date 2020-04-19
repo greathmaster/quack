@@ -620,18 +620,7 @@ function mapDispatchToProps(dispatch) {
             timestamp: Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_12__["formatTimestamp"])(message.created_at)
           });
         });
-      } // let channelNameRightSidebar = "";
-      // if (Object.values(this.props.channels).length !== 0) {
-      // 	let currentChannel = this.props.channels[
-      // 		this.props.match.params.id
-      // 	];
-      // 	if (!currentChannel.private) {
-      // 		channelNameRightSidebar = `#${currentChannel.name}`;
-      // 	} else {
-      // 		channelNameRightSidebar = currentChannel.name;
-      // 	}
-      // }
-
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !!this.props.modal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Modal__WEBPACK_IMPORTED_MODULE_8__["default"], null) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bar"
@@ -1065,9 +1054,19 @@ var InfoBar = /*#__PURE__*/function (_Component) {
 
       switch (this.props.infobar.type) {
         case "membersList":
+          var channelNameRightSidebar = "";
+
+          if (!!this.props.channel) {
+            if (!this.props.channel["private"]) {
+              channelNameRightSidebar = "#".concat(this.props.channel.name);
+            } else {
+              channelNameRightSidebar = this.props.channel.name;
+            }
+          }
+
           header = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_InfoBarHeader__WEBPACK_IMPORTED_MODULE_3__["default"], {
             firstLine: "Members",
-            secondLine: this.props.channel ? this.props.channel.name : null
+            secondLine: channelNameRightSidebar
           });
           main = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_InfoBarMembersList__WEBPACK_IMPORTED_MODULE_4__["default"], null);
           break;
@@ -2454,7 +2453,7 @@ var SearchBar = /*#__PURE__*/function (_Component) {
         className: "searchBar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "channelName"
-      }, this.props.channel && "# ".concat(this.props.channel.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.channel && "#".concat(this.props.channel.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick() {
           _this.props.openInfoBar({
             type: "membersList"

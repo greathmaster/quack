@@ -114,19 +114,6 @@ export default connect(
 					});
 			}
 
-			// let channelNameRightSidebar = "";
-			// if (Object.values(this.props.channels).length !== 0) {
-			// 	let currentChannel = this.props.channels[
-			// 		this.props.match.params.id
-			// 	];
-
-			// 	if (!currentChannel.private) {
-			// 		channelNameRightSidebar = `#${currentChannel.name}`;
-			// 	} else {
-			// 		channelNameRightSidebar = currentChannel.name;
-			// 	}
-			// }
-
 			return (
 				<>
 					{!!this.props.modal ? (<Modal />) : null} 

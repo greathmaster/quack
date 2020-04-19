@@ -32,7 +32,7 @@ class SearchBar extends Component {
 		return (
 			<div className="searchBar">
 				<div className="channelName">
-					{this.props.channel && `# ${this.props.channel.name}`}
+					{this.props.channel && `#${this.props.channel.name}`}
 				</div>
 				<div
 					onClick={() =>{

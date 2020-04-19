@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { closeInfoBar } from "../actions/ui_actions";
 import { connect } from "react-redux";
-import InfoBarHeader from "../components/InfoBarHeader"
-import InfoBarMembersList from "../components/InfoBarMembersList"
-import {withRouter} from "react-router-dom"
+import InfoBarHeader from "../components/InfoBarHeader";
+import InfoBarMembersList from "../components/InfoBarMembersList";
+import { withRouter } from "react-router-dom";
 
 function mapStateToProps(state, ownProps) {
 	return {
@@ -33,12 +33,23 @@ class InfoBar extends Component {
 
 		switch (this.props.infobar.type) {
 			case "membersList":
-				header = 
+				let channelNameRightSidebar = "";
+				if (!!this.props.channel) {
+					
+					if (!this.props.channel.private) {
+						channelNameRightSidebar = `#${this.props.channel.name}`;
+					} else {
+						channelNameRightSidebar = this.props.channel.name;
+					}
+				}
+
+				header = (
 					<InfoBarHeader
 						firstLine={"Members"}
-						secondLine={this.props.channel ? this.props.channel.name: null}
-					/>;
-				
+						secondLine={channelNameRightSidebar}
+					/>
+				);
+
 				main = <InfoBarMembersList />;
 				break;
 			default:
@@ -53,4 +64,6 @@ class InfoBar extends Component {
 	}
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InfoBar));
+export default withRouter(
+	connect(mapStateToProps, mapDispatchToProps)(InfoBar)
+);
