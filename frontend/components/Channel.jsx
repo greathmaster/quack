@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar";
-// import Chatbar from "../components/Chatbar";
 import SingleMessage from "../components/SingleMessage";
 import InfoBar from "../components/InfoBar";
 import InfoBarHeader from "./InfoBarHeader";
 import InfoBarMembersList from "./InfoBarMembersList";
 import RichChatbar from "../components/RichChatbar";
+import Modal from "../components/Modal";
 
 import {
 	fetchAllChannelMessages,
 	fetchAllChannels,
 } from "../actions/channels_actions";
+import {openInfoBar} from "../actions/ui_actions"
 import SearchBar from "../components/SearchBar";
 import { formatTimestamp } from "../util/misc_util";
 
@@ -21,6 +22,8 @@ function mapStateToProps(state, ownProps) {
 		channels: state.entities.channels,
 		messages: Object.values(state.entities.messages),
 		currentUser: state.entities.users[state.session.id],
+		modal: state.ui.modal,
+		infobar: state.ui.infobar
 	};
 }
 
@@ -29,6 +32,7 @@ function mapDispatchToProps(dispatch) {
 		fetchAllChannelMessages: (channelId) =>
 			dispatch(fetchAllChannelMessages(channelId)),
 		fetchAllChannels: (userID) => dispatch(fetchAllChannels(userID)),
+		openInfoBar: (infobar) => dispatch(openInfoBar(infobar))
 	};
 }
 
@@ -40,13 +44,14 @@ export default connect(
 		constructor(props) {
 			super(props);
 			this.state = { showInfoBar: true, showEditProfile: false };
-			this.closeInfoBar = this.closeInfoBar.bind(this);
-			this.openInfoBar = this.openInfoBar.bind(this);
-			this.closeEditProfile = this.closeEditProfile.bind(this);
-			this.openEditProfile = this.openEditProfile.bind(this);
+			// this.closeInfoBar = this.closeInfoBar.bind(this);
+			// this.openInfoBar = this.openInfoBar.bind(this);
 		}
 
 		componentDidMount() {
+
+			this.props.openInfoBar({type: "membersList"})
+
 			if (this.props.currentUser) {
 				this.props.fetchAllChannelMessages(this.props.match.params.id);
 				this.props.fetchAllChannels(this.props.currentUser.id);
@@ -72,7 +77,6 @@ export default connect(
 					<SearchBar
 						channel={this.props.channels[channelId]}
 						numMembers={Object.values(this.props.users).length}
-						openInfoBar={this.openInfoBar}
 					/>
 				);
 			}
@@ -80,25 +84,9 @@ export default connect(
 			return null;
 		}
 
-		closeInfoBar() {
-			this.setState({ showInfoBar: false });
-		}
-
-		openInfoBar() {
-			this.setState({ showInfoBar: true });
-		}
-
-		closeEditProfile() {
-			this.setState({ showEditProfile: false });
-		}
-		openEditProfile() {
-			this.setState({ showEditProfile: true });
-		}
-
 		render() {
 			let messages = null;
 			if (this.props.messages) {
-				// debugger;
 
 				let chID = this.props.match.params.id;
 				messages = this.props.messages
@@ -120,28 +108,15 @@ export default connect(
 												.avatar
 										: null
 								}
-
 								timestamp={formatTimestamp(message.created_at)}
 							/>
 						);
 					});
 			}
 
-			let channelNameRightSidebar = "";
-			if (Object.values(this.props.channels).length !== 0) {
-				let currentChannel = this.props.channels[
-					this.props.match.params.id
-				];
-
-				if (!currentChannel.private) {
-					channelNameRightSidebar = `#${currentChannel.name}`;
-				} else {
-					channelNameRightSidebar = currentChannel.name;
-				}
-			}
-
 			return (
 				<>
+					{!!this.props.modal ? (<Modal />) : null} 
 					<div className="bar"> </div>
 					<div className="channelContainer">
 						<div className="sidebar">
@@ -157,17 +132,8 @@ export default connect(
 							</div>
 						</div>
 
-						{this.state.showInfoBar ? (
-							<InfoBar
-								header={
-									<InfoBarHeader
-										firstLine={"Members"}
-										secondLine={channelNameRightSidebar}
-										closeInfoBar={this.closeInfoBar}
-									/>
-								}
-								main={<InfoBarMembersList />}
-							/>
+						{!!this.props.infobar ? (
+							<InfoBar/>
 						) : null}
 					</div>
 				</>

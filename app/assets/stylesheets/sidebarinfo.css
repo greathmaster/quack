@@ -34,6 +34,11 @@
 	opacity: 0.8;
 }
 
+.sidebar-info-username:hover {
+	transform: scale(1.03);
+	cursor: pointer;
+}
+
 .outer-sidebar-info-container {
 	display: flex;
 	flex-direction: row;
