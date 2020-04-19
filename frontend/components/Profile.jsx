@@ -30,16 +30,7 @@ export default connect(
 				username: "",
 				photoFile: null,
 				photoUrl: null,
-				showModal: true,
 			};
-		}
-
-		handleOpenModal() {
-			this.setState({ showModal: true });
-		}
-
-		handleCloseModal() {
-			this.setState({ showModal: false });
 		}
 
 		componentDidMount() {
@@ -132,7 +123,7 @@ export default connect(
 												This could be your first name,
 												or a nickname — however you’d
 												like people to refer to you in
-												Slack.
+												Quack.
 											</div>
 										</div>
 

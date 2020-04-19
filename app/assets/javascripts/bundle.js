@@ -1684,27 +1684,12 @@ function mDTP(dispatch) {
       loading: true,
       username: "",
       photoFile: null,
-      photoUrl: null,
-      showModal: true
+      photoUrl: null
     };
     return _this;
   }
 
   _createClass(Profile, [{
-    key: "handleOpenModal",
-    value: function handleOpenModal() {
-      this.setState({
-        showModal: true
-      });
-    }
-  }, {
-    key: "handleCloseModal",
-    value: function handleCloseModal() {
-      this.setState({
-        showModal: false
-      });
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -1808,7 +1793,7 @@ function mDTP(dispatch) {
         className: "modal-input"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-hint"
-      }, "This could be your first name, or a nickname \u2014 however you\u2019d like people to refer to you in Slack.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "This could be your first name, or a nickname \u2014 however you\u2019d like people to refer to you in Quack.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-first-name-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-label"
@@ -2068,16 +2053,19 @@ function mapDispatchToProps(dispatch) {
     value: function submitMessage() {
       var now = new Date();
       var audioEl = document.getElementsByClassName("audio-element")[0];
-      audioEl.play();
       var message = {
         content: this.state.message,
         sender_id: this.props.currentUser.id,
         channel_id: this.props.channelId
       };
-      this.setState({
-        message: ""
-      });
-      this.props.createNewMessage(message);
+
+      if (this.state.message !== "") {
+        this.props.createNewMessage(message);
+        audioEl.play();
+        this.setState({
+          message: ""
+        });
+      }
     }
   }, {
     key: "render",
