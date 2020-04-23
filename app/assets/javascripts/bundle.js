@@ -1690,8 +1690,8 @@ function mDTP(dispatch) {
     _this.state = {
       loading: true,
       username: "",
-      photoFile: null,
-      photoUrl: null
+      photoFile: "",
+      photoUrl: ""
     };
     return _this;
   }
@@ -1760,6 +1760,8 @@ function mDTP(dispatch) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var preview = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "modal-image",
         src: this.state.photoUrl ? this.state.photoUrl : _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -1799,7 +1801,7 @@ function mDTP(dispatch) {
         className: "modal-input"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-hint"
-      }, "This could be your first name, or a nickname \u2014 however you\u2019d like people to refer to you in Quack.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "This could be your first name, or a nickname \u2014 however you\u2019d like people to refer to you in Quack!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-first-name-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-label"
@@ -1808,13 +1810,21 @@ function mDTP(dispatch) {
         className: "modal-input"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-hint"
-      }, "Let people know what you do at App Academy."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Let people know what you do at Quack! Academy."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-content-column-secondary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-label"
-      }, "Profile photo"), preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Profile photo"), preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        "for": "file-upload",
         className: "modal-upload-button"
-      }, "Upload an Image"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Upload Image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "file-upload",
+        key: this.state.photoUrl,
+        type: "file",
+        onChange: function onChange(event) {
+          return _this4.handleFile(event);
+        }
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.props.closeModal,

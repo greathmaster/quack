@@ -29,8 +29,8 @@ export default connect(
 			this.state = {
 				loading: true,
 				username: "",
-				photoFile: null,
-				photoUrl: null,
+				photoFile: "",
+				photoUrl: "",
 			};
 		}
 
@@ -114,7 +114,9 @@ export default connect(
 												type="text"
 												className="modal-input"
 												value={this.state.username}
-												onChange={this.handleInput("username")}
+												onChange={this.handleInput(
+													"username"
+												)}
 											/>
 										</div>
 
@@ -131,7 +133,7 @@ export default connect(
 												This could be your first name,
 												or a nickname — however you’d
 												like people to refer to you in
-												Quack.
+												Quack!
 											</div>
 										</div>
 
@@ -145,7 +147,7 @@ export default connect(
 											/>
 											<div className="modal-hint">
 												Let people know what you do at
-												App Academy.
+												Quack! Academy.
 											</div>
 										</div>
 									</div>
@@ -153,14 +155,24 @@ export default connect(
 										<div className="modal-label">
 											Profile photo
 										</div>
-										{/* <img
-											src="https://ca.slack-edge.com/T03GU501J-URF2PD015-g864c9c14e8e-192"
-											className="modal-image"
-										/> */}
+
 										{preview}
-										<button className="modal-upload-button">
-											Upload an Image
-										</button>
+
+										<label
+											for="file-upload"
+											className="modal-upload-button"
+										>
+											{"Upload Image"}
+										</label>
+
+										<input
+											id="file-upload"
+											key={this.state.photoUrl}
+											type="file"
+											onChange={(event) =>
+												this.handleFile(event)
+											}
+										/>
 									</div>
 								</div>
 							</div>
