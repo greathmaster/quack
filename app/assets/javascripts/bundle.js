@@ -1702,6 +1702,8 @@ function mDTP(dispatch) {
       this.setState({
         loading: false,
         username: this.props.currentUser.username,
+        nickname: this.props.currentUser.nickname,
+        profession: this.props.currentUser.profession,
         photoUrl: this.props.currentUser.avatar
       });
     }
@@ -1786,8 +1788,15 @@ function mDTP(dispatch) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-first-name-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          color: 'lightgrey'
+        },
         className: "modal-label"
       }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        style: {
+          color: 'lightgrey'
+        },
+        disabled: "true",
         type: "text",
         className: "modal-input",
         value: this.state.username,
@@ -1798,7 +1807,8 @@ function mDTP(dispatch) {
         className: "modal-label"
       }, "Nickname"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        className: "modal-input"
+        className: "modal-input",
+        value: this.state.nickname ? this.state.nickname : this.state.username
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-hint"
       }, "This could be your first name, or a nickname \u2014 however you\u2019d like people to refer to you in Quack!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1815,7 +1825,7 @@ function mDTP(dispatch) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-label"
       }, "Profile photo"), preview, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        "for": "file-upload",
+        htmlFor: "file-upload",
         className: "modal-upload-button"
       }, "Upload Image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "file-upload",

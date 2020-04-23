@@ -38,6 +38,8 @@ export default connect(
 			this.setState({
 				loading: false,
 				username: this.props.currentUser.username,
+				nickname: this.props.currentUser.nickname,
+				profession: this.props.currentUser.profession,
 				photoUrl: this.props.currentUser.avatar,
 			});
 		}
@@ -107,10 +109,12 @@ export default connect(
 								<div className="modal-content-inner-columns">
 									<div className="modal-content-column-primary">
 										<div className="modal-first-name-container">
-											<div className="modal-label">
+											<div style={{color: 'lightgrey'}} className="modal-label">
 												Username
 											</div>
 											<input
+												style={{color: 'lightgrey'}}
+												disabled="true"
 												type="text"
 												className="modal-input"
 												value={this.state.username}
@@ -128,6 +132,7 @@ export default connect(
 											<input
 												type="text"
 												className="modal-input"
+												value={this.state.nickname ? this.state.nickname : this.state.username}
 											/>
 											<div className="modal-hint">
 												This could be your first name,
@@ -159,7 +164,7 @@ export default connect(
 										{preview}
 
 										<label
-											for="file-upload"
+											htmlFor="file-upload"
 											className="modal-upload-button"
 										>
 											{"Upload Image"}
