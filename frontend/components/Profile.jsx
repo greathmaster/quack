@@ -155,7 +155,7 @@ export default connect(
 												)}
 											/>
 											<div className="modal-hint">
-												This could be your first name,
+												This could be your username,
 												or a nickname — however you’d
 												like people to refer to you in
 												Quack!

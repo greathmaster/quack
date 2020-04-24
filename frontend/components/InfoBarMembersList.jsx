@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import userImage from "../../app/assets/images/user.jpg";
 import { withRouter } from "react-router-dom";
+import { displayName } from "../util/misc_util";
+
 
 function mapStateToProps(state, ownProps) {
 	let users = [];
@@ -32,7 +34,7 @@ export default withRouter(
 						<div className="messageContainer">
 							<div className="senderNameInfo">
 								<span className="username">
-									{user.username}
+									{displayName(user)}
 								</span>
 							</div>
 						</div>

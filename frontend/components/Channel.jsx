@@ -3,16 +3,17 @@ import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar";
 import SingleMessage from "../components/SingleMessage";
 import InfoBar from "../components/InfoBar";
-import InfoBarHeader from "./InfoBarHeader";
-import InfoBarMembersList from "./InfoBarMembersList";
+// import InfoBarHeader from "./InfoBarHeader";
+// import InfoBarMembersList from "./InfoBarMembersList";
 import RichChatbar from "../components/RichChatbar";
 import Modal from "../components/Modal";
+import { displayName } from "../util/misc_util";
 
 import {
 	fetchAllChannelMessages,
 	fetchAllChannels,
 } from "../actions/channels_actions";
-import {openInfoBar} from "../actions/ui_actions"
+import { openInfoBar } from "../actions/ui_actions";
 import SearchBar from "../components/SearchBar";
 import { formatTimestamp } from "../util/misc_util";
 
@@ -23,7 +24,7 @@ function mapStateToProps(state, ownProps) {
 		messages: Object.values(state.entities.messages),
 		currentUser: state.entities.users[state.session.id],
 		modal: state.ui.modal,
-		infobar: state.ui.infobar
+		infobar: state.ui.infobar,
 	};
 }
 
@@ -32,7 +33,7 @@ function mapDispatchToProps(dispatch) {
 		fetchAllChannelMessages: (channelId) =>
 			dispatch(fetchAllChannelMessages(channelId)),
 		fetchAllChannels: (userID) => dispatch(fetchAllChannels(userID)),
-		openInfoBar: (infobar) => dispatch(openInfoBar(infobar))
+		openInfoBar: (infobar) => dispatch(openInfoBar(infobar)),
 	};
 }
 
@@ -49,8 +50,7 @@ export default connect(
 		}
 
 		componentDidMount() {
-
-			this.props.openInfoBar({type: "membersList"})
+			this.props.openInfoBar({ type: "membersList" });
 
 			if (this.props.currentUser) {
 				this.props.fetchAllChannelMessages(this.props.match.params.id);
@@ -87,7 +87,6 @@ export default connect(
 		render() {
 			let messages = null;
 			if (this.props.messages) {
-
 				let chID = this.props.match.params.id;
 				messages = this.props.messages
 					.filter((message) => message.channel_id == chID) //don't change to === different types
@@ -96,10 +95,13 @@ export default connect(
 							<SingleMessage
 								key={message.id}
 								message={message.content}
-								username={
+								displayName={
 									this.props.users[message.sender_id]
-										? this.props.users[message.sender_id]
-												.username
+										? displayName(
+												this.props.users[
+													message.sender_id
+												]
+										  )
 										: null
 								}
 								avatar={
@@ -116,7 +118,7 @@ export default connect(
 
 			return (
 				<>
-					{!!this.props.modal ? (<Modal />) : null} 
+					{!!this.props.modal ? <Modal /> : null}
 					<div className="bar"> </div>
 					<div className="channelContainer">
 						<div className="sidebar">
@@ -132,9 +134,7 @@ export default connect(
 							</div>
 						</div>
 
-						{!!this.props.infobar ? (
-							<InfoBar/>
-						) : null}
+						{!!this.props.infobar ? <InfoBar /> : null}
 					</div>
 				</>
 			);

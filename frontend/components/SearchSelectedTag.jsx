@@ -13,7 +13,7 @@ export default function SearchSelectedTag(props) {
 				</div>
 				<div className="messageContainer">
 					<div className="senderNameInfo">
-						<span className="username">{props.username}</span>
+						<span className="username">{props.displayName}</span>
 						<span className="searchSelectedTagRemoveX" onClick={props.handleRemoveSearchTag}><Icon icon={closeCircleOutline} /></span>
 					</div>
 				</div>

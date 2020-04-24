@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllChannelMessages } from "../actions/channels_actions";
-import ls from "local-storage";
 import { withRouter } from "react-router-dom";
 
 function mDTP(dispatch) {

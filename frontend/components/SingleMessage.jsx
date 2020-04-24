@@ -12,7 +12,7 @@ export default function SingleMessage(props) {
 			</div>
 			<div className="messageContainer">
 				<div className="senderNameInfo">
-					<span className="username">{props.username}</span>
+					<span className="username">{props.displayName}</span>
 					<span className="timestamp">{props.timestamp}</span>
 				</div>
 				<div dangerouslySetInnerHTML={{__html:props.message}} className="messageContent" />
