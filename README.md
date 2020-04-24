@@ -5,7 +5,7 @@ Quack! is a single page clone of Slack built with Ruby on Rails, PostgreSQL, Act
 <kbd><img src="images/Screenshot 2020-04-24 10.05.15.png" width=400></kbd><kbd><img src="images/Screenshot 2020-04-24 10.02.34.png" width=400></kbd>
 </p>
 
-## Overview
+## Overview of Live Chat
 Quack! makes use of websockets through Rails Action Cable module. Standard HTTP connections only allow for a one way communication at any one time (known as half-duplex). A helpful anaology is using a radio or walkie-talkie, where only one person can talk at a time. The standard HTTP request can be upgraded to a web socket connection which is a full duplex connection. A full duplex connection enables full 2 way communction, analagous to a cell phone, where both parties can communicate at the same time.
 
 The web sockets make use of a publisher-subscriber model, where users are subscribed to a channel. A user sends a message to the channel at large, and anyone subscribed to that channel will recieve it.
