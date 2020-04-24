@@ -21,10 +21,11 @@ class Api::UsersController < ApplicationController
 
 	def update
 
-		user = User.find(params[:id])
-		if user.update(user_params)
+		@user = User.find(params[:id])
+		if @user.update(user_params)
+			render "api/users/update"
 		else
-			render json: user.errors.full_messages, status: 422
+			render json: @user.errors.full_messages, status: 422
 		end
 	end
   

@@ -217,17 +217,19 @@ var createNewMessage = function createNewMessage(message) {
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, RECEIVE_ALL_USERS, CLEAR_SESSION_ERRORS, receiveCurrentUser, receiveOtherUsers, clearSessionErrors, logoutCurrentUser, receiveErrors, login, logout, signup */
+/*! exports provided: RECEIVE_CURRENT_USER, UPDATE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, RECEIVE_ALL_USERS, CLEAR_SESSION_ERRORS, receiveCurrentUser, updateCurrentUser, receiveOtherUsers, clearSessionErrors, logoutCurrentUser, receiveErrors, login, logout, signup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_CURRENT_USER", function() { return UPDATE_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_CURRENT_USER", function() { return LOGOUT_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_USERS", function() { return RECEIVE_ALL_USERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_SESSION_ERRORS", function() { return CLEAR_SESSION_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentUser", function() { return receiveCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCurrentUser", function() { return updateCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveOtherUsers", function() { return receiveOtherUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearSessionErrors", function() { return clearSessionErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutCurrentUser", function() { return logoutCurrentUser; });
@@ -238,6 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_api_util */ "./frontend/util/session_api_util.js");
 
 var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+var UPDATE_CURRENT_USER = "UPDATE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 var RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
@@ -245,6 +248,12 @@ var CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 var receiveCurrentUser = function receiveCurrentUser(currentUser) {
   return {
     type: RECEIVE_CURRENT_USER,
+    currentUser: currentUser
+  };
+};
+var updateCurrentUser = function updateCurrentUser(currentUser) {
+  return {
+    type: UPDATE_CURRENT_USER,
     currentUser: currentUser
   };
 };
@@ -1636,6 +1645,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @iconify/icons-ic/outline-close */ "./node_modules/@iconify/icons-ic/outline-close.js");
 /* harmony import */ var _iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/assets/images/user.jpg */ "./app/assets/images/user.jpg");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1663,6 +1673,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 function mSTP(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id]
@@ -1671,6 +1682,9 @@ function mSTP(state, ownProps) {
 
 function mDTP(dispatch) {
   return {
+    updateCurrentUser: function updateCurrentUser(userInfo) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_6__["updateCurrentUser"])(userInfo));
+    },
     closeModal: function closeModal() {
       return dispatch(Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
     }
@@ -1690,9 +1704,12 @@ function mDTP(dispatch) {
     _this.state = {
       loading: true,
       username: "",
+      nickname: "",
+      profession: "",
       photoFile: "",
       photoUrl: ""
     };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1702,7 +1719,7 @@ function mDTP(dispatch) {
       this.setState({
         loading: false,
         username: this.props.currentUser.username,
-        nickname: this.props.currentUser.nickname,
+        nickname: this.props.currentUser.nickname ? this.props.currentUser.nickname : this.props.currentUser.username,
         profession: this.props.currentUser.profession,
         photoUrl: this.props.currentUser.avatar
       });
@@ -1738,9 +1755,13 @@ function mDTP(dispatch) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this4 = this;
+
       e.preventDefault();
       var formData = new FormData();
       formData.append("user[username]", this.state.username);
+      formData.append("user[nickname]", this.state.nickname);
+      formData.append("user[profession]", this.state.profession);
 
       if (this.state.photoFile) {
         formData.append("user[avatar]", this.state.photoFile);
@@ -1753,22 +1774,26 @@ function mDTP(dispatch) {
         contentType: false,
         processData: false
       }).then(function (response) {
-        return console.log(response.message);
+        // debugger
+        _this4.props.closeModal();
+
+        _this4.props.updateCurrentUser(response);
       }, function (response) {
         console.log("error?");
-        console.log(response.responseJSON);
+        console.log(response);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var preview = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "modal-image",
         src: this.state.photoUrl ? this.state.photoUrl : _app_assets_images_user_jpg__WEBPACK_IMPORTED_MODULE_5__["default"]
       });
-      return this.state.loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "Loading") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return this.state.loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "Loading") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
         className: "modal-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-header"
@@ -1789,18 +1814,20 @@ function mDTP(dispatch) {
         className: "modal-first-name-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
-          color: 'lightgrey'
+          color: "lightgrey"
         },
         className: "modal-label"
       }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         style: {
-          color: 'lightgrey'
+          color: "lightgrey"
         },
-        disabled: "true",
+        disabled: true,
         type: "text",
         className: "modal-input",
-        value: this.state.username,
-        onChange: this.handleInput("username")
+        value: this.state.username // onChange={this.handleInput(
+        // 	"username"
+        // )}
+
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-nickname-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1808,7 +1835,8 @@ function mDTP(dispatch) {
       }, "Nickname"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "modal-input",
-        value: this.state.nickname ? this.state.nickname : this.state.username
+        value: this.state.nickname,
+        onChange: this.handleInput("nickname")
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-hint"
       }, "This could be your first name, or a nickname \u2014 however you\u2019d like people to refer to you in Quack!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1817,7 +1845,9 @@ function mDTP(dispatch) {
         className: "modal-label"
       }, "What I do?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        className: "modal-input"
+        className: "modal-input",
+        value: this.state.profession,
+        onChange: this.handleInput("profession")
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-hint"
       }, "Let people know what you do at Quack! Academy."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1832,7 +1862,7 @@ function mDTP(dispatch) {
         key: this.state.photoUrl,
         type: "file",
         onChange: function onChange(event) {
-          return _this4.handleFile(event);
+          return _this5.handleFile(event);
         }
       }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-footer"
@@ -3871,9 +3901,12 @@ var usersReducer = function usersReducer() {
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_USERS"]:
-      //TODO: Fix this bug! timestamps don't show up
       //Also check for N+1 queries
       return action.otherUsers;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["UPDATE_CURRENT_USER"]:
+      newState = _defineProperty({}, action.currentUser.id, action.currentUser);
+      return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return {};

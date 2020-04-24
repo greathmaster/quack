@@ -1,6 +1,7 @@
 import * as SessionAPIUtil from "../util/session_api_util";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+export const UPDATE_CURRENT_USER = "UPDATE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
@@ -12,6 +13,13 @@ export const receiveCurrentUser = currentUser => {
 		currentUser,
 	};
 };
+
+export const updateCurrentUser = currentUser => {
+	return {
+		type: UPDATE_CURRENT_USER,
+		currentUser
+	}
+}
 
 export const receiveOtherUsers = otherUsers => {
 	return {

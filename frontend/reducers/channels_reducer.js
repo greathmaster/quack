@@ -13,7 +13,7 @@ export default function channelsReducer(prevState = {}, action) {
 		case RECEIVE_CURRENT_USER:
 			if (!action.currentUser.channels) {
 				return prevState;
-			}
+			} 
 			return action.currentUser.channels;
 
 		default:
