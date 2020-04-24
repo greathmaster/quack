@@ -3,7 +3,7 @@ import SidebarInfo from "../components/SidebarInfo";
 import SidebarList from "../components/SidebarList";
 import { connect } from "react-redux";
 import { fetchAllChannels } from "../actions/channels_actions";
-import CreateNewChannel from "../components/CreateNewChannel"
+import CreateNewChannel from "../components/CreateNewChannel";
 
 function mSTP(state, ownProps) {
 	return {
@@ -14,7 +14,7 @@ function mSTP(state, ownProps) {
 
 function mDTP(dispatch) {
 	return {
-		fetchAllChannels: currentUser =>
+		fetchAllChannels: (currentUser) =>
 			dispatch(fetchAllChannels(currentUser)),
 	};
 }
@@ -33,15 +33,17 @@ export default connect(
 		}
 
 		renderSidebarInfo() {
-			return <SidebarInfo
-						channelName={"Quack!"}
-						username={this.props.currentUser ? this.props.currentUser.username: ""}
-			/>
+			return (
+				<SidebarInfo
+					channelName={"Quack!"}
+					currentUser={this.props.currentUser}
+				/>
+			);
 		}
 
 		render() {
 			if (Object.keys(this.props.channels).length === 0) {
-				return this.renderSidebarInfo()
+				return this.renderSidebarInfo();
 			}
 			return (
 				<>
@@ -49,22 +51,25 @@ export default connect(
 
 					<SidebarList
 						name={"Channels"}
-						items={Object.values(this.props.channels).filter(channel => {
-							return channel.private === false
-						})}
+						items={Object.values(this.props.channels).filter(
+							(channel) => {
+								return channel.private === false;
+							}
+						)}
 					/>
 					<CreateNewChannel type="public" />
 					<br />
 					<br />
-					<CreateNewChannel type="private" />	
+					<CreateNewChannel type="private" />
 					<SidebarList
 						name={""}
-						items={Object.values(this.props.channels).filter(channel => {
-							// debugger
-							return channel.private === true
-						})}
+						items={Object.values(this.props.channels).filter(
+							(channel) => {
+								// debugger
+								return channel.private === true;
+							}
+						)}
 					/>
-
 				</>
 			);
 		}

@@ -2,13 +2,14 @@ import React from "react";
 import Logout from "../components/Logout";
 import { connect } from "react-redux";
 import { openModal } from "../actions/ui_actions";
+import {displayName} from "../util/misc_util";
 
 function SidebarInfo(props) {
 	return (
 		<>
 			<div className="outer-sidebar-info-container">
 				<div className="sideBarInfoContainer">
-					<div className="sideBarInfoChannelName">App Academy</div>
+					<div className="sideBarInfoChannelName">Quack! Academy</div>
 					<div className="sidebar-info-username-row">
 						<span className="dot"></span>
 						<span
@@ -20,7 +21,7 @@ function SidebarInfo(props) {
 							}}
 							className="sidebar-info-username"
 						>
-							Hersha Venkatesh
+							{props.currentUser && displayName(props.currentUser)}
 						</span>
 					</div>
 				</div>
@@ -30,6 +31,7 @@ function SidebarInfo(props) {
 		</>
 	);
 }
+
 
 function mapDispatchToProps(dispatch) {
 	return {

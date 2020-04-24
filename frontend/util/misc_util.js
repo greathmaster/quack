@@ -12,3 +12,10 @@ export function isMacintosh() {
 export function isWindows() {
 	return navigator.platform.indexOf('Win') > -1
   }
+
+  export function displayName(user) {
+	  if(user.nickname) {
+		  return user.nickname
+	  }
+	  return user.username;
+  }

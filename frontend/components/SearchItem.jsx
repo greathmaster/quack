@@ -10,7 +10,7 @@ export default function SearchItem(props) {
 				</div>
 				<div className="messageContainer">
 					<div className="senderNameInfo">
-						<span className="username">{props.username}</span>
+						<span className="username">{props.displayName}</span>
 					</div>
 					<div>{props.message}</div>
 				</div>

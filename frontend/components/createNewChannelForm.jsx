@@ -9,6 +9,7 @@ import closeCircleOutline from "@iconify/icons-ion/close-circle-outline";
 import { fetchAllChannelMessages } from "../actions/channels_actions";
 import { Redirect } from "react-router-dom";
 import userImage from "../../app/assets/images/user.jpg";
+import { displayName } from "../util/misc_util";
 
 function mSTP(state, ownProps) {
 	return {
@@ -123,7 +124,7 @@ export default connect(
 								: userImage
 						}
 						className="searchSelectedTag"
-						username={this.state.results[userId].username}
+						displayName={displayName(this.state.results[userId])}
 						handleRemoveSearchTag={() =>
 							this.handleRemoveSearchTag(userId)
 						}
@@ -139,7 +140,7 @@ export default connect(
 					<SearchItem
 						handleClick={() => this.handleClick(user.id)}
 						key={user.id}
-						username={user.username}
+						displayName={displayName(user)}
 						avatar={user.avatar ? user.avatar : userImage}
 					/>
 				);
