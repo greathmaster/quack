@@ -20,7 +20,7 @@ const usersReducer = function (prevState = {}, action) {
 			return action.otherUsers;
 
 		case UPDATE_CURRENT_USER:
-			newState = { [action.currentUser.id]: action.currentUser };
+			newState[action.currentUser.id] = action.currentUser
 			return newState;
 
 		case LOGOUT_CURRENT_USER:

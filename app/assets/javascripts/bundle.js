@@ -3909,7 +3909,7 @@ var usersReducer = function usersReducer() {
       return action.otherUsers;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["UPDATE_CURRENT_USER"]:
-      newState = _defineProperty({}, action.currentUser.id, action.currentUser);
+      newState[action.currentUser.id] = action.currentUser;
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
