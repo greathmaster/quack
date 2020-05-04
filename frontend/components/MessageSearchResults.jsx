@@ -12,7 +12,7 @@ import { displayName } from "../util/misc_util";
 function mapStateToProps(state, ownProps) {
 	return {
 		messages: Object.values(state.entities.messages),
-		users: state.entities.users
+		users: state.entities.users,
 	};
 }
 
@@ -23,34 +23,55 @@ function mapDispatchToProps(dispatch) {
 }
 
 class MessageSearchResults extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { messages: this.props.messages, searchStr: "" };
+		this.handleInput = this.handleInput.bind(this);
+	}
+
+	handleInput(e) {
+		this.setState({ searchStr: e.target.value });
+	}
+
+	matches() {
+		const matches = [];
+
+		this.state.messages.forEach((message) => {
+			const sub = message.content
+				.replace(/(<([^>]+)>)/gi, "") //Taken from: https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/
+				.slice(0, this.state.searchStr.length);
+			if (sub.toLowerCase() == this.state.searchStr.toLowerCase()) {
+				matches.push(message);
+			}
+		});
+
+		return matches;
+	}
+
 	render() {
 		let messages = null;
-		if (this.props.messages) {
-			let chID = this.props.match.params.id;
-			// Object.values(state.entities.messages),
-			messages = this.props.messages
-				.filter((message) => message.channel_id == chID) //don't change to === different types
-				.map((message) => {
-					return (
-						<SingleMessage
-							key={message.id}
-							message={message.content}
-							displayName={
-								this.props.users[message.sender_id]
-									? displayName(
-											this.props.users[message.sender_id]
-									  )
-									: null
-							}
-							avatar={
-								this.props.users[message.sender_id]
-									? this.props.users[message.sender_id].avatar
-									: null
-							}
-							timestamp={formatTimestamp(message.created_at)}
-						/>
-					);
-				});
+		if (this.state.messages) {
+			messages = this.matches().map((message) => {
+				return (
+					<SingleMessage
+						key={message.id}
+						message={message.content}
+						displayName={
+							this.props.users[message.sender_id]
+								? displayName(
+										this.props.users[message.sender_id]
+								  )
+								: null
+						}
+						avatar={
+							this.props.users[message.sender_id]
+								? this.props.users[message.sender_id].avatar
+								: null
+						}
+						timestamp={formatTimestamp(message.created_at)}
+					/>
+				);
+			});
 		}
 
 		return (
@@ -63,6 +84,8 @@ class MessageSearchResults extends Component {
 						className="message-search-results-input"
 						type="text"
 						placeholder="Search"
+						value={this.state.searchStr}
+						onChange={this.handleInput}
 					/>
 					<div
 						className="message-search-results-close"

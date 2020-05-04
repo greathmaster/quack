@@ -1644,9 +1644,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1681,31 +1681,57 @@ function mapDispatchToProps(dispatch) {
 var MessageSearchResults = /*#__PURE__*/function (_Component) {
   _inherits(MessageSearchResults, _Component);
 
-  function MessageSearchResults() {
+  function MessageSearchResults(props) {
+    var _this;
+
     _classCallCheck(this, MessageSearchResults);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MessageSearchResults).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MessageSearchResults).call(this, props));
+    _this.state = {
+      messages: _this.props.messages,
+      searchStr: ""
+    };
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(MessageSearchResults, [{
+    key: "handleInput",
+    value: function handleInput(e) {
+      this.setState({
+        searchStr: e.target.value
+      });
+    }
+  }, {
+    key: "matches",
+    value: function matches() {
+      var _this2 = this;
+
+      var matches = [];
+      this.state.messages.forEach(function (message) {
+        var sub = message.content.replace(/(<([^>]+)>)/gi, "") //Taken from: https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/
+        .slice(0, _this2.state.searchStr.length);
+
+        if (sub.toLowerCase() == _this2.state.searchStr.toLowerCase()) {
+          matches.push(message);
+        }
+      });
+      return matches;
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
       var messages = null;
 
-      if (this.props.messages) {
-        var chID = this.props.match.params.id; // Object.values(state.entities.messages),
-
-        messages = this.props.messages.filter(function (message) {
-          return message.channel_id == chID;
-        }) //don't change to === different types
-        .map(function (message) {
+      if (this.state.messages) {
+        messages = this.matches().map(function (message) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleMessage__WEBPACK_IMPORTED_MODULE_7__["default"], {
             key: message.id,
             message: message.content,
-            displayName: _this.props.users[message.sender_id] ? Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_8__["displayName"])(_this.props.users[message.sender_id]) : null,
-            avatar: _this.props.users[message.sender_id] ? _this.props.users[message.sender_id].avatar : null,
+            displayName: _this3.props.users[message.sender_id] ? Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_8__["displayName"])(_this3.props.users[message.sender_id]) : null,
+            avatar: _this3.props.users[message.sender_id] ? _this3.props.users[message.sender_id].avatar : null,
             timestamp: Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_8__["formatTimestamp"])(message.created_at)
           });
         });
@@ -1722,11 +1748,13 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "message-search-results-input",
         type: "text",
-        placeholder: "Search"
+        placeholder: "Search",
+        value: this.state.searchStr,
+        onChange: this.handleInput
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "message-search-results-close",
         onClick: function onClick() {
-          return _this.props.closeModal();
+          return _this3.props.closeModal();
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_1__["InlineIcon"], {
         icon: _iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_3___default.a
