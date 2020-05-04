@@ -10,6 +10,36 @@
 .bar {
 	height: 38px;
 	background-color: #350d36;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-button {
+	width: 40vw;
+	height: 22px;
+	border-radius: 5px;
+	background-color: rgb(67, 30, 68);
+	border: 1px solid rgb(104, 74, 104);
+	color: rgb(216, 214, 214);
+	opacity: 0.8;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	cursor: pointer;
+	font-size: 11px;
+	letter-spacing: 1px;
+	padding: 4px;
+}
+
+.search-button:hover {
+	border: 1px solid rgb(216, 214, 214);
+	color: white;
+	cursor: pointer;
+	background: rgb(73,37,74);
+}
+
+.search-icon {
+	font-size: 12px;
+	padding-right: 7px;
 }
 
 .channelContainer {
@@ -35,8 +65,8 @@
 	overflow-x: hidden;
 	display: flex;
 	flex-direction: column-reverse;
-	padding-bottom:15px;
-	
+	padding-bottom: 15px;
+
 	/* TODO: Fix the scrolling issue. Adding this CSS param hides the scroll bar */
 	justify-content: flex-start;
 }
@@ -95,14 +125,6 @@
 	font-family: Lato, sans-serif;
 	font-weight: 600;
 }
-
-/* .avatarContainer {
-	/* height: 36px; */
-/* width: 36px; */
-/* height: 36px; */
-/* display: inline-block; */
-/* background-color: brown; */
-/* } */
 
 .avatar {
 	width: 36px;

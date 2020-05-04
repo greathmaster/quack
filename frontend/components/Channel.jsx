@@ -8,6 +8,7 @@ import InfoBar from "../components/InfoBar";
 import RichChatbar from "../components/RichChatbar";
 import Modal from "../components/Modal";
 import { displayName } from "../util/misc_util";
+import MessageSearch from "../components/MessageSearch"
 
 import {
 	fetchAllChannelMessages,
@@ -45,8 +46,6 @@ export default connect(
 		constructor(props) {
 			super(props);
 			this.state = { showInfoBar: true, showEditProfile: false };
-			// this.closeInfoBar = this.closeInfoBar.bind(this);
-			// this.openInfoBar = this.openInfoBar.bind(this);
 		}
 
 		componentDidMount() {
@@ -119,7 +118,9 @@ export default connect(
 			return (
 				<>
 					{!!this.props.modal ? <Modal /> : null}
-					<div className="bar"> </div>
+					<div className="bar"> 
+					<MessageSearch />
+					</div>
 					<div className="channelContainer">
 						<div className="sidebar">
 							<Sidebar />
