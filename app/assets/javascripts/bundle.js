@@ -1621,9 +1621,19 @@ var MessageSearch = /*#__PURE__*/function (_Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MessageSearchResults; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @iconify/react */ "./node_modules/@iconify/react/dist/icon.js");
+/* harmony import */ var _iconify_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_iconify_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _iconify_icons_fe_search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @iconify/icons-fe/search */ "./node_modules/@iconify/icons-fe/search.js");
+/* harmony import */ var _iconify_icons_fe_search__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_fe_search__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @iconify/icons-ic/outline-close */ "./node_modules/@iconify/icons-ic/outline-close.js");
+/* harmony import */ var _iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _actions_ui_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/ui_actions */ "./frontend/actions/ui_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_SingleMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/SingleMessage */ "./frontend/components/SingleMessage.jsx");
+/* harmony import */ var _util_misc_util__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/misc_util */ "./frontend/util/misc_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1644,6 +1654,30 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
+
+
+
+
+
+
+function mapStateToProps(state, ownProps) {
+  return {
+    messages: Object.values(state.entities.messages),
+    users: state.entities.users
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    }
+  };
+}
+
 var MessageSearchResults = /*#__PURE__*/function (_Component) {
   _inherits(MessageSearchResults, _Component);
 
@@ -1656,16 +1690,56 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
   _createClass(MessageSearchResults, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
+      var messages = null;
+
+      if (this.props.messages) {
+        var chID = this.props.match.params.id; // Object.values(state.entities.messages),
+
+        messages = this.props.messages.filter(function (message) {
+          return message.channel_id == chID;
+        }) //don't change to === different types
+        .map(function (message) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleMessage__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            key: message.id,
+            message: message.content,
+            displayName: _this.props.users[message.sender_id] ? Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_8__["displayName"])(_this.props.users[message.sender_id]) : null,
+            avatar: _this.props.users[message.sender_id] ? _this.props.users[message.sender_id].avatar : null,
+            timestamp: Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_8__["formatTimestamp"])(message.created_at)
+          });
+        });
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "message-search-results"
-      }, "HELLO WORLD");
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message-search-input-section"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message-search-input-icon"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_1__["InlineIcon"], {
+        icon: _iconify_icons_fe_search__WEBPACK_IMPORTED_MODULE_2___default.a
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "message-search-results-input",
+        type: "text",
+        placeholder: "Search"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message-search-results-close",
+        onClick: function onClick() {
+          return _this.props.closeModal();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_1__["InlineIcon"], {
+        icon: _iconify_icons_ic_outline_close__WEBPACK_IMPORTED_MODULE_3___default.a
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "messages-search-results-messages"
+      }, messages));
     }
   }]);
 
   return MessageSearchResults;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps, mapDispatchToProps)(MessageSearchResults)));
 
 /***/ }),
 
