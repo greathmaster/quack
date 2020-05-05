@@ -1710,6 +1710,7 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
       var matches = [];
       this.state.messages.forEach(function (message) {
         var sub = message.content.replace(/(<([^>]+)>)/gi, "") //Taken from: https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/
+        .replace(/[\r\n]+/gm, "") //Taken from: https://www.geeksforgeeks.org/how-to-remove-all-line-breaks-from-a-string-using-javascript/
         .slice(0, _this2.state.searchStr.length);
 
         if (sub.toLowerCase() == _this2.state.searchStr.toLowerCase()) {

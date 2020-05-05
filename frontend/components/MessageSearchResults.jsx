@@ -39,6 +39,7 @@ class MessageSearchResults extends Component {
 		this.state.messages.forEach((message) => {
 			const sub = message.content
 				.replace(/(<([^>]+)>)/gi, "") //Taken from: https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/
+				.replace( /[\r\n]+/gm, "" )		//Taken from: https://www.geeksforgeeks.org/how-to-remove-all-line-breaks-from-a-string-using-javascript/
 				.slice(0, this.state.searchStr.length);
 			if (sub.toLowerCase() == this.state.searchStr.toLowerCase()) {
 				matches.push(message);
