@@ -3,7 +3,7 @@ import userImage from "../../app/assets/images/user.jpg";
 
 export default function SingleMessage(props) {
 	return (
-		<div className="singleMessage">
+		<div className="singleMessage" onClick={props.handleClick}>
 			<div className="avatarContainer">
 				<img
 					className="avatar"

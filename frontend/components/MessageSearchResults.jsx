@@ -27,6 +27,7 @@ class MessageSearchResults extends Component {
 		super(props);
 		this.state = { messages: this.props.messages, searchStr: "" };
 		this.handleInput = this.handleInput.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleInput(e) {
@@ -49,12 +50,18 @@ class MessageSearchResults extends Component {
 		return matches;
 	}
 
+	handleClick(e) {
+		this.props.closeModal();
+		//dispatch scroll to ref?
+	}
+
 	render() {
 		let messages = null;
 		if (this.state.messages) {
 			messages = this.matches().map((message) => {
 				return (
 					<SingleMessage
+						handleClick={this.handleClick}
 						key={message.id}
 						message={message.content}
 						displayName={

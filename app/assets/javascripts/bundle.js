@@ -1692,6 +1692,7 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
       searchStr: ""
     };
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1720,6 +1721,11 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
       return matches;
     }
   }, {
+    key: "handleClick",
+    value: function handleClick(e) {
+      this.props.closeModal(); //dispatch scroll to ref?
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -1729,6 +1735,7 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
       if (this.state.messages) {
         messages = this.matches().map(function (message) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleMessage__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            handleClick: _this3.handleClick,
             key: message.id,
             message: message.content,
             displayName: _this3.props.users[message.sender_id] ? Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_8__["displayName"])(_this3.props.users[message.sender_id]) : null,
@@ -3381,7 +3388,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function SingleMessage(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "singleMessage"
+    className: "singleMessage",
+    onClick: props.handleClick
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "avatarContainer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
