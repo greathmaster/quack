@@ -1548,6 +1548,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _iconify_icons_fe_search__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_iconify_icons_fe_search__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _actions_ui_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/ui_actions */ "./frontend/actions/ui_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1572,8 +1573,14 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+function mapStateToProps(state, ownProps) {
+  return {
+    channels: state.entities.channels
+  };
+}
+
 function mapDispatchToProps(dispatch) {
-  // Are you finding the excuse or are you finding the opportunity?
   return {
     openModal: function openModal(data) {
       return dispatch(Object(_actions_ui_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(data));
@@ -1595,6 +1602,9 @@ var MessageSearch = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this = this;
 
+      var currentChannel = this.props.channels[this.props.match.params.id];
+      if (!currentChannel) return null;
+      var searchText = "Search #".concat(currentChannel.name);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-button-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1611,14 +1621,14 @@ var MessageSearch = /*#__PURE__*/function (_Component) {
         className: "search-icon"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_iconify_react__WEBPACK_IMPORTED_MODULE_1__["InlineIcon"], {
         icon: _iconify_icons_fe_search__WEBPACK_IMPORTED_MODULE_2___default.a
-      })), "Search #global"));
+      })), searchText));
     }
   }]);
 
   return MessageSearch;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(MessageSearch));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(MessageSearch)));
 
 /***/ }),
 

@@ -3,10 +3,15 @@ import { InlineIcon } from "@iconify/react";
 import searchIcon from "@iconify/icons-fe/search";
 import { openModal } from "../actions/ui_actions";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+function mapStateToProps(state, ownProps) {
+	return {
+		channels: state.entities.channels,
+	};
+}
 
 function mapDispatchToProps(dispatch) {
-	// Are you finding the excuse or are you finding the opportunity?
-
 	return {
 		openModal: (data) => dispatch(openModal(data)),
 	};
@@ -17,6 +22,11 @@ class MessageSearch extends Component {
 	}
 
 	render() {
+		let currentChannel = this.props.channels[this.props.match.params.id];
+
+		if (!currentChannel) return null;
+
+		let searchText = `Search #${currentChannel.name}`;
 		return (
 			<div className="search-button-wrapper">
 				<button
@@ -25,18 +35,20 @@ class MessageSearch extends Component {
 						e.preventDefault();
 						this.props.openModal({
 							type: "messageSearchResults",
-							refs: this.props.refs
+							refs: this.props.refs,
 						});
 					}}
 				>
 					<span className="search-icon">
 						<InlineIcon icon={searchIcon} />
 					</span>
-					Search #global
+					{searchText}
 				</button>
 			</div>
 		);
 	}
 }
 
-export default connect(null, mapDispatchToProps)(MessageSearch);
+export default withRouter(
+	connect(mapStateToProps, mapDispatchToProps)(MessageSearch)
+);
