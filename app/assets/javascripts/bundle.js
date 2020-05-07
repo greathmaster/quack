@@ -1729,12 +1729,22 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
         }
       });
       return matches;
-    }
+    } //https://stackoverflow.com/questions/11039885/scrollintoview-causing-the-whole-page-to-move
+
   }, {
     key: "handleClick",
     value: function handleClick(id) {
       this.props.closeModal();
-      this.props.refs[id].current.scrollIntoView();
+      var messageDiv = this.props.refs[id].current;
+      messageDiv.classList.add('highlight');
+      setTimeout(function () {
+        messageDiv.classList.remove('highlight');
+      }, 2100); // messageDiv.scrollIntoView(false);
+
+      messageDiv.scrollIntoView({
+        block: 'end',
+        inline: 'center'
+      }); // messageDiv.scrollIntoView({block: 'start' })
     }
   }, {
     key: "render",

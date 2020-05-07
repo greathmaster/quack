@@ -65,7 +65,8 @@
 	overflow-x: hidden;
 	display: flex;
 	flex-direction: column-reverse;
-	padding-bottom: 15px;
+	/* padding-bottom: 15px; */
+	margin-bottom: 15px;
 
 	/* TODO: Fix the scrolling issue. Adding this CSS param hides the scroll bar */
 	justify-content: flex-start;

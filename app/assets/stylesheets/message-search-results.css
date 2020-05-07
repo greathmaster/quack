@@ -42,3 +42,46 @@
 	border-radius: 5px;
 	zoom: 0.8;
 }
+/*
+	Fading animation
+	Taken from: https://jsfiddle.net/falafelsoftware/vxvtaxg0/
+*/
+@-webkit-keyframes highlight-fade {
+    0% {
+        background: orange;
+    }
+    100% {
+        background: white;
+    }
+}
+@-moz-keyframes highlight-fade {
+    0% {
+        background: orange;
+    }
+    100% {
+        background: white;
+    }
+}
+@-ms-keyframes highlight-fade {
+    0% {
+        background: orange;
+    }
+    100% {
+        background: white;
+    }
+}
+@keyframes highlight-fade {
+    0% {
+        background: orange;
+    }
+    100% {
+        background: white;
+    }
+}
+.highlight {
+    -webkit-animation: highlight-fade 2s ease-out;
+    -moz-animation: highlight-fade 2s ease-out;
+    -o-animation: highlight-fade 2s ease-out;
+    animation: highlight-fade 2s ease-out;
+}
+

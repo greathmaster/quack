@@ -49,10 +49,19 @@ class MessageSearchResults extends Component {
 
 		return matches;
 	}
-
+//https://stackoverflow.com/questions/11039885/scrollintoview-causing-the-whole-page-to-move
 	handleClick(id) {
 		this.props.closeModal();
-		this.props.refs[id].current.scrollIntoView();
+		let messageDiv = this.props.refs[id].current
+		messageDiv.classList.add('highlight');
+		setTimeout(() => {
+			messageDiv.classList.remove('highlight');
+		},2100)
+		// messageDiv.scrollIntoView(false);
+		messageDiv.scrollIntoView({block: 'end', inline: 'center' })
+		// messageDiv.scrollIntoView({block: 'start' })
+		
+
 	}
 
 	render() {
