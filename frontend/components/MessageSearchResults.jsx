@@ -51,13 +51,8 @@ class MessageSearchResults extends Component {
 	}
 
 	handleClick(id) {
-		console.log(this.props.refs, id)
 		this.props.closeModal();
-		//dispatch scroll to ref?
-		this.props.refs[id].current.scrollIntoView({
-			behavior: 'smooth',
-			block: 'start',
-		  });
+		this.props.refs[id].current.scrollIntoView();
 	}
 
 	render() {

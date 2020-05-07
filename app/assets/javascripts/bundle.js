@@ -568,18 +568,16 @@ function mapDispatchToProps(dispatch) {
       showInfoBar: true,
       showEditProfile: false
     };
+    _this.something = {};
     return _this;
   }
 
   _createClass(Channel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.refs = {};
-
-      for (var i = 0; i < this.props.messages.length; i++) {
-        this.refs[this.props.messages[i].id] = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
-      }
-
+      // for (let i = 0; i < props.messages.length; i++) {
+      // 	this.refs[props.messages[i].id] = React.createRef();
+      // }
       this.props.openInfoBar({
         type: "membersList"
       });
@@ -616,17 +614,20 @@ function mapDispatchToProps(dispatch) {
     value: function render() {
       var _this2 = this;
 
-      console.log(this.refs);
       var messages = null;
 
       if (this.props.messages) {
         var chID = this.props.match.params.id;
         messages = this.props.messages.filter(function (message) {
           return message.channel_id == chID;
-        }) //don't change to === different types
-        .map(function (message) {
+        }); //don't change to === different types
+
+        messages.forEach(function (message) {
+          _this2.something[message.id] = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+        });
+        messages = messages.map(function (message) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleMessage__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            ref2: _this2.refs[message.id],
+            ref2: _this2.something[message.id],
             key: message.id,
             message: message.content,
             displayName: _this2.props.users[message.sender_id] ? Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_7__["displayName"])(_this2.props.users[message.sender_id]) : null,
@@ -639,7 +640,7 @@ function mapDispatchToProps(dispatch) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !!this.props.modal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Modal__WEBPACK_IMPORTED_MODULE_6__["default"], null) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MessageSearch__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        refs: this.refs
+        refs: this.something
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "channelContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1732,13 +1733,8 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleClick",
     value: function handleClick(id) {
-      console.log(this.props.refs, id);
-      this.props.closeModal(); //dispatch scroll to ref?
-
-      this.props.refs[id].current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      this.props.closeModal();
+      this.props.refs[id].current.scrollIntoView();
     }
   }, {
     key: "render",
