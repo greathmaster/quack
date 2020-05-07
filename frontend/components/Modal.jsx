@@ -23,7 +23,8 @@ class Modal extends Component {
 				break;
 
 			case "messageSearchResults":
-				component = <MessageSearchResults />
+				
+				component = <MessageSearchResults refs={this.props.modal.refs} />
 				break;
 			default:
 				break;

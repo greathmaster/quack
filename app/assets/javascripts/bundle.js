@@ -520,8 +520,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import InfoBarHeader from "./InfoBarHeader";
-// import InfoBarMembersList from "./InfoBarMembersList";
 
 
 
@@ -576,6 +574,12 @@ function mapDispatchToProps(dispatch) {
   _createClass(Channel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.refs = {};
+
+      for (var i = 0; i < this.props.messages.length; i++) {
+        this.refs[this.props.messages[i].id] = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+      }
+
       this.props.openInfoBar({
         type: "membersList"
       });
@@ -612,6 +616,7 @@ function mapDispatchToProps(dispatch) {
     value: function render() {
       var _this2 = this;
 
+      console.log(this.refs);
       var messages = null;
 
       if (this.props.messages) {
@@ -621,6 +626,7 @@ function mapDispatchToProps(dispatch) {
         }) //don't change to === different types
         .map(function (message) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleMessage__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            ref2: _this2.refs[message.id],
             key: message.id,
             message: message.content,
             displayName: _this2.props.users[message.sender_id] ? Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_7__["displayName"])(_this2.props.users[message.sender_id]) : null,
@@ -632,7 +638,9 @@ function mapDispatchToProps(dispatch) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !!this.props.modal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Modal__WEBPACK_IMPORTED_MODULE_6__["default"], null) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MessageSearch__WEBPACK_IMPORTED_MODULE_8__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MessageSearch__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        refs: this.refs
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "channelContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar"
@@ -1594,7 +1602,8 @@ var MessageSearch = /*#__PURE__*/function (_Component) {
           e.preventDefault();
 
           _this.props.openModal({
-            type: "messageSearchResults"
+            type: "messageSearchResults",
+            refs: _this.props.refs
           });
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -1722,8 +1731,14 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleClick",
-    value: function handleClick(e) {
+    value: function handleClick(id) {
+      console.log(this.props.refs, id);
       this.props.closeModal(); //dispatch scroll to ref?
+
+      this.props.refs[id].current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
   }, {
     key: "render",
@@ -1735,7 +1750,9 @@ var MessageSearchResults = /*#__PURE__*/function (_Component) {
       if (this.state.messages) {
         messages = this.matches().map(function (message) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleMessage__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            handleClick: _this3.handleClick,
+            handleClick: function handleClick() {
+              return _this3.handleClick(message.id);
+            },
             key: message.id,
             message: message.content,
             displayName: _this3.props.users[message.sender_id] ? Object(_util_misc_util__WEBPACK_IMPORTED_MODULE_8__["displayName"])(_this3.props.users[message.sender_id]) : null,
@@ -1843,7 +1860,9 @@ var Modal = /*#__PURE__*/function (_Component) {
           break;
 
         case "messageSearchResults":
-          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MessageSearchResults__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+          component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MessageSearchResults__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            refs: this.props.modal.refs
+          });
           break;
 
         default:
@@ -3389,6 +3408,7 @@ __webpack_require__.r(__webpack_exports__);
 function SingleMessage(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "singleMessage",
+    ref: props.ref2,
     onClick: props.handleClick
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "avatarContainer"

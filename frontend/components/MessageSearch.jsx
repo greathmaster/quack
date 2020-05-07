@@ -25,6 +25,7 @@ class MessageSearch extends Component {
 						e.preventDefault();
 						this.props.openModal({
 							type: "messageSearchResults",
+							refs: this.props.refs
 						});
 					}}
 				>

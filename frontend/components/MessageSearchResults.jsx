@@ -50,9 +50,14 @@ class MessageSearchResults extends Component {
 		return matches;
 	}
 
-	handleClick(e) {
+	handleClick(id) {
+		console.log(this.props.refs, id)
 		this.props.closeModal();
 		//dispatch scroll to ref?
+		this.props.refs[id].current.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		  });
 	}
 
 	render() {
@@ -61,7 +66,7 @@ class MessageSearchResults extends Component {
 			messages = this.matches().map((message) => {
 				return (
 					<SingleMessage
-						handleClick={this.handleClick}
+						handleClick={() => this.handleClick(message.id)}
 						key={message.id}
 						message={message.content}
 						displayName={

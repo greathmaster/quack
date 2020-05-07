@@ -3,12 +3,10 @@ import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar";
 import SingleMessage from "../components/SingleMessage";
 import InfoBar from "../components/InfoBar";
-// import InfoBarHeader from "./InfoBarHeader";
-// import InfoBarMembersList from "./InfoBarMembersList";
 import RichChatbar from "../components/RichChatbar";
 import Modal from "../components/Modal";
 import { displayName } from "../util/misc_util";
-import MessageSearch from "../components/MessageSearch"
+import MessageSearch from "../components/MessageSearch";
 
 import {
 	fetchAllChannelMessages,
@@ -46,9 +44,16 @@ export default connect(
 		constructor(props) {
 			super(props);
 			this.state = { showInfoBar: true, showEditProfile: false };
+	
 		}
 
 		componentDidMount() {
+			this.refs = {};
+			for (let i = 0; i < this.props.messages.length; i++) {
+				this.refs[this.props.messages[i].id] = React.createRef();
+			}
+
+
 			this.props.openInfoBar({ type: "membersList" });
 
 			if (this.props.currentUser) {
@@ -84,14 +89,17 @@ export default connect(
 		}
 
 		render() {
+			console.log(this.refs)
 			let messages = null;
 			if (this.props.messages) {
 				let chID = this.props.match.params.id;
 				messages = this.props.messages
 					.filter((message) => message.channel_id == chID) //don't change to === different types
 					.map((message) => {
+
 						return (
 							<SingleMessage
+								ref2={this.refs[message.id]}
 								key={message.id}
 								message={message.content}
 								displayName={
@@ -118,8 +126,8 @@ export default connect(
 			return (
 				<>
 					{!!this.props.modal ? <Modal /> : null}
-					<div className="bar"> 
-					<MessageSearch />
+					<div className="bar">
+						<MessageSearch refs={this.refs} />
 					</div>
 					<div className="channelContainer">
 						<div className="sidebar">
