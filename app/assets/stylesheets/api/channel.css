@@ -30,6 +30,10 @@
 	padding: 4px;
 }
 
+.search-button:focus {
+	outline: none;
+}
+
 .search-button:hover {
 	border: 1px solid rgb(216, 214, 214);
 	color: white;
