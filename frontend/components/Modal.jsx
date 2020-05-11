@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ReactModal from "react-modal";
 import Profile from "../components/Profile";
+import MessageSearchResults from "../components/MessageSearchResults";
+
 
 class Modal extends Component {
 	constructor(props) {
@@ -15,10 +17,14 @@ class Modal extends Component {
 		}
 
 		let component;
-
 		switch (this.props.modal.type) {
 			case "editProfile":
 				component = <Profile />;
+				break;
+
+			case "messageSearchResults":
+				
+				component = <MessageSearchResults refs={this.props.modal.refs} />
 				break;
 			default:
 				break;
@@ -27,7 +33,7 @@ class Modal extends Component {
 		return (
 			<ReactModal
 				isOpen={true}
-				contentLabel="EditProfile"
+				contentLabel=""
 				onRequestClose={this.props.closeModal}
 				className="EditProfileModal"
 				overlayClassName="EditProfileOverlay"

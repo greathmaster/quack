@@ -1,0 +1,87 @@
+.message-search-results {
+	height: 55%;
+	background-color: white;
+	margin-top: -20px;
+	border-radius: 5px;
+}
+
+.message-search-results-input {
+	border-radius: 5px;
+	width: 100%;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1.5vw;
+}
+
+.message-search-results-input:focus {
+	outline: none;
+}
+
+.message-search-input-section {
+	border-bottom: 1px solid lightgrey;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.message-search-input-icon {
+	padding: 20px;
+	font-size: x-large;
+}
+
+.message-search-results-close {
+	margin: 20px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.messages-search-results-messages {
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: none;
+	background-color: white;
+	border-radius: 5px;
+	zoom: 0.8;
+}
+/*
+	Fading animation
+	Taken from: https://jsfiddle.net/falafelsoftware/vxvtaxg0/
+*/
+@-webkit-keyframes highlight-fade {
+    0% {
+        background: orange;
+    }
+    100% {
+        background: white;
+    }
+}
+@-moz-keyframes highlight-fade {
+    0% {
+        background: orange;
+    }
+    100% {
+        background: white;
+    }
+}
+@-ms-keyframes highlight-fade {
+    0% {
+        background: orange;
+    }
+    100% {
+        background: white;
+    }
+}
+@keyframes highlight-fade {
+    0% {
+        background: orange;
+    }
+    100% {
+        background: white;
+    }
+}
+.highlight {
+    -webkit-animation: highlight-fade 2s ease-out;
+    -moz-animation: highlight-fade 2s ease-out;
+    -o-animation: highlight-fade 2s ease-out;
+    animation: highlight-fade 2s ease-out;
+}
+

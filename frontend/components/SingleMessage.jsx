@@ -2,8 +2,9 @@ import React from "react";
 import userImage from "../../app/assets/images/user.jpg";
 
 export default function SingleMessage(props) {
+
 	return (
-		<div className="singleMessage">
+		<div className="singleMessage" ref={props.ref2} onClick={props.handleClick}>
 			<div className="avatarContainer">
 				<img
 					className="avatar"

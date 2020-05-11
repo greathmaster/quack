@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar";
 import SingleMessage from "../components/SingleMessage";
 import InfoBar from "../components/InfoBar";
-// import InfoBarHeader from "./InfoBarHeader";
-// import InfoBarMembersList from "./InfoBarMembersList";
 import RichChatbar from "../components/RichChatbar";
 import Modal from "../components/Modal";
 import { displayName } from "../util/misc_util";
+import MessageSearch from "../components/MessageSearch";
 
 import {
 	fetchAllChannelMessages,
@@ -45,11 +44,13 @@ export default connect(
 		constructor(props) {
 			super(props);
 			this.state = { showInfoBar: true, showEditProfile: false };
-			// this.closeInfoBar = this.closeInfoBar.bind(this);
-			// this.openInfoBar = this.openInfoBar.bind(this);
+			this.something = {};
 		}
 
 		componentDidMount() {
+			// for (let i = 0; i < props.messages.length; i++) {
+			// 	this.refs[props.messages[i].id] = React.createRef();
+			// }
 			this.props.openInfoBar({ type: "membersList" });
 
 			if (this.props.currentUser) {
@@ -88,38 +89,44 @@ export default connect(
 			let messages = null;
 			if (this.props.messages) {
 				let chID = this.props.match.params.id;
-				messages = this.props.messages
-					.filter((message) => message.channel_id == chID) //don't change to === different types
-					.map((message) => {
-						return (
-							<SingleMessage
-								key={message.id}
-								message={message.content}
-								displayName={
-									this.props.users[message.sender_id]
-										? displayName(
-												this.props.users[
-													message.sender_id
-												]
-										  )
-										: null
-								}
-								avatar={
-									this.props.users[message.sender_id]
-										? this.props.users[message.sender_id]
-												.avatar
-										: null
-								}
-								timestamp={formatTimestamp(message.created_at)}
-							/>
-						);
-					});
+				messages = this.props.messages.filter(
+					(message) => message.channel_id == chID
+				); //don't change to === different types
+				
+				messages.forEach((message) => {
+					this.something[message.id] = React.createRef()
+				})
+
+				messages = messages.map((message) => {
+					return (
+						<SingleMessage
+							ref2={this.something[message.id]}
+							key={message.id}
+							message={message.content}
+							displayName={
+								this.props.users[message.sender_id]
+									? displayName(
+											this.props.users[message.sender_id]
+									  )
+									: null
+							}
+							avatar={
+								this.props.users[message.sender_id]
+									? this.props.users[message.sender_id].avatar
+									: null
+							}
+							timestamp={formatTimestamp(message.created_at)}
+						/>
+					);
+				});
 			}
 
 			return (
 				<>
 					{!!this.props.modal ? <Modal /> : null}
-					<div className="bar"> </div>
+					<div className="bar">
+						<MessageSearch refs={this.something} />
+					</div>
 					<div className="channelContainer">
 						<div className="sidebar">
 							<Sidebar />
